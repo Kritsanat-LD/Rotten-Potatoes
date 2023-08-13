@@ -1,6 +1,8 @@
-import React from "react"
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
+import { getImageUrls } from '../context/getImage';
+
 
 const Home = () =>{
 
@@ -33,11 +35,29 @@ const Home = () =>{
 
 
 
+      const [imageUrls, setImageUrls] = useState([]);
+
+      useEffect(() => {
+        const fetchImageUrls = async () => {
+          const urls = await getImageUrls();
+          setImageUrls(urls);
+        };
+        fetchImageUrls();
+      }, []);
+
+
+
+
 return(
     <>
         <h1>ดีครับ</h1>
         <p style={textStyle}>User Email: {user && user.email}</p>
         <div style={center}><a href="AddMovie">Add movie</a></div>
+        <div class="container">
+            {imageUrls.map((url, index) => (
+            <img width={200} height={200} key={index} src={url} alt={`Image ${index}`} />
+          ))}
+        </div>
         <button style={buttonStyle} onClick={handleLogout}>Logout</button>
     </>
 )
