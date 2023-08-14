@@ -5,6 +5,17 @@ import { uploadImage } from '../context/UploadImg';
 
 const AddMovie = () =>{
 
+  const [movieName,setMovieName] = useState('')
+  const [movieType,setMovietype] = useState('')
+  const [duration,setDuration] = useState()
+  const [rate,setRate] = useState('')
+
+    const hanldleAddmovie = async (e) =>{
+      
+    } 
+
+
+
     const { logout } = UserAuth();
     const navigate = useNavigate();
 
@@ -48,10 +59,9 @@ const AddMovie = () =>{
             </div>
 
             <input type="file" onChange={handleImageSelection} />
-            <button onClick={handleImageUpload}>Upload Image</button>
+            <button onClick={handleImageUpload} >Upload Image</button>
 
         </form>
-
             <button style={buttonStyle} onClick={handleLogout}>Logout</button>
         </>
     )
