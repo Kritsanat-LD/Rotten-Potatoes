@@ -40,6 +40,7 @@ const Home = () =>{
       useEffect(() => {
         const fetchImageUrls = async () => {
           const urls = await getImageUrls();
+          // console.log(urls)
           setImageUrls(urls);
         };
         fetchImageUrls();
