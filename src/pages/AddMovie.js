@@ -4,6 +4,7 @@ import { UserAuth } from '../context/AuthContext';
 import { uploadImage } from '../context/UploadImg';
 import { addMovieInfoDB } from "../context/addMovieInfo";
 
+
 const AddMovie = () =>{
 
   const [movieName,setMovieName] = useState('')
@@ -12,34 +13,48 @@ const AddMovie = () =>{
   const [showDate,setShowDate] = useState(null)
   const [rate,setRate] = useState('')
   const [selectedImage, setSelectedImage] = useState(null);
+  const [urlImage, seturlImage] = useState(null);
 
-      const handleImageSelection = (event) => {
-        setSelectedImage(event.target.files[0]);
+
+  const handleImageSelection = (event) => {
+    setSelectedImage(event.target.files[0]);
+    // console.log(selectedImage) //ได้ null
+  };
+
+  const handleUploadMovie = async () =>{
+
+    try{
+      let imageURL = null;
+      if (selectedImage) {
+        imageURL = await uploadImage(selectedImage);
+        console.log(imageURL)
+      }
+      const data = {
+        MovieName : movieName,
+        Type : movieType,
+        Duration : parseInt(duration),
+        ShowDate : showDate,
+        Rate : rate,
+        imageURL: imageURL
       };
 
-      const handleUploadMovie = async () =>{
-        console.log(rate)
-        addMovieInfoDB({
-          MovieName : movieName,
-          Type : movieType,
-          Duration : parseInt(duration),
-          ShowDate : showDate,
-          Rate : rate
-        });
-        setMovieName('')
-        setMovietype('')
-        setDuration('')
-        setShowDate(null)
-        setRate('')
+      await addMovieInfoDB(data);
+      console.log('Movie data added successfully');
+    }catch(error){
+      console.error('Error uploading image or adding movie info:', error);
+    }
 
-        if (selectedImage) {
-          await uploadImage(selectedImage);
-          setSelectedImage(null);
-        }
+    setMovieName('')
+    setMovietype('')
+    setDuration('')
+    setShowDate(null)
+    setRate('')
+    setSelectedImage(null);
 
-        window.alert('Data added successfully!');
-        window.location.reload()
-      }
+
+    window.alert('Data added successfully!');
+    // window.location.reload()
+  }
 
 
 
@@ -65,8 +80,8 @@ const AddMovie = () =>{
         <>
             <h1>Add Movie</h1>
             <a href="/home">Home</a>
-        <form>
-            <div class="container">
+        
+          <div class="container">
                 <label><b>Movie Name</b></label>
                 <input type="text" placeholder="Enter Movie Name" value={movieName} onChange={(e) => setMovieName(e.target.value)} required/><br/>
                 <label><b>Movie Type</b></label>
@@ -84,12 +99,12 @@ const AddMovie = () =>{
                   <option value="R">Restricted (R)</option>
                   <option value="NC-17">No one 17 and under admitted (NC-17)</option>
               </select>
+              <input type="file" onChange={handleImageSelection}/>
+              <button onClick={handleUploadMovie} >Upload Image</button>
             </div>
-
-            <input type="file" onChange={handleImageSelection} />
-            <button onClick={handleUploadMovie} >Upload Image</button>
-
-        </form>
+        
+            
+        
             <button style={buttonStyle} onClick={handleLogout}>Logout</button>
         </>
     )

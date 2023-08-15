@@ -1,17 +1,13 @@
 import { storage } from '../firebase';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const uploadImage = async (file) => {
   const storageRef = ref(storage, `images/${file.name}`);
-  const uploadTask = uploadBytesResumable(storageRef, file);
+  await uploadBytes(storageRef, file);
 
-  try {
-    await uploadTask;
-    const downloadURL = await getDownloadURL(storageRef);
-    console.log('Image uploaded successfully:', downloadURL);
-  } catch (error) {
-    console.error('Error uploading image:', error);
-  }
+  const imageURL = await getDownloadURL(storageRef);
+  console.log(imageURL)
+  return imageURL;
 };
 
 export { uploadImage };

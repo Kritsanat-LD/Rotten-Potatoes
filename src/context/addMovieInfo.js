@@ -2,8 +2,13 @@ import { db } from '../firebase';
 import { addDoc, collection } from 'firebase/firestore';
 
 const addMovieInfoDB = async (data) => {
-    const newDocRef = await addDoc(collection(db, 'Movie'), data);
-    console.log('Data added to Firestore successfully with ID:', newDocRef.id);
+    try{
+      const newDocRef = collection(db,'Movies');
+      await addDoc(newDocRef,data);
+      console.log('Movie info added to Firestore successfully');
+    } catch (error){
+      console.error('Error adding movie info to Firestore:', error);
+    }
   };
 
   export { addMovieInfoDB };
