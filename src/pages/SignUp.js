@@ -1,63 +1,64 @@
 import React, { useState } from "react";
 import "./Login.css"
-import {auth , app , db} from "../firebase"
+import { auth, app, db } from "../firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from 'react-router-dom'
 import { doc, setDoc, serverTimestamp, collection } from "firebase/firestore";
 
 
+const SignUp = () => {
 
-const SignUp = () =>{
-
-    const [email,setEmail] = useState('')
-    const [password,setPassword] = useState('')
-    const [name,setName] = useState('')
-    const [lastname,setLastname] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [name, setName] = useState('')
+    const [lastname, setLastname] = useState('')
     const navigate = useNavigate('')
 
-    const signUp = async (e) =>{
+    const signUp = async (e) => {
         e.preventDefault();
-        createUserWithEmailAndPassword(auth,email,password)
-            .then(cred =>{
+        createUserWithEmailAndPassword(auth, email, password)
+            .then(cred => {
                 navigate("/")
-                return setDoc(doc(db,"user",cred.user.uid),{
-                    email:email,
-                    password:password,
-                    name:name,
-                    lastname:lastname
+                return setDoc(doc(db, "user", cred.user.uid), {
+                    email: email,
+                    password: password,
+                    name: name,
+                    lastname: lastname
                 });
             })
-            .catch((error) =>{
+            .catch((error) => {
                 console.log(error)
             });
     }
 
-return(
-    <>
-        <h1>Register</h1>
+    return (
+        <>
+            <div className="container">
+                <div className="card">
+                    <form onSubmit={signUp}>
+                        <h2>ลงทะเบียน</h2>
+                        <label htmlFor="uname"><b>อีเมล</b></label>
+                        <input type="email" placeholder="กรุณากรอกอีเมล" name="uname" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
-        <form onSubmit={signUp}>
-        <div class="container">
-            
-            <label for="uname"><b>Username</b></label>
-            <input type="email" placeholder="Enter Username" name="uname" value={email} onChange={(e)=>setEmail(e.target.value)} required/>
+                        <label htmlFor="psw"><b>รหัสผ่าน</b></label>
+                        <input type="password" placeholder="กรุณากรอกรหัสผ่าน" name="psw" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" value={password} onChange={(e)=>setPassword(e.target.value)} required/>
+                        <label htmlFor="name"><b>ชื่อ</b></label>
+                        <input type="text" placeholder="กรุณากรอกชื่อ" name="name" value={name} onChange={(e) => setName(e.target.value)} required />
 
-            <label for="name"><b>Name</b></label>
-            <input type="text" placeholder="Enter Name" name="name" value={name} onChange={(e)=>setName(e.target.value)} required/>
+                        <label htmlFor="lastname"><b>นามสกุล</b></label>
+                        <input type="text" placeholder="กรุณากรอกนามสกุล" name="lastname" value={lastname} onChange={(e) => setLastname(e.target.value)} required />
 
-            <label for="lastname"><b>Lastname</b></label>
-            <input type="text" placeholder="Enter Lastname" name="lastname" value={lastname} onChange={(e)=>setLastname(e.target.value)} required/>
+                        <button type="submit">ลงทะเบียน</button>
 
-            <button type="submit">Register</button>
-            <br/>
-            <a href="/" >Login</a>
-        </div>
-        </form>
-    </>
-)
+                        <div className="switch">มีบัญชีแล้ว? <a href="/Login">เข้าสู่ระบบที่นี่</a></div>
+
+                    </form>
+                </div>
+            </div>
+
+        </>
+    )
 
 }
 

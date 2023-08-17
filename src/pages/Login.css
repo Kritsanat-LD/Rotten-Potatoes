@@ -1,77 +1,92 @@
-/* Bordered form */
-form {
-  border: 3px solid #f1f1f1;
+/* .container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50em;
+}
+form{
+  width: 30em;
+  margin: 0 auto;
+  padding: 50px;
+  background-color: #f4f6f8;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #1e63af;
 }
 
-/* Full-width inputs */
-input,select{
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+.box label{
+  display: block;
 }
-
-/* Set a style for all buttons */
-button {
-  background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
+.box input{
+  outline: none;
   border: none;
-  cursor: pointer;
-  width: 100%;
+  padding: 0 30px;
+  border-radius: 5px;
 }
 
-/* Add a hover effect for buttons */
-button:hover {
-  opacity: 0.8;
+.box label{
+
+} */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/* Extra style for the cancel button (red) */
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
-}
-
-/* Center the avatar image inside this container */
-.imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-}
-
-/* Avatar image */
-img.avatar {
-  width: 40%;
-  border-radius: 50%;
-}
-
-/* Add padding to containers */
 .container {
-  margin-left: 300px;
-  margin-right: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-/* The "Forgot password" text */
-span.psw {
-  float: right;
-  padding-top: 16px;
+.card {
+  width: 300px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.psw {
-    display: block;
-    float: none;
-  }
-  .cancelbtn {
-    width: 100%;
-  }
+h2 {
+  color: #007BFF;
+  margin-bottom: 20px;
 }
 
-h1{
-    text-align: center;
+form {
+  display: flex;
+  flex-direction: column;
 }
 
+label {
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.switch {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.switch a {
+  color: #007BFF;
+  text-decoration: none;
+}

@@ -6,6 +6,7 @@ import AddMovie from './pages/AddMovie';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './context/ProtectRoutes';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function App() {
   return (

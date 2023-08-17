@@ -1,50 +1,55 @@
 import React, { useState } from "react";
 import "./Login.css"
 
-import {auth , app} from "../firebase"
+import { auth, app } from "../firebase"
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
-    const [email,setEmail] = useState('')
-    const [password,setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const navigate = useNavigate('')
 
-    const handleLogin = (e) =>{
+    const handleLogin = (e) => {
         console.log(e)
         e.preventDefault();
-        signInWithEmailAndPassword(auth,email,password)
-            .then((userCredential) =>{
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
                 // console.log(userCredential)
                 navigate("/home")
             })
-            .catch((error) =>{
+            .catch((error) => {
                 // console.log(error)
                 alert("You have no Account yet");
             });
     }
 
-    
 
-    return(
+
+    return (
         <>
-            <h1>Login</h1>
+            <div className="container">
+                <div className="card">
+                    <form onSubmit={handleLogin}>
+                        <h2>เข้าสู่ระบบ</h2>
 
-            <form onSubmit={handleLogin}>
-            <div class="container">
-                <label for="uname"><b>Username</b></label>
-                <input type="email" placeholder="Enter Username" name="uname" value={email} onChange={(e)=>setEmail(e.target.value)} required/>
+                        <label htmlFor="uname">อีเมล</label>
+                        <input type="email" placeholder="กรุณากรอกอีเมล" name="uname" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" value={password} onChange={(e)=>setPassword(e.target.value)} required/>
 
-                <button type="submit" >Login</button>
-                <br/>
-            <a href="/signup" >Sign Up</a>
+                        <label htmlFor="psw">รหัสผ่าน</label>
+                        <input type="password" placeholder="กรุณากรอกรหัสผ่าน" name="psw" value={password} onChange={(e) => setPassword(e.target.value)} required />
+
+                        <button type="submit" >เข้าสู่ระบบ</button>
+
+                        <div className="switch">ยังไม่มีบัญชี? <a href="/signup">ลงทะเบียนที่นี่</a></div>
+                    </form>
+                </div>
             </div>
-            
-            </form>
+
+
+
         </>
     );
 
