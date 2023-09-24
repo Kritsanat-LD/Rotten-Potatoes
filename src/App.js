@@ -10,25 +10,25 @@ import ProtectedRoute from './context/ProtectRoutes';
 function App() {
   return (
     <>
-          <AuthContextProvider>
-    <BrowserRouter>
-      <Routes>
-          <Route path='/' element={<Login />} />
-          <Route path='signup' element={<SignUp />} />
-          {/* <Route path='home' element={<Home />} /> */}
-          <Route path='home' element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          } />
-          <Route path='addmovie' element={
-            <ProtectedRoute>
-              <AddMovie />
-            </ProtectedRoute>
-          } />
-      </Routes>
-    </BrowserRouter>
-    </AuthContextProvider>
+      <AuthContextProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Login />} />
+            <Route path='signup' element={<SignUp />} />
+            {/* <Route path='home' element={<Home />} /> */}
+            <Route path='home' element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            } />
+            <Route path='addmovie' element={
+              <ProtectedRoute>
+                <AddMovie />
+              </ProtectedRoute>
+            } />
+          </Routes>
+        </BrowserRouter>
+      </AuthContextProvider>
     </>
   );
 }

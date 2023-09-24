@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Login.css"
+import "../css/Login.css"
 import { auth, app, db } from "../firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from 'react-router-dom'
@@ -51,7 +51,7 @@ const SignUp = () => {
 
                         <button type="submit">ลงทะเบียน</button>
 
-                        <div className="switch">มีบัญชีแล้ว? <a href="/Login">เข้าสู่ระบบที่นี่</a></div>
+                        <div className="switch">มีบัญชีแล้ว? <a href="/">เข้าสู่ระบบที่นี่</a></div>
 
                     </form>
                 </div>
