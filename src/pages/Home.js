@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 import { getImageUrls } from '../context/getImage';
-
+import { db } from '../firebase';
+import { collection, getDocs } from 'firebase/firestore';
 
 const Home = () => {
-
   const { user, logout } = UserAuth();
   const navigate = useNavigate();
 
@@ -13,14 +13,14 @@ const Home = () => {
     try {
       await logout();
       navigate('/');
-      console.log('You are logged out')
+      console.log('You are logged out');
     } catch (e) {
       console.log(e.message);
     }
   };
 
   const buttonStyle = {
-    backgroundColor: 'red'
+    backgroundColor: 'red',
   };
 
   const textStyle = {
@@ -30,39 +30,83 @@ const Home = () => {
   };
 
   const center = {
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  };
 
+  // const [imageUrls, setImageUrls] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true); // Add loading state
 
+  // useEffect(() => {
+  //   const fetchImageUrls = async () => {
+  //     try {
+  //       const urls = await getImageUrls();
+  //       setImageUrls(urls);
+  //       setIsLoading(false); // Set loading to false after fetching data
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //       setIsLoading(false); // Set loading to false in case of an error
+  //     }
+  //   };
+  //   fetchImageUrls();
+  // }, []);
 
-  const [imageUrls, setImageUrls] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchImageUrls = async () => {
-      const urls = await getImageUrls();
-      // console.log(urls)
-      setImageUrls(urls);
+    const fetchData = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'Movies'));
+        const fetchedData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setData(fetchedData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     };
-    fetchImageUrls();
+    fetchData();
   }, []);
 
 
-
-
-  return (
+  // Render the entire component only when isLoading is false
+  // return !isLoading ? (
+    return(
     <>
       <h1>ดีครับ</h1>
       <p style={textStyle}>User Email: {user && user.email}</p>
-      <div style={center}><a href="AddMovie">Add movie</a></div>
-      <div class="container">
+      <div style={center}>
+        <a href="AddMovie">Add movie</a>
+      </div>
+      <div style={center}>
+        <a href="addmoviegenre">AddMoivieGenre</a>
+      </div>
+      <div style={center}>
+        <a href="addactor">Add Actor</a>
+      </div>
+
+      <div>
+        {data.map((movie) => (
+          <div key={movie.id} style={center}>
+            <h3>{movie.MovieName}</h3>
+            <img width={50} src={movie.imageURL} alt={movie.MovieName} />
+            <div dangerouslySetInnerHTML={{ __html: movie.Trailer }} />
+          </div>
+        ))}
+      </div>
+
+
+      {/* <div className="container">
         {imageUrls.map((url, index) => (
           <img width={200} height={200} key={index} src={url} alt={`Image ${index}`} />
         ))}
-      </div>
-      <button style={buttonStyle} onClick={handleLogout}>Logout</button>
+      </div> */}
+      <button style={buttonStyle} onClick={handleLogout}>
+        Logout
+      </button>
     </>
-  )
-
-}
+    )
+  // ) : null; // Render null while isLoading is true
+};
 
 export default Home;
