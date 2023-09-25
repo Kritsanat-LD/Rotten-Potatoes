@@ -2,7 +2,7 @@
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
-// import Navbar from './pages/nav';
+import Navbar from './pages/nav';
 import AddMovie from './pages/AddMovie';
 import AddMovieGenre from './pages/AddMoivieGenre';
 import AddActor from './pages/AddActor';
@@ -18,7 +18,7 @@ function App() {
       <Routes>
           <Route path='/' element={<Login />} />
           <Route path='signup' element={<SignUp />} />
-          {/* <Route path='nav' element={<Navbar />} /> */}
+          <Route path='nav' element={<Navbar />} />
 
 
           <Route path='home' element={

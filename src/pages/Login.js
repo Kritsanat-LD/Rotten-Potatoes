@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../css/Login.css"
-
+import "../css/Login.module.css"
+import LoginCss from "../css/Login.module.css"
 import { auth, app } from "../firebase"
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from 'react-router-dom'
@@ -27,21 +27,21 @@ const Login = () => {
 
     return (
         <>
-            <div className="container">
-                <div className="card">
-                    <form onSubmit={handleLogin}>
-                        <h2>เข้าสู่ระบบ</h2>
+            <div className={LoginCss.container}>
+                <div className={LoginCss.card}>
+                    <form className={LoginCss.form} onSubmit={handleLogin}>
+                        <h2 className={LoginCss.title}>เข้าสู่ระบบ</h2>
 
-                        <label htmlFor="uname">อีเมล</label>
-                        <input type="email" placeholder="กรุณากรอกอีเมล" name="uname" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                        <label className={LoginCss.label} htmlFor="uname">อีเมล</label>
+                        <input className={LoginCss.input} type="email" placeholder="กรุณากรอกอีเมล" name="uname" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
 
-                        <label htmlFor="psw">รหัสผ่าน</label>
-                        <input type="password" placeholder="กรุณากรอกรหัสผ่าน" name="psw" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        <label className={LoginCss.label} htmlFor="psw">รหัสผ่าน</label>
+                        <input className={LoginCss.input} type="password" placeholder="กรุณากรอกรหัสผ่าน" name="psw" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
-                        <button type="submit" >เข้าสู่ระบบ</button>
+                        <button className={LoginCss.btn} type="submit" >เข้าสู่ระบบ</button>
 
-                        <div className="switch">ยังไม่มีบัญชี? <a href="/signup">ลงทะเบียนที่นี่</a></div>
+                        <div className={LoginCss.switch}>ยังไม่มีบัญชี? <a className={LoginCss.a}href="/signup">ลงทะเบียนที่นี่</a></div>
                         
                     </form>
                 </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "../css/Login.css"
+import "../css/Login.module.css"
+import RegisterCss from "../css/Login.module.css"
 import { auth, app, db } from "../firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from 'react-router-dom'
@@ -39,28 +40,28 @@ const SignUp = () => {
 
     return (
         <>
-            <div className="container">
-                <div className="card">
-                    <form onSubmit={signUp}>
-                        <h2>ลงทะเบียน</h2>
-                        <label><b>อีเมล</b></label>
-                        <input type="email" placeholder="กรุณากรอกอีเมล" name="uname" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <div className={RegisterCss.container}>
+                <div className={RegisterCss.card}>
+                    <form className={RegisterCss.form} onSubmit={signUp}>
+                        <h2 className={RegisterCss.title}>ลงทะเบียน</h2>
+                        <label className={RegisterCss.label}><b>อีเมล</b></label>
+                        <input className={RegisterCss.input} type="email" placeholder="กรุณากรอกอีเมล" name="uname" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
-                        <label><b>รหัสผ่าน</b></label>
-                        <input type="password" placeholder="กรุณากรอกรหัสผ่าน" name="psw" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        <label className={RegisterCss.label}><b>รหัสผ่าน</b></label>
+                        <input className={RegisterCss.input} type="password" placeholder="กรุณากรอกรหัสผ่าน" name="psw" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
-                        <label><b>ชื่อ</b></label>
-                        <input type="text" placeholder="กรุณากรอกชื่อ" name="name" value={name} onChange={(e) => setName(e.target.value)} required />
+                        <label className={RegisterCss.label}><b>ชื่อ</b></label>
+                        <input className={RegisterCss.input}  type="text" placeholder="กรุณากรอกชื่อ" name="name" value={name} onChange={(e) => setName(e.target.value)} required />
 
-                        <label><b>นามสกุล</b></label>
-                        <input type="text" placeholder="กรุณากรอกนามสกุล" name="lastname" value={lastname} onChange={(e) => setLastname(e.target.value)} required />
+                        <label className={RegisterCss.label}><b>นามสกุล</b></label>
+                        <input className={RegisterCss.input}  type="text" placeholder="กรุณากรอกนามสกุล" name="lastname" value={lastname} onChange={(e) => setLastname(e.target.value)} required />
 
-                        <label><b>เบอร์โทรศัพท์</b></label>
-                        <input type="tel" pattern="[0-9]{9,10}" placeholder="กรุณากรอกเบอร์โทรศัพท์" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
+                        <label className={RegisterCss.label}><b>เบอร์โทรศัพท์</b></label>
+                        <input className={RegisterCss.input}  type="tel" pattern="[0-9]{9,10}" placeholder="กรุณากรอกเบอร์โทรศัพท์" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
 
-                        <button type="submit">ลงทะเบียน</button>
+                        <button className={RegisterCss.btn} type="submit">ลงทะเบียน</button>
 
-                        <div className="switch">มีบัญชีแล้ว? <a href="/">เข้าสู่ระบบที่นี่</a></div>
+                        <div  className={RegisterCss.switch}>มีบัญชีแล้ว? <a className={RegisterCss.a} href="/">เข้าสู่ระบบที่นี่</a></div>
 
                     </form>
                 </div>

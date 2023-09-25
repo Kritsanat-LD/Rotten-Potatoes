@@ -3,26 +3,25 @@
 	box-sizing: border-box;
     margin: 0;
 }
-nav > img{
+.nav > .logo{
     display: block;
     max-width:150px;
     max-height: 150px;
 }
-nav{
+.nav{
     display: flex;
     justify-content: space-around;
     gap: 4%;
     align-items: center;
     background-color: #fa320a;
 }
-form{
+.search{
     display: flex;
     position: relative;
     padding-right: 1em;
-    flex-flow: row;
     flex: 2;
 }
-nav input[type="search"] {
+    .nav .input{
           width: 100%;
           border: 1px solid #ffffff;
           border-left: none;
@@ -34,14 +33,14 @@ nav input[type="search"] {
           color: #ffffff;
       }
 
-      nav input[type="search"]::placeholder {
+      .nav .input::placeholder {
           color: rgb(255, 255, 255);
       }
 
-      nav input[type="search"]::-webkit-search-cancel-button {
+      .nav .input::-webkit-search-cancel-button {
       -webkit-appearance: none;
       }
-      nav .searchicon {
+      .nav .btn {
           width: 5em;
           border: 1px solid #ffffff;
           border-right: none;
@@ -54,27 +53,27 @@ nav input[type="search"] {
           cursor: pointer;
       }
 
-section{
+    .listpage{
         /* padding: 10px 15px; */
         align-items: center;
         text-align: center;
         padding-right: 1em;
         display: block;
       }
-      section div {
+      .listpage .content {
        display: inline;
     }
-      section a{
+      .listpage .a{
         font-size: .99em;
           padding: 0 10px;
           color: white;
       }
-      section img{
+      .listpage .img{
         display: none;
       }
 
       @media screen and (max-width: 768px) {
-    section {
+        .listpage {
         position: fixed;
         bottom: 0;
         width: 100%;
@@ -86,21 +85,21 @@ section{
         align-items: center;
     }
 
-    section div {
+    .listpage .content {
         text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    section a {
+    .listpage .a {
         color: black;
         text-align: center;
         margin-top: 0.5rem;
         font-size: 14px; 
     }
 
-    section img {
+    .listpage .img {
         display: inline;
         width: 2em;
         height: 2em;
