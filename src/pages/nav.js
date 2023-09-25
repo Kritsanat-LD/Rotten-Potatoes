@@ -6,8 +6,10 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = () => {
 
+
   return (
     <>
+    <GlobalStyles />
          <nav>
             <img src="./images/Rotten-potato.png" class="logo"/>
             <form class="search">
@@ -31,7 +33,6 @@ const Navbar = () => {
 
 
         </nav> 
-
     </>
   )
 

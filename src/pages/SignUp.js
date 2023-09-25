@@ -12,8 +12,12 @@ const SignUp = () => {
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
     const [lastname, setLastname] = useState('')
+    const [phone, setPhone] = useState('')
     const navigate = useNavigate('')
 
+
+    //role = 0 : user
+    //role = 1 : admin
     const signUp = async (e) => {
         e.preventDefault();
         createUserWithEmailAndPassword(auth, email, password)
@@ -23,7 +27,9 @@ const SignUp = () => {
                     email: email,
                     password: password,
                     name: name,
-                    lastname: lastname
+                    lastname: lastname,
+                    phone: phone,
+                    role : 0
                 });
             })
             .catch((error) => {
@@ -37,17 +43,20 @@ const SignUp = () => {
                 <div className="card">
                     <form onSubmit={signUp}>
                         <h2>ลงทะเบียน</h2>
-                        <label htmlFor="uname"><b>อีเมล</b></label>
+                        <label><b>อีเมล</b></label>
                         <input type="email" placeholder="กรุณากรอกอีเมล" name="uname" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
-                        <label htmlFor="psw"><b>รหัสผ่าน</b></label>
+                        <label><b>รหัสผ่าน</b></label>
                         <input type="password" placeholder="กรุณากรอกรหัสผ่าน" name="psw" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
-                        <label htmlFor="name"><b>ชื่อ</b></label>
+                        <label><b>ชื่อ</b></label>
                         <input type="text" placeholder="กรุณากรอกชื่อ" name="name" value={name} onChange={(e) => setName(e.target.value)} required />
 
-                        <label htmlFor="lastname"><b>นามสกุล</b></label>
+                        <label><b>นามสกุล</b></label>
                         <input type="text" placeholder="กรุณากรอกนามสกุล" name="lastname" value={lastname} onChange={(e) => setLastname(e.target.value)} required />
+
+                        <label><b>เบอร์โทรศัพท์</b></label>
+                        <input type="tel" pattern="[0-9]{9,10}" placeholder="กรุณากรอกเบอร์โทรศัพท์" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
 
                         <button type="submit">ลงทะเบียน</button>
 
