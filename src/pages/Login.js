@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Login.css"
+import "../css/Login.css"
 
 import { auth, app } from "../firebase"
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -16,11 +16,9 @@ const Login = () => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // console.log(userCredential)
                 navigate("/home")
             })
             .catch((error) => {
-                // console.log(error)
                 alert("You have no Account yet");
             });
     }
