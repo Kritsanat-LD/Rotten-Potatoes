@@ -1,21 +1,9 @@
 import React, { useState } from "react";
-import { db } from '../firebase';
-import { addDoc, collection } from 'firebase/firestore';
-
+import { addMovieGenreDB } from "../context/addMovieInfo";
 
 const AddMovieGenre = () =>{
 
     const [movieGenre,setMovieGenre] = useState('')
-
-    const addMovieGenreDB = async (data) => {
-        try{
-          const newDocRef = collection(db,'Movie Genre');
-          await addDoc(newDocRef,data);
-          console.log('Movie genre added to Firestore successfully');
-        } catch (error){
-          console.error('Error adding movie genre to Firestore:', error);
-        }
-    };
 
     const handleAddGenre = async () =>{
         try{

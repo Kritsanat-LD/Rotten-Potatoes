@@ -10,4 +10,12 @@ const uploadImage = async (file) => {
   return imageURL;
 };
 
-export { uploadImage };
+const uploadActorImage = async (file) => {
+  const storageRef = ref(storage, `Actor/${file.name}`);
+  await uploadBytes(storageRef, file);
+
+  const imageURL = await getDownloadURL(storageRef);
+  return imageURL;
+};
+
+export { uploadImage , uploadActorImage};

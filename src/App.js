@@ -6,6 +6,7 @@ import Navbar from './pages/nav';
 import AddMovie from './pages/AddMovie';
 import AddMovieGenre from './pages/AddMoivieGenre';
 import AddActor from './pages/AddActor';
+import Comment from './pages/CommentManagement';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './context/ProtectRoutes';
@@ -39,6 +40,11 @@ function App() {
           <Route path='addactor' element={
             <ProtectedRoute>
               <AddActor />
+            </ProtectedRoute>
+          } />
+          <Route path='commentManagement' element={
+            <ProtectedRoute>
+              <Comment />
             </ProtectedRoute>
           } />
 

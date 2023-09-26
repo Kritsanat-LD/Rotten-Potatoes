@@ -11,4 +11,25 @@ const addMovieInfoDB = async (data) => {
     }
   };
 
-  export { addMovieInfoDB };
+  const addActorDB = async (data) => {
+    try{
+      const newDocRef = collection(db,'Actor');
+      await addDoc(newDocRef,data);
+      console.log('Actor added to Firestore successfully');
+    } catch (error){
+      console.error('Error adding Actor to Firestore:', error);
+    }
+  };
+
+
+  const addMovieGenreDB = async (data) => {
+    try{
+      const newDocRef = collection(db,'Movie Genre');
+      await addDoc(newDocRef,data);
+      console.log('Movie genre added to Firestore successfully');
+    } catch (error){
+      console.error('Error adding movie genre to Firestore:', error);
+    }
+};
+
+  export { addMovieInfoDB , addActorDB , addMovieGenreDB};

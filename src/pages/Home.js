@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
-import { getImageUrls } from '../context/getImage';
+// import { getImageUrls } from '../context/getImage';
 import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 
@@ -34,7 +34,7 @@ const Home = () => {
   };
 
   // const [imageUrls, setImageUrls] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true); // Add loading state
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
 
   // useEffect(() => {
   //   const fetchImageUrls = async () => {
@@ -61,8 +61,10 @@ const Home = () => {
           ...doc.data(),
         }));
         setData(fetchedData);
+        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
+        setIsLoading(false);
       }
     };
     fetchData();
@@ -70,8 +72,8 @@ const Home = () => {
 
 
   // Render the entire component only when isLoading is false
-  // return !isLoading ? (
-    return(
+  return !isLoading ? (
+    // return(
     <>
       <h1>ดีครับ</h1>
       <p style={textStyle}>User Email: {user && user.email}</p>
@@ -84,6 +86,9 @@ const Home = () => {
       <div style={center}>
         <a href="addactor">Add Actor</a>
       </div>
+      <div style={center}>
+        <a href="commentManagement">Comment</a>
+      </div>
 
       <div>
         {data.map((movie) => (
@@ -94,19 +99,11 @@ const Home = () => {
           </div>
         ))}
       </div>
-
-
-      {/* <div className="container">
-        {imageUrls.map((url, index) => (
-          <img width={200} height={200} key={index} src={url} alt={`Image ${index}`} />
-        ))}
-      </div> */}
       <button style={buttonStyle} onClick={handleLogout}>
         Logout
       </button>
     </>
-    )
-  // ) : null; // Render null while isLoading is true
+  ) : null; 
 };
 
 export default Home;

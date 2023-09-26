@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { db } from '../firebase';
-import { addDoc, collection } from 'firebase/firestore';
-import { storage } from '../firebase';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { uploadActorImage } from "../context/UploadImg";
+import {addActorDB} from "../context/addMovieInfo";
 
 
 const AddActor = () =>{
@@ -15,24 +13,6 @@ const AddActor = () =>{
     const handleImageSelection =(event)=>{
         setActorImage(event.target.files[0]);
     }
-
-    const uploadActorImage = async (file) => {
-        const storageRef = ref(storage, `Actor/${file.name}`);
-        await uploadBytes(storageRef, file);
-      
-        const imageURL = await getDownloadURL(storageRef);
-        return imageURL;
-      };
-
-    const addActorDB = async (data) => {
-        try{
-          const newDocRef = collection(db,'Actor');
-          await addDoc(newDocRef,data);
-          console.log('Actor added to Firestore successfully');
-        } catch (error){
-          console.error('Error adding Actor to Firestore:', error);
-        }
-    };
 
     const handleAddActor = async () =>{
         try{
@@ -56,6 +36,7 @@ const AddActor = () =>{
         setLastname('')
         setBirthDate(null)
         window.alert('Data added successfully!');
+        window.location.reload()
     }
 
     return(
@@ -71,7 +52,7 @@ const AddActor = () =>{
         <input type="file" onChange={handleImageSelection}/>
 
 
-        <button onClick={handleAddActor} >Add Movie</button>
+        <br/><button onClick={handleAddActor} >Add Actor</button>
         </>
     )
 }
