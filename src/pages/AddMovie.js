@@ -3,7 +3,11 @@ import { uploadImage } from '../context/UploadImg';
 import { addMovieInfoDB } from "../context/addMovieInfo";
 import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
+import "../css/admin.module.css"
+import AdminCss from "../css/admin.module.css"
 import {MultiSelect} from 'react-multi-select-component';
+import NavbarAdmin from "./navbaradmin";
+
 
 const AddMovie = () =>{
 
@@ -90,49 +94,72 @@ const AddMovie = () =>{
 
     return(
         <>
-            <h1>Add Movie</h1>
-            <p>หลังบ้าน</p>
-            <a href="/home">Home</a>
-        
-          <div class="container">
-                <label><b>Movie Name</b></label>
-                <input type="text" placeholder="Enter Movie Name" value={movieName} onChange={(e) => setMovieName(e.target.value)} required/><br/>
-                <label><b>Movie Info</b></label>
-                <input type="text" placeholder="Enter Movie Info" value={movieInfo} onChange={(e) => setMovieInfo(e.target.value)} required/><br/>
-                <label><b>Movie Genre</b></label><br/>
-                <MultiSelect
+        <NavbarAdmin/>
+
+      <section class={AdminCss.warpper}>
+    <section class={AdminCss.container}>
+      <header class={AdminCss.header}>Add Movie</header>
+      <div class={AdminCss.form}>
+        <div class={AdminCss.inputbox}>
+          <label class={AdminCss.label}>Movie Name</label>
+          <input class={AdminCss.input} type="text" placeholder="Enter Movie Name" value={movieName} onChange={(e) => setMovieName(e.target.value)} required />
+        </div>
+
+        <div class={AdminCss.inputbox}>
+          <label class={AdminCss.label}>Movie Info</label>
+          <input class={AdminCss.input} type="text" placeholder="Enter Movie Info"  value={movieInfo} onChange={(e) => setMovieInfo(e.target.value)} required />
+        </div>
+
+        <div class={AdminCss.inputbox}>
+          <label class={AdminCss.label}>Trailer</label>
+          <input class={AdminCss.input} type="text" placeholder="Enter Trailer" value={trailer} onChange={(e) => setTrailer(e.target.value)}required />
+        </div>
+        <div class={AdminCss.column}>
+          <div class={AdminCss.inputbox}>
+            <label class={AdminCss.label}>Movie Duration</label>
+            <input class={AdminCss.input} type="number" placeholder="Enter Movie Duration" value={duration} onChange={(e) => setDuration(e.target.value)}  required />
+          </div>
+          <div class={AdminCss.inputbox}>
+            <label class={AdminCss.label}>Release Date</label>
+            <input class={AdminCss.input} type="date" value={showDate} onChange={(e) => setShowDate(e.target.value)}  placeholder="Enter Release Date" required />
+          </div>
+        </div>
+    
+         
+        <div class={AdminCss.inputbox}>
+            <label class={AdminCss.label}>Select Genres</label>
+                  <MultiSelect
                   options={options}
                   value={movieGenresSelect}
                   onChange={setMovieGenresSelect}
-                  labelledBy={"Select"} // Label for the multi-select input
-                  isCreatable={true} // Enable creating new options
+                  labelledBy={"Select"} 
+                  isCreatable={true} 
                 />
-                {/* <select multiple value={movieGenresSelect} onChange={handleSelectGenre}>
-                {movieGenreData.map((genre) => (
-                  <option key={genre.id} value={genre.MovieGenre}>
-                    {genre.MovieGenre}
-                  </option>
-                ))}
-              </select><br/> */}
-                <label><b>Movie Duration</b></label>
-                <input type="number" placeholder="Duration" value={duration} onChange={(e) => setDuration(e.target.value)} required/><br/>
-                <label><b>Release Date</b></label>
-                <input type="date" placeholder="Release Date" value={showDate} onChange={(e) => setShowDate(e.target.value)} required/><br/>
-                <label><b>Movie Rate</b></label>
-                <select value={rate} onChange={(e) => setRate(e.target.value)}>
-                  <option value="">Select Movie Rate</option>
-                  <option value="G">General Audiences (G)</option>
-                  <option value="PG">Parental Guidances Suggested (PG)</option>
-                  <option value="PG-13">Parents Strongly Cautioned (PG-13)</option>
-                  <option value="R">Restricted (R)</option>
-                  <option value="NC-17">No one 17 and under admitted (NC-17)</option>
-              </select>
-              <label><b>Trailer</b></label>
-              <input type="text" placeholder="Trailer" value={trailer} onChange={(e) => setTrailer(e.target.value)} required/><br/>
-              <label><b>Poster</b></label>
-              <input type="file" onChange={handleImageSelection}/>
-              <button onClick={handleUploadMovie} >Add Movie</button>
+                </div>
+                <div class={AdminCss.inputbox}>
+            <label class={AdminCss.label}>Select Movie Rate</label>
+          <div class={AdminCss.selectbox}>
+            <select   value={rate} onChange={(e) => setRate(e.target.value)} class={AdminCss.dropdown}>
+              <option value="">Select Movie Rate</option>
+              <option value="G">General Audiences (G)</option>
+              <option value="PG">Parental Guidances Suggested (PG)</option>
+              <option value="PG-13">Parents Strongly Cautioned (PG-13)</option>
+              <option value="R">Restricted (R)</option>
+              <option value="NC-17">No one 17 and under admitted (NC-17)</option>
+            </select>
             </div>
+        </div>
+        <div class={AdminCss.inputbox}>
+          <label class={AdminCss.label}>Movie Image</label>
+          <input onChange={handleImageSelection} type="file" class={AdminCss.inputfile} />
+        </div>
+      
+        <button  onClick={handleUploadMovie} class={AdminCss.addmovie}>Add Movie</button>
+      </div>
+    </section>
+  </section>
+
+
                 </>
     )
 

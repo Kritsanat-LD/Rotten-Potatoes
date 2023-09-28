@@ -1,0 +1,81 @@
+.baradmin{
+    position: fixed;
+    width: 300px;
+    left: 0;
+    height: 100%;
+    background: #1e1e1e;
+  }
+  .baradmin .logo{
+    max-width: 140px;
+    max-height: 140px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .baradmin .content{
+    display: block;
+    height: 65px;
+    width: 100%;
+    color: white;
+    line-height: 65px;
+    padding-left: 30px;
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+    border-top: 1px solid rgba(255,255,255,.1);
+    border-left: 5px solid transparent;
+  }
+  
+  .content:hover{
+    border-left: 5px solid #e1a543;
+    color: #e1a543;
+    
+  }
+  .baradmin .content:hover .icon {
+    color: #e1a543; 
+  }
+  
+  .baradmin .content .icon{
+    font-size: 23px;
+    color: white;
+    margin-right: 16px;
+  }
+  .baradmin .content .name{
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  
+  @media(max-width : 1300px){
+    .baradmin{
+        position: relative;
+        width: 100%;
+        height: auto;
+        display: flex;
+align-items: center; 
+        justify-content: space-between;
+      }
+      .baradmin .name{
+        display: none;
+      }
+      .baradmin .content{
+          display: flex;
+          flex-flow: row;
+          color: white;
+          line-height: 0;
+          padding-left: 10px;
+          box-sizing: none;
+          border-bottom: 0;
+          border-top:0;
+          border-left: 0;
+          justify-content: center;
+          align-items: center; 
+        }
+  
+    .baradmin .logo{
+      display: inline;
+      margin-left: 0;
+      
+      /* margin-right: auto; */
+    }
+        
+    }

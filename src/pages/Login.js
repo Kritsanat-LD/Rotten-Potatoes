@@ -30,18 +30,18 @@ const Login = () => {
             <div className={LoginCss.container}>
                 <div className={LoginCss.card}>
                     <form className={LoginCss.form} onSubmit={handleLogin}>
-                        <h2 className={LoginCss.title}>เข้าสู่ระบบ</h2>
+                        <h2 className={LoginCss.title}>Login</h2>
 
-                        <label className={LoginCss.label} htmlFor="uname">อีเมล</label>
-                        <input className={LoginCss.input} type="email" placeholder="กรุณากรอกอีเมล" name="uname" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                        <label className={LoginCss.label} htmlFor="uname"><b>E-mail</b></label>
+                        <input className={LoginCss.input} type="email" placeholder="Enter E-mail" name="uname" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
 
-                        <label className={LoginCss.label} htmlFor="psw">รหัสผ่าน</label>
-                        <input className={LoginCss.input} type="password" placeholder="กรุณากรอกรหัสผ่าน" name="psw" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        <label className={LoginCss.label} htmlFor="psw"><b>Password</b></label>
+                        <input className={LoginCss.input} type="password" placeholder="Enter Password" name="psw" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
-                        <button className={LoginCss.btn} type="submit" >เข้าสู่ระบบ</button>
+                        <button className={LoginCss.btn} type="submit" >Login</button>
 
-                        <div className={LoginCss.switch}>ยังไม่มีบัญชี? <a className={LoginCss.a}href="/signup">ลงทะเบียนที่นี่</a></div>
+                        <div className={LoginCss.switch}>Don't have an account? <a className={LoginCss.a}href="/signup">Sign up</a></div>
                         
                     </form>
                 </div>
