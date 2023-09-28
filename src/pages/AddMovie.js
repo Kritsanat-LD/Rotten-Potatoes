@@ -26,11 +26,6 @@ const AddMovie = () =>{
     setSelectedImage(event.target.files[0]);
   };
 
-  const handleSelectGenre = (event) => {
-    const selectedGenres = Array.from(event.target.selectedOptions, (option) => option.value);
-    setMovieGenresSelect(selectedGenres);
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -88,8 +83,7 @@ const AddMovie = () =>{
   };
 
   const options = movieGenreData.map((genre) => ({
-    label: genre.MovieGenre,
-    value: genre.id, 
+    label: genre.MovieGenre
   }));
 
     return(
