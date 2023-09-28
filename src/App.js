@@ -7,6 +7,7 @@ import AddMovie from './pages/AddMovie';
 import AddMovieGenre from './pages/AddMoivieGenre';
 import AddActor from './pages/AddActor';
 import Comment from './pages/CommentManagement';
+import Mycom from './pages/testMultiSelect';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './context/ProtectRoutes';
@@ -47,6 +48,12 @@ function App() {
               <Comment />
             </ProtectedRoute>
           } />
+          <Route path='eiei' element={
+            <ProtectedRoute>
+              <Mycom />
+            </ProtectedRoute>
+          } />
+
 
       </Routes>
     </BrowserRouter>

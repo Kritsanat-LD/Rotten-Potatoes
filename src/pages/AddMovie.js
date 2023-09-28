@@ -3,14 +3,14 @@ import { uploadImage } from '../context/UploadImg';
 import { addMovieInfoDB } from "../context/addMovieInfo";
 import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
-
+import {MultiSelect} from 'react-multi-select-component';
 
 const AddMovie = () =>{
 
   const [movieName,setMovieName] = useState('')
   const [movieInfo,setMovieInfo] = useState('')
+  const [movieGenresSelect, setMovieGenresSelect] = useState([]);
   const [movieGenreData,setMovieGenreData] = useState([])
-  const [movieGenreSelect,setMovieGenreSelect] = useState('')
   const [duration,setDuration] = useState(null)
   const [showDate,setShowDate] = useState(null)
   const [rate,setRate] = useState('')
@@ -22,9 +22,10 @@ const AddMovie = () =>{
     setSelectedImage(event.target.files[0]);
   };
 
-  const handleSelectGenre = (event) =>{
-    setMovieGenreSelect(event.target.value);
-  }
+  const handleSelectGenre = (event) => {
+    const selectedGenres = Array.from(event.target.selectedOptions, (option) => option.value);
+    setMovieGenresSelect(selectedGenres);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,45 +44,49 @@ const AddMovie = () =>{
     fetchData();
   }, []);
 
-  const handleUploadMovie = async () =>{
-
-    try{
+  const handleUploadMovie = async () => {
+    try {
       let imageURL = null;
       if (selectedImage) {
         imageURL = await uploadImage(selectedImage);
-        console.log(imageURL)
       }
+  
       const data = {
-        MovieName : movieName,
-        MovieInfo : movieInfo,
-        MovieGenre : movieGenreSelect,
-        Duration : parseInt(duration),
-        ShowDate : showDate,
-        Rate : rate,
-        Trailer : trailer,
+        MovieName: movieName,
+        MovieInfo: movieInfo,
+        MovieGenres: movieGenresSelect, // Now an array of genres
+        Duration: parseInt(duration),
+        ShowDate: showDate,
+        Rate: rate,
+        Trailer: trailer,
         imageURL: imageURL,
-        Score : 0
+        Score: 0
       };
-
+  
       await addMovieInfoDB(data);
       console.log('Movie data added successfully');
-    }catch(error){
+    } catch (error) {
       console.error('Error uploading image or adding movie info:', error);
     }
-
-    setMovieName('')
-    setMovieInfo('')
-    setMovieGenreSelect('')
-    setDuration('')
-    setShowDate(null)
-    setRate('')
-    setTrailer('')
-    setSelectedImage(null)
-
-
+  
+    // Clear the input fields and selections
+    setMovieName('');
+    setMovieInfo('');
+    setMovieGenresSelect([]); // Clear selected genres
+    setDuration('');
+    setShowDate(null);
+    setRate('');
+    setTrailer('');
+    setSelectedImage(null);
+  
     window.alert('Data added successfully!');
-    window.location.reload()
-  }
+    window.location.reload();
+  };
+
+  const options = movieGenreData.map((genre) => ({
+    label: genre.MovieGenre,
+    value: genre.id, 
+  }));
 
     return(
         <>
@@ -94,14 +99,21 @@ const AddMovie = () =>{
                 <input type="text" placeholder="Enter Movie Name" value={movieName} onChange={(e) => setMovieName(e.target.value)} required/><br/>
                 <label><b>Movie Info</b></label>
                 <input type="text" placeholder="Enter Movie Info" value={movieInfo} onChange={(e) => setMovieInfo(e.target.value)} required/><br/>
-                <select value={movieGenreSelect} onChange={handleSelectGenre}>
-                  <option value="">Select a movie</option>
-                    {movieGenreData.map((genre) => (
-                      <option key={genre.id} value={genre.MovieGenre}>
-                        {genre.MovieGenre}
-                      </option>
-                    ))}
-                </select>
+                <label><b>Movie Genre</b></label><br/>
+                <MultiSelect
+                  options={options}
+                  value={movieGenresSelect}
+                  onChange={setMovieGenresSelect}
+                  labelledBy={"Select"} // Label for the multi-select input
+                  isCreatable={true} // Enable creating new options
+                />
+                {/* <select multiple value={movieGenresSelect} onChange={handleSelectGenre}>
+                {movieGenreData.map((genre) => (
+                  <option key={genre.id} value={genre.MovieGenre}>
+                    {genre.MovieGenre}
+                  </option>
+                ))}
+              </select><br/> */}
                 <label><b>Movie Duration</b></label>
                 <input type="number" placeholder="Duration" value={duration} onChange={(e) => setDuration(e.target.value)} required/><br/>
                 <label><b>Release Date</b></label>
