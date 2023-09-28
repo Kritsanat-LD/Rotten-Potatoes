@@ -1,7 +1,9 @@
-        
+@import url('https://fonts.googleapis.com/css2?family=Mitr&display=swap');     
 * {
 	box-sizing: border-box;
     margin: 0;
+    padding: 0;
+    font-family: 'Mitr', sans-serif
 }
 .nav > .logo{
     display: block;
@@ -13,7 +15,8 @@
     justify-content: space-around;
     gap: 4%;
     align-items: center;
-    background-color: #fa320a;
+    background: rgb(225,165,67);
+    background: linear-gradient(90deg, rgba(225,165,67,1) 0%, rgba(191,134,40,1) 100%);
 }
 .search{
     display: flex;

@@ -10,12 +10,12 @@
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px  rgba(191,134,40,1);
   text-align: center;
 }
 
 .title {
-  color: #fa320a;
+  color: rgba(225,165,67,1);
   margin-bottom: 20px;
 }
 
@@ -38,7 +38,7 @@
 
 .btn {
   padding: 10px;
-  background-color: #961e06;
+  background-color:  rgba(191,134,40,1);
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -52,6 +52,6 @@
 }
 
 .switch .a {
-  color: #fa320a;
+  color: rgba(225,165,67,1);
   text-decoration: none;
 }

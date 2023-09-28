@@ -14,20 +14,20 @@ const Navbar = () => {
         <img src="./images/Rotten-potato.png" class={Navcss.logo} alt=""/>
         <form class={Navcss.search}>
             <button class={Navcss.btn}><FontAwesomeIcon icon={faSearch} /></button>
-            <input  class={Navcss.input} type="search" placeholder="ค้นหาหนังและอื่นๆ" />
+            <input  class={Navcss.input} type="search" placeholder="Search Movie" />
         </form>
         <section class={Navcss.listpage}>
             <div class={Navcss.content}>
                 <img class={Navcss.img} src="./images/homeicon.png"/>
-                <a class={Navcss.a}>หน้าหลัก</a>
+                <a class={Navcss.a}>Home Page</a>
             </div>
             <div class={Navcss.content}>
                 <img class={Navcss.img} src="./images/movieicon.png" />
-                <a  class={Navcss.a}>หนัง</a>
+                <a  class={Navcss.a}>Movie</a>
             </div>
             <div  class={Navcss.content}>
                 <img class={Navcss.img} src="./images/usericon.png" />
-                <a  class={Navcss.a}>เข้าสู่ระบบ / สมัครสมาชิก</a>
+                <a  class={Navcss.a}>Login / Sign up</a>
             </div>
         </section>
 
