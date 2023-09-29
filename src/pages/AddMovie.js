@@ -83,7 +83,8 @@ const AddMovie = () => {
   };
 
   const options = movieGenreData.map((genre) => ({
-    label: genre.MovieGenre
+    label: genre.MovieGenre,
+    value : genre.id
   }));
 
   return (
@@ -165,3 +166,4 @@ const AddMovie = () => {
 }
 
 export default AddMovie;
+

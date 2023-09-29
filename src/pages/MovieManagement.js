@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
-import { collection, getDocs, query,where } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query,where } from 'firebase/firestore';
+import { deleteMovieInfoDB } from '../context/deleteMovieInfo';
 import AdminManagementCss from "../css/adminmanagement.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -8,19 +9,18 @@ import NavbarAdmin from './navbaradmin';
 const MovieManagement = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedGenre, setSelectedGenre] = useState(''); // State for selected genre
+  const [selectedGenre, setSelectedGenre] = useState({}); // State for selected genre
   const [movieGenres, setMovieGenres] = useState([]); // State for movie genres
 
   useEffect(() => {
     // Fetch movie genres from Firebase
     const fetchGenres = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'Movie Genre'));
+        const querySnapshot = await getDocs(query(collection(db, 'Movie Genre'),orderBy('MovieGenre')));
         const movieData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        movieData.sort((a, b) => a.MovieGenre.localeCompare(b.MovieGenre));
         setMovieGenres(movieData);
       } catch (error) {
         console.error('Error fetching movie genres:', error);
@@ -35,13 +35,13 @@ const MovieManagement = () => {
     const fetchData = async () => {
       try {
         let querySnapshot;
-        if(selectedGenre){
+        if(selectedGenre.MovieGenre){
             const q = query(
                 collection(db,"Movies"),
-                where("MovieGenres",'array-contains',{ label: selectedGenre}),
+                where("MovieGenres",'array-contains',{ label: selectedGenre.MovieGenre , value: selectedGenre.id}),
             );
             querySnapshot = await getDocs(q)
-        }else {
+        }else{
           // If no genre is selected, fetch all movies
           querySnapshot = await getDocs(collection(db, 'Movies'));
         }
@@ -50,7 +50,6 @@ const MovieManagement = () => {
           id: doc.id,
           ...doc.data(),
         }));
-        console.log(fetchedData)
         setData(fetchedData);
         setIsLoading(false);
       } catch (error) {
@@ -63,54 +62,41 @@ const MovieManagement = () => {
   }, [selectedGenre]); // Run this effect whenever the selected genre changes
 
   const handleGenreChange = (event) => {
-    setSelectedGenre(event.target.value); // Update selected genre state
+    const selectedGenreValue = event.target.value;
+  
+    if (selectedGenreValue === '') {
+      setSelectedGenre({}); // or null if you prefer
+    } else {
+      const selectedGenreObject = JSON.parse(selectedGenreValue);
+      setSelectedGenre(selectedGenreObject);
+    }
   };
+
+      const handleDeleteGenre = async (movieId) => {
+        try {
+            console.log(movieId);
+            await deleteMovieInfoDB(movieId); // Use your delete function here
+            console.log('delete successful')
+        } catch (error) {
+            console.error('Error deleting genre:', error);
+        }
+        window.alert('Data deleted successfully!');
+        window.location.reload();
+    }
 
   return (
     <>
-      {/* <h1>Movie Management</h1>
-      <br /><br />
-     
-      <div class={AdminManagementCss.selectbox}>
-      <select
-        value={selectedGenre}
-        onChange={handleGenreChange}
-        class={AdminManagementCss.dropdown}
-      >
-        <option value="">Select a Movie Genre</option>
-        {movieGenres.map((genre) => (
-          <option key={genre.id} value={genre.MovieGenre}>
-            {genre.MovieGenre}
-          </option>
-        ))}
-      </select>
-      </div>
-      <div>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          <>
-            {data.map((movie) => (
-              <div key={movie.id}>
-                <img width={50} src={movie.imageURL} alt={movie.MovieName} />
-                <p>{movie.MovieName}</p>
-                <br /><br />
-              </div>
-            ))}
-          </>
-        )}
-      </div> */}
       <NavbarAdmin/>
       <div className={AdminManagementCss.container}>
        <div className={AdminManagementCss.selectbox}>
         <select
-          value={selectedGenre}
+          value={selectedGenre ? JSON.stringify(selectedGenre) : ''}
           onChange={handleGenreChange}
           className={AdminManagementCss.dropdown}
         >
           <option value="">All Genres</option>
           {movieGenres.map((genre) => (
-            <option key={genre.id} value={genre.MovieGenre}>
+            <option key={genre.id} value={JSON.stringify(genre)}>
               {genre.MovieGenre}
             </option>
           ))}
@@ -128,7 +114,7 @@ const MovieManagement = () => {
                 <div className={AdminManagementCss.contentinfo}>
                   <p className={AdminManagementCss.contenttitle}>{movie.MovieName}</p>
                   <a className={AdminManagementCss.contentbtnedit} href="#"><FontAwesomeIcon icon={faPencil} /></a>
-                  <a className={AdminManagementCss.contentbtndelete} href="#"><FontAwesomeIcon icon={faTrash} /></a>
+                  <a className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteGenre(movie.id)}><FontAwesomeIcon icon={faTrash} /></a>
                 </div>
               </div>
             ))}
