@@ -15,25 +15,25 @@ const NavbarAdmin = () => {
                     <span className={Sidebarcss.icon}>
                         <FontAwesomeIcon icon={faFilm} />
                     </span>
-                    <span className={Sidebarcss.name}>Movie Management</span>
+                    <a href="/movieManagement"className={Sidebarcss.name}>Movie Management</a>
                 </div>
                 <div className={Sidebarcss.content}>
                     <span className={Sidebarcss.icon}>
                         <FontAwesomeIcon icon={faUserTie} />
                     </span>
-                    <span className={Sidebarcss.name}>Actor Management</span>
+                    <a href="" className={Sidebarcss.name}>Actor Management</a>
                 </div>
                 <div className={Sidebarcss.content}>
                     <span className={Sidebarcss.icon}>
                         <FontAwesomeIcon icon={faMessage} />
                     </span>
-                    <span className={Sidebarcss.name}>Comment Management</span>
+                    <a href="" className={Sidebarcss.name}>Comment Management</a>
                 </div>
                 <div className={Sidebarcss.content}>
                     <span className={Sidebarcss.icon}>
                         <FontAwesomeIcon icon={faHouse} />
                     </span>
-                    <span className={Sidebarcss.name}>Home Page</span>
+                    <a href="" className={Sidebarcss.name}>Home Page User</a>
                 </div>
                 
         
