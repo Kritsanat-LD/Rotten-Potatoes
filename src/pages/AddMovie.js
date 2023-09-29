@@ -1,24 +1,24 @@
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { uploadImage } from '../context/UploadImg';
 import { addMovieInfoDB } from "../context/addMovieInfo";
 import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
-import "../css/admin.module.css"
 import AdminCss from "../css/admin.module.css"
-import {MultiSelect} from 'react-multi-select-component';
+import { MultiSelect } from 'react-multi-select-component';
 import NavbarAdmin from "./navbaradmin";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
+const AddMovie = () => {
 
-const AddMovie = () =>{
-
-  const [movieName,setMovieName] = useState('')
-  const [movieInfo,setMovieInfo] = useState('')
+  const [movieName, setMovieName] = useState('')
+  const [movieInfo, setMovieInfo] = useState('')
   const [movieGenresSelect, setMovieGenresSelect] = useState([]);
-  const [movieGenreData,setMovieGenreData] = useState([])
-  const [duration,setDuration] = useState(null)
-  const [showDate,setShowDate] = useState(null)
-  const [rate,setRate] = useState('')
-  const [trailer,setTrailer] = useState('')
+  const [movieGenreData, setMovieGenreData] = useState([])
+  const [duration, setDuration] = useState(null)
+  const [showDate, setShowDate] = useState(null)
+  const [rate, setRate] = useState('')
+  const [trailer, setTrailer] = useState('')
   const [selectedImage, setSelectedImage] = useState(null);
 
 
@@ -49,7 +49,7 @@ const AddMovie = () =>{
       if (selectedImage) {
         imageURL = await uploadImage(selectedImage);
       }
-  
+
       const data = {
         MovieName: movieName,
         MovieInfo: movieInfo,
@@ -61,13 +61,13 @@ const AddMovie = () =>{
         imageURL: imageURL,
         Score: 0
       };
-  
+
       await addMovieInfoDB(data);
       console.log('Movie data added successfully');
     } catch (error) {
       console.error('Error uploading image or adding movie info:', error);
     }
-  
+
     // Clear the input fields and selections
     setMovieName('');
     setMovieInfo('');
@@ -77,7 +77,7 @@ const AddMovie = () =>{
     setRate('');
     setTrailer('');
     setSelectedImage(null);
-  
+
     window.alert('Data added successfully!');
     window.location.reload();
   };
@@ -86,76 +86,81 @@ const AddMovie = () =>{
     label: genre.MovieGenre
   }));
 
-    return(
-        <>
-        <NavbarAdmin/>
+  return (
+    <>
+      <NavbarAdmin />
 
       <section class={AdminCss.warpper}>
-    <section class={AdminCss.container}>
-      <header class={AdminCss.header}>Add Movie</header>
-      <div class={AdminCss.form}>
-        <div class={AdminCss.inputbox}>
-          <label class={AdminCss.label}>Movie Name</label>
-          <input class={AdminCss.input} type="text" placeholder="Enter Movie Name" value={movieName} onChange={(e) => setMovieName(e.target.value)} required />
-        </div>
-
-        <div class={AdminCss.inputbox}>
-          <label class={AdminCss.label}>Movie Info</label>
-          <input class={AdminCss.input} type="text" placeholder="Enter Movie Info"  value={movieInfo} onChange={(e) => setMovieInfo(e.target.value)} required />
-        </div>
-
-        <div class={AdminCss.inputbox}>
-          <label class={AdminCss.label}>Trailer</label>
-          <input class={AdminCss.input} type="text" placeholder="Enter Trailer" value={trailer} onChange={(e) => setTrailer(e.target.value)}required />
-        </div>
-        <div class={AdminCss.column}>
-          <div class={AdminCss.inputbox}>
-            <label class={AdminCss.label}>Movie Duration</label>
-            <input class={AdminCss.input} type="number" placeholder="Enter Movie Duration" value={duration} onChange={(e) => setDuration(e.target.value)}  required />
-          </div>
-          <div class={AdminCss.inputbox}>
-            <label class={AdminCss.label}>Release Date</label>
-            <input class={AdminCss.input} type="date" value={showDate} onChange={(e) => setShowDate(e.target.value)}  placeholder="Enter Release Date" required />
-          </div>
-        </div>
-    
-         
-        <div class={AdminCss.inputbox}>
-            <label class={AdminCss.label}>Select Genres</label>
-                  <MultiSelect
-                  options={options}
-                  value={movieGenresSelect}
-                  onChange={setMovieGenresSelect}
-                  labelledBy={"Select"} 
-                  isCreatable={true} 
-                />
-                </div>
-                <div class={AdminCss.inputbox}>
-            <label class={AdminCss.label}>Select Movie Rate</label>
-          <div class={AdminCss.selectbox}>
-            <select   value={rate} onChange={(e) => setRate(e.target.value)} class={AdminCss.dropdown}>
-              <option value="">Select Movie Rate</option>
-              <option value="G">General Audiences (G)</option>
-              <option value="PG">Parental Guidances Suggested (PG)</option>
-              <option value="PG-13">Parents Strongly Cautioned (PG-13)</option>
-              <option value="R">Restricted (R)</option>
-              <option value="NC-17">No one 17 and under admitted (NC-17)</option>
-            </select>
+        <section class={AdminCss.container}>
+        <a href="/MovieManagement"class={AdminCss.gobackbtn}><FontAwesomeIcon icon={faArrowLeft} /></a>
+          <header class={AdminCss.header}>Add Movie</header>
+          <div class={AdminCss.form}>
+            <div class={AdminCss.inputbox}>
+              <label class={AdminCss.label}>Movie Name</label>
+              <input class={AdminCss.input} type="text" placeholder="Enter Movie Name" value={movieName} onChange={(e) => setMovieName(e.target.value)} required />
             </div>
-        </div>
-        <div class={AdminCss.inputbox}>
-          <label class={AdminCss.label}>Movie Image</label>
-          <input onChange={handleImageSelection} type="file" class={AdminCss.inputfile} />
-        </div>
-      
-        <button  onClick={handleUploadMovie} class={AdminCss.addmovie}>Add Movie</button>
-      </div>
-    </section>
-  </section>
+
+            <div class={AdminCss.inputbox}>
+              <label class={AdminCss.label}>Movie Info</label>
+              <input class={AdminCss.input} type="text" placeholder="Enter Movie Info" value={movieInfo} onChange={(e) => setMovieInfo(e.target.value)} required />
+            </div>
+
+            <div class={AdminCss.inputbox}>
+              <label class={AdminCss.label}>Trailer</label>
+              <input class={AdminCss.input} type="text" placeholder="Enter Trailer" value={trailer} onChange={(e) => setTrailer(e.target.value)} required />
+            </div>
+            <div class={AdminCss.column}>
+              <div class={AdminCss.inputbox}>
+                <label class={AdminCss.label}>Movie Duration</label>
+                <input class={AdminCss.input} type="number" placeholder="Enter Movie Duration" value={duration} onChange={(e) => setDuration(e.target.value)} required />
+              </div>
+              <div class={AdminCss.inputbox}>
+                <label class={AdminCss.label}>Release Date</label>
+                <input class={AdminCss.input} type="date" value={showDate} onChange={(e) => setShowDate(e.target.value)} placeholder="Enter Release Date" required />
+              </div>
+            </div>
 
 
-                </>
-    )
+            <div class={AdminCss.inputbox}>
+              <label class={AdminCss.label}>Select Genres</label>
+              <MultiSelect
+                options={options}
+                value={movieGenresSelect}
+                onChange={setMovieGenresSelect}
+                labelledBy={"Select"}
+                isCreatable={true}
+              />
+            </div>
+            <div class={AdminCss.inputbox}>
+              <label class={AdminCss.label}>Select Movie Rate</label>
+              <div class={AdminCss.selectbox}>
+                <select value={rate} onChange={(e) => setRate(e.target.value)} class={AdminCss.dropdown}>
+                  <option value="">Select Movie Rate</option>
+                  <option value="G">General Audiences (G)</option>
+                  <option value="PG">Parental Guidances Suggested (PG)</option>
+                  <option value="PG-13">Parents Strongly Cautioned (PG-13)</option>
+                  <option value="R">Restricted (R)</option>
+                  <option value="NC-17">No one 17 and under admitted (NC-17)</option>
+                </select>
+
+              </div>
+            </div>
+
+            
+
+            <div class={AdminCss.inputbox}>
+              <label class={AdminCss.label}>Movie Image</label>
+              <input onChange={handleImageSelection} type="file" class={AdminCss.inputfile} />
+            </div>
+
+            <button onClick={handleUploadMovie} class={AdminCss.addmovie}>Add Movie</button>
+          </div>
+        </section>
+      </section>
+
+
+    </>
+  )
 
 }
 

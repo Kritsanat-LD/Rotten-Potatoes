@@ -1,0 +1,123 @@
+.container {
+    margin-left: 20rem;
+}
+
+.warpper {
+    display: flex;
+    /* align-items: center;
+      justify-content: center; */
+    flex-wrap: wrap;
+
+}
+
+.content {
+    overflow: hidden;
+    padding: 1rem;
+}
+
+.content img {
+    width: 162px;
+    height: 232px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: .5rem;
+    transition: filter 1s ease;
+}
+
+.content img:hover {
+    filter: brightness(70%);
+}
+
+.content .contenttitle {
+    margin: 1em .5em;
+}
+
+.content .contentinfo {
+    font-size: 1em;
+
+
+    color: #606263;
+}
+
+.contentbtnedit {
+    border-radius: 50%;
+    padding: 5px 10px;
+    margin: 0 1em;
+    font-size: 1em;
+    border: 1.5px solid #606263;
+    cursor: pointer;
+    color: #606263;
+    transition: background-color 0.7s ease;
+}
+
+.contentbtndelete {
+    border-radius: 50%;
+    padding: 5px 10px;
+    margin: 0 1em;
+    font-size: 1em;
+    border: 1.5px solid #606263;
+    cursor: pointer;
+    color: #606263;
+    transition: background-color 0.7s ease;
+}
+
+.contentbtnedit:hover {
+    background-color: rgb(47, 116, 245);
+    color: white;
+    border-color: rgb(47, 116, 245);
+}
+
+.contentbtndelete:hover {
+    background-color: rgb(114, 25, 25);
+    color: white;
+    border-color: rgb(114, 25, 25);
+}
+
+.selectbox .dropdown {
+    height: 50px;
+    width: 50%;
+    outline: none;
+    border: none;
+    color: #707070;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0 15px;
+    background-color: #fff;
+}
+
+.selectbox .dropdown:focus {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.selectbox {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.alinkbtn {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #333;
+    padding: 15px 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: background-color 0.7s ease;
+}
+
+.alinkbtn:hover {
+    background-color: #333;
+    color: white;
+    border-color: #333;
+}
+@media screen and (max-width: 1300px) {
+    .container {
+        margin-left: 0;
+    }
+  }

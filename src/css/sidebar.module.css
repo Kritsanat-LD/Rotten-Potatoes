@@ -30,7 +30,7 @@
     color: #e1a543;
     
   }
-  .baradmin .content:hover .icon {
+  .baradmin .content:hover .icon ,  .baradmin .content:hover .name {
     color: #e1a543; 
   }
   
@@ -41,8 +41,11 @@
   }
   .baradmin .content .name{
     letter-spacing: 1px;
+    color: white;
     text-transform: uppercase;
+    text-decoration: none;
   }
+
 
   
   @media(max-width : 1300px){
