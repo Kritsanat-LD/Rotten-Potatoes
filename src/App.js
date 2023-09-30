@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Navbar from './pages/nav';
 import AddMovie from './pages/AddMovie';
 import UpdateDetails from './pages/UpdateMovie';
-import AddMovieGenre from './pages/AddMoivieGenre';
+import AddMovieGenre from './pages/AddMovieGenre';
 import AddActor from './pages/AddActor';
 import Comment from './pages/CommentManagement';
 // import Mycom from './pages/testMultiSelect';

@@ -74,7 +74,7 @@ const MovieManagement = () => {
     }
   };
 
-      const handleDeleteGenre = async (movieId) => {
+      const handleDeleteMovie = async (movieId) => {
         try {
             console.log(movieId);
             await deleteMovieInfoDB(movieId); // Use your delete function here
@@ -117,7 +117,7 @@ const MovieManagement = () => {
                 <div className={AdminManagementCss.contentinfo}>
                   <p className={AdminManagementCss.contenttitle}>{movie.MovieName}</p>
                   <Link to={`/movieUpdateDetails/${movie.id}`} className={AdminManagementCss.contentbtnedit}><FontAwesomeIcon icon={faPencil} /></Link>
-                  <a className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteGenre(movie.id)}><FontAwesomeIcon icon={faTrash} /></a>
+                  <a className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteMovie(movie.id)}><FontAwesomeIcon icon={faTrash} /></a>
                 </div>
               </div>
             ))}
