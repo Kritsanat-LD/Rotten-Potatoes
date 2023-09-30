@@ -2,7 +2,8 @@ import React, { useState , useEffect } from "react";
 import { addMovieGenreDB } from "../context/addMovieInfo";
 import { db } from '../firebase';
 import { collection, getDocs ,orderBy, query} from 'firebase/firestore';
-
+import admingenrecss from "../css/admingenre.module.css"
+import NavbarAdmin from "./navbaradmin";
 const AddMovieGenre = () =>{
 
     const [movieGenre,setMovieGenre] = useState('')
@@ -50,7 +51,7 @@ const AddMovieGenre = () =>{
 
     return(
         <>
-        <h1>Add Movie Genre</h1>
+        {/* <h1>Add Movie Genre</h1>
         <label><b>Movie Genre</b></label>
         <input type="text" placeholder="Enter Movie Genre" value={movieGenre} onChange={(e) => setMovieGenre(e.target.value)} required/><br/>
         <button onClick={handleAddGenre} >Add Genre</button>
@@ -59,9 +60,26 @@ const AddMovieGenre = () =>{
             {movieGenresList.map((genre)=>(
             <div key={genre.id}>
             {genre.MovieGenre}
-            {/* <button>delete</button> */}
+            
             </div>
-        ))}
+        ))} */}
+        <NavbarAdmin />
+         <div class={admingenrecss.containeraddandbtn}>
+      <div class={admingenrecss.form}>
+        <div class={admingenrecss.inputbox}>
+          <input class={admingenrecss.input} type="text" placeholder="Enter Movie Genre" value={movieGenre} onChange={(e) => setMovieGenre(e.target.value)} required />
+        </div>
+        <button onClick={handleAddGenre} class={admingenrecss.alinkbtn}>Add Genre</button>
+      </div>
+    </div>
+
+    <div class={admingenrecss.showgenres}>
+      <label class={admingenrecss.title}>Genre List</label>
+      {movieGenresList.map((genre)=>(
+      <p  key={genre.id} class={admingenrecss.list}> {genre.MovieGenre}</p>
+       ))}
+       
+    </div>
         </>
     )
 

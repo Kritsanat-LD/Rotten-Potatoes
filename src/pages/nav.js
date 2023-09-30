@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import "../css/nav.module.css"
 import Navcss from "../css/nav.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -12,22 +11,22 @@ const Navbar = () => {
     {/* <GlobalStyles /> */}
          <nav className={Navcss.nav}>
         <img src="./images/Rotten-potato.png" class={Navcss.logo} alt=""/>
-        <form class={Navcss.search}>
-            <button class={Navcss.btn}><FontAwesomeIcon icon={faSearch} /></button>
-            <input  class={Navcss.input} type="search" placeholder="Search Movie" />
+        <form className={Navcss.search}>
+            <button className={Navcss.btn}><FontAwesomeIcon icon={faSearch} /></button>
+            <input  className={Navcss.input} type="search" placeholder="Search Movie" />
         </form>
-        <section class={Navcss.listpage}>
-            <div class={Navcss.content}>
-                <img class={Navcss.img} src="./images/homeicon.png"/>
-                <a class={Navcss.a}>Home Page</a>
+        <section className={Navcss.listpage}>
+            <div className={Navcss.content}>
+                <img className={Navcss.img} src="./images/homeicon.png"/>
+                <a className={Navcss.a}>Home</a>
             </div>
-            <div class={Navcss.content}>
-                <img class={Navcss.img} src="./images/movieicon.png" />
-                <a  class={Navcss.a}>Movie</a>
+            <div className={Navcss.content}>
+                <img className={Navcss.img} src="./images/movieicon.png" />
+                <a  className={Navcss.a}>Movie</a>
             </div>
-            <div  class={Navcss.content}>
-                <img class={Navcss.img} src="./images/usericon.png" />
-                <a  class={Navcss.a}>Login / Sign up</a>
+            <div  className={Navcss.content}>
+                <img className={Navcss.img} src="./images/usericon.png" />
+                <a  className={Navcss.a}>Login / Sign up</a>
             </div>
         </section>
 

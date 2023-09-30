@@ -1,0 +1,88 @@
+ 
+
+.containeraddandbtn {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding: 1rem;
+    
+    margin-left: 20rem;
+    height: 10vh;
+  }
+  
+  .form {
+    display: flex;
+    align-items: center;
+  }
+    
+    .form .inputbox .input {
+      position: relative;
+      height: 50px;
+      width: 100%;
+      outline: none;
+      font-size: 1rem;
+      color: #707070;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 0 15px;
+    }
+  
+    .inputbox .input:focus {
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    }
+  
+  .alinkbtn {
+      margin-left: 45px;
+      text-decoration: none;
+      color: #333;
+      padding: 19px 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      transition: background-color 0.7s ease;
+  }
+  
+  .alinkbtn:hover {
+      background-color: #333;
+      color: white;
+      border-color: #333;
+  }
+  
+  .showgenres {
+    margin-left: 20rem;
+    padding:  0 4rem;
+  }
+  
+  .title {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .showgenres .list {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  
+  
+    @media screen and (max-width: 1300px) {
+    .containeraddandbtn {
+        padding: 1rem 0;
+        margin-left: 0;
+    }
+
+    .showgenres {
+        margin-left: 0;
+        padding:  0 1em;
+    }
+
+    .form .inputbox .input {
+        height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .alinkbtn {
+        margin-left: 25px;
+        padding: 15px 10px;
+    }
+  }

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../css/Login.module.css"
 import LoginCss from "../css/Login.module.css"
 import { auth, app } from "../firebase"
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -12,6 +11,7 @@ const Login = () => {
     const navigate = useNavigate('')
 
     const handleLogin = (e) => {
+        let errorlabelid = document.getElementById("errorlabel")
         console.log(e)
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
@@ -19,7 +19,7 @@ const Login = () => {
                 navigate("/home")
             })
             .catch((error) => {
-                alert("You have no Account yet");
+                errorlabelid.innerHTML = "You have no Account yet";
             });
     }
 
@@ -39,7 +39,9 @@ const Login = () => {
                         <label className={LoginCss.label} htmlFor="psw"><b>Password</b></label>
                         <input className={LoginCss.input} type="password" placeholder="Enter Password" name="psw" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
+                        <label className={LoginCss.errorlabel} id="errorlabel"></label>
                         <button className={LoginCss.btn} type="submit" >Login</button>
+                        
 
                         <div className={LoginCss.switch}>Don't have an account? <a className={LoginCss.a}href="/signup">Sign up</a></div>
                         

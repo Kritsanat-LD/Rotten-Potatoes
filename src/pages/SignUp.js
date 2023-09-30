@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../css/Login.module.css"
 import RegisterCss from "../css/Login.module.css"
 import { auth, app, db } from "../firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -18,7 +17,9 @@ const SignUp = () => {
 
     //role = 0 : user
     //role = 1 : admin
+    
     const signUp = async (e) => {
+        let errorlabelid = document.getElementById("errorlabel")
         e.preventDefault();
         createUserWithEmailAndPassword(auth, email, password)
             .then(cred => {
@@ -32,7 +33,23 @@ const SignUp = () => {
                 });
             })
             .catch((error) => {
-                console.log(error)
+                // console.log(error)
+                
+                var errorMessage = error.message;
+                if (error.code == 'auth/weak-password') {
+                    errorlabelid.innerHTML ='The password is too weak';
+                } 
+                else if (error.code == 'auth/email-already-in-use') {
+                    errorlabelid.innerHTML ='email already in use';
+                  }
+                  else if (error.code == 'auth/invalid-email') {
+                    errorlabelid.innerHTML ='invalid email';
+                  }
+                  else if (error.code == 'auth/operation-not-allowed') {
+                    errorlabelid.innerHTML ='operation not allowd';
+                  }else {
+                    errorlabelid.innerHTML =errorMessage.code;
+                }
             });
     }
 
@@ -54,6 +71,7 @@ const SignUp = () => {
                         <label className={RegisterCss.label}><b>Phone Number</b></label>
                         <input className={RegisterCss.input}  type="tel" pattern="[0-9]{9,10}" placeholder="Enter Phone Number" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
 
+                        <label className={RegisterCss.errorlabel} id="errorlabel"></label>
                         <button className={RegisterCss.btn} type="submit">Sign up</button>
 
                         <div  className={RegisterCss.switch}>Don't have an account? <a className={RegisterCss.a} href="/">Sign up</a></div>

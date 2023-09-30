@@ -1,5 +1,7 @@
 .container {
     margin-left: 20rem;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .warpper {
@@ -15,7 +17,7 @@
     padding: 1rem;
 }
 
-.content img {
+.content .img {
     width: 162px;
     height: 232px;
     display: flex;
@@ -26,7 +28,7 @@
     transition: filter 1s ease;
 }
 
-.content img:hover {
+.content .img:hover {
     filter: brightness(70%);
 }
 
@@ -120,4 +122,14 @@
     .container {
         margin-left: 0;
     }
-  }
+    .selectbox {
+        display: block;
+    }
+    .selectbox .dropdown{
+      width: 100%;
+    }
+    .alinkbtn{
+        margin: 20px 0;
+      display: block;
+    }
+      }

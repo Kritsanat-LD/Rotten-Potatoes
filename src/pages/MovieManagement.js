@@ -103,7 +103,8 @@ const MovieManagement = () => {
             </option>
           ))}
         </select>
-        <a className={AdminManagementCss.alinkbtn} href="/AddMovie">Add movie</a>
+        <a className={AdminManagementCss.alinkbtn} href="/AddMovie">Add Movie</a>
+        <a className={AdminManagementCss.alinkbtn} href="/addmoviegenre">Add Genres</a>
       </div>
       <div className={AdminManagementCss.warpper}>
         {isLoading ? (

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import "../css/footer.module.css"
 import footerCss from "../css/footer.module.css"
 
 
