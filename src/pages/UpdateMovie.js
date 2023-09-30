@@ -1,30 +1,56 @@
-import React, { useState, useEffect } from "react";
-import { uploadImage } from '../context/UploadImg';
-import { addMovieInfoDB } from "../context/addMovieInfo";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { db } from '../firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { uploadImage } from '../context/UploadImg';
+import { doc, getDoc , getDocs , collection , updateDoc } from 'firebase/firestore';
 import AdminCss from "../css/admin.module.css"
 import { MultiSelect } from 'react-multi-select-component';
 import NavbarAdmin from "./navbaradmin";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-const AddMovie = () => {
+const UpdateDetails = () => {
+  const { id } = useParams(); // Get the "id" parameter from the URL
 
+  const [isLoading, setIsLoading] = useState(true);
+  const [trailer, setTrailer] = useState('')
+  const [duration, setDuration] = useState(null)
   const [movieName, setMovieName] = useState('')
   const [movieInfo, setMovieInfo] = useState('')
-  const [movieGenresSelect, setMovieGenresSelect] = useState([]);
-  const [movieGenreData, setMovieGenreData] = useState([])
-  const [duration, setDuration] = useState(null)
   const [showDate, setShowDate] = useState(null)
   const [rate, setRate] = useState('')
-  const [trailer, setTrailer] = useState('')
+  const [movieGenresSelect, setMovieGenresSelect] = useState([]);
+  const [movieGenreData, setMovieGenreData] = useState([])
   const [selectedImage, setSelectedImage] = useState(null);
+  const [oldImage, setOldImage] = useState(null);
 
+  useEffect(() => {
+    const fetchMovieDetails = async () => {
+      try {
+        // Fetch movie details based on the "id" parameter
+        const movieDocRef = doc(db, 'Movies', id);
+        const movieDocSnapshot = await getDoc(movieDocRef);
+        const movieData = movieDocSnapshot.data();
 
-  const handleImageSelection = (event) => {
-    setSelectedImage(event.target.files[0]);
-  };
+        if (movieData) {
+          setMovieName(movieData.MovieName)
+          setMovieInfo(movieData.MovieInfo)
+          setShowDate(movieData.ShowDate)
+          setDuration(movieData.Duration)
+          setTrailer(movieData.Trailer)
+          setRate(movieData.Rate)
+          setMovieGenresSelect(movieData.MovieGenres)
+          setOldImage(movieData.imageURL)
+        }
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching movie details:', error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchMovieDetails();
+  }, [id]); // Fetch movie details whenever the "id" parameter changes
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,60 +69,45 @@ const AddMovie = () => {
     fetchData();
   }, []);
 
-  const handleUploadMovie = async () => {
-    try {
-      let imageURL = null;
-      if (selectedImage) {
-        imageURL = await uploadImage(selectedImage);
-      }
-
-      const data = {
-        MovieName: movieName,
-        MovieInfo: movieInfo,
-        MovieGenres: movieGenresSelect, // Now an array of genres
-        Duration: parseInt(duration),
-        ShowDate: showDate,
-        Rate: rate,
-        Trailer: trailer,
-        imageURL: imageURL,
-        Score: 0
-      };
-
-      await addMovieInfoDB(data);
-      console.log('Movie data added successfully');
-    } catch (error) {
-      console.error('Error uploading image or adding movie info:', error);
-    }
-
-    // Clear the input fields and selections
-    setMovieName('');
-    setMovieInfo('');
-    setMovieGenresSelect([]); // Clear selected genres
-    setDuration('');
-    setShowDate(null);
-    setRate('');
-    setTrailer('');
-    setSelectedImage(null);
-
-    window.alert('Data added successfully!');
-    window.location.reload();
-  };
-
   const options = movieGenreData.map((genre) => ({
     label: genre.MovieGenre,
     value : genre.id
   }));
 
+  const handleImageSelection = (event) => {
+    setSelectedImage(event.target.files[0]);
+  };
+
+  const handleUpdateMovie = async () =>{
+    let imageURL = null;
+    if(selectedImage){
+      imageURL = await uploadImage(selectedImage);
+    }else{
+      imageURL = oldImage;
+    }
+    const newDocRef = doc(db, "Movies", id);
+    await updateDoc(newDocRef, {
+      MovieName: movieName,
+      MovieInfo: movieInfo,
+      MovieGenres: movieGenresSelect, // Now an array of genres
+      Duration: parseInt(duration),
+      ShowDate: showDate,
+      Rate: rate,
+      Trailer: trailer,
+      imageURL: imageURL,
+    });
+    window.alert('อัพละนะ');
+  }
+
   return (
     <>
-      <NavbarAdmin />
-
-      <section class={AdminCss.warpper}>
+    <section class={AdminCss.warpper}>
         <section class={AdminCss.container}>
         <a href="/MovieManagement"class={AdminCss.gobackbtn}><FontAwesomeIcon icon={faArrowLeft} /></a>
-          <header class={AdminCss.header}>Add Movie</header>
+          <header class={AdminCss.header}>Update Movie</header>
           <div class={AdminCss.form}>
-            <div class={AdminCss.inputbox}>
+
+          <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Movie Name</label>
               <input class={AdminCss.input} type="text" placeholder="Enter Movie Name" value={movieName} onChange={(e) => setMovieName(e.target.value)} required />
             </div>
@@ -123,7 +134,6 @@ const AddMovie = () => {
               </div>
             </div>
 
-
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Select Genres</label>
               <MultiSelect
@@ -134,6 +144,7 @@ const AddMovie = () => {
                 isCreatable={true}
               />
             </div>
+
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Select Movie Rate</label>
               <div class={AdminCss.selectbox}>
@@ -148,23 +159,18 @@ const AddMovie = () => {
               </div>
             </div>
 
-            
-
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Movie Image</label>
-              <input onChange={handleImageSelection} type="file" class={AdminCss.inputfile} />
+              <input onChange={handleImageSelection} type="file" class={AdminCss.inputfile}/>
             </div>
 
-            <button onClick={handleUploadMovie} class={AdminCss.addmovie}>Add Movie</button>
-          </div>
+            <button onClick={handleUpdateMovie} class={AdminCss.addmovie}>Add Movie</button>
+
+            </div>
         </section>
       </section>
-
-
     </>
-  )
+  );
+};
 
-}
-
-export default AddMovie;
-
+export default UpdateDetails;

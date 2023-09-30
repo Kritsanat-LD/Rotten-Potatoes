@@ -1,9 +1,9 @@
-
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import Navbar from './pages/nav';
 import AddMovie from './pages/AddMovie';
+import UpdateDetails from './pages/UpdateMovie';
 import AddMovieGenre from './pages/AddMoivieGenre';
 import AddActor from './pages/AddActor';
 import Comment from './pages/CommentManagement';
@@ -32,6 +32,11 @@ function App() {
           <Route path='addmovie' element={
             <ProtectedRoute>
               <AddMovie />
+            </ProtectedRoute>
+          } />
+          <Route path='movieUpdateDetails/:id' element={
+            <ProtectedRoute>
+              <UpdateDetails />
             </ProtectedRoute>
           } />
           <Route path='addmoviegenre' element={

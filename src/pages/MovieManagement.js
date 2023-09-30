@@ -6,6 +6,8 @@ import AdminManagementCss from "../css/adminmanagement.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import NavbarAdmin from './navbaradmin';
+import { Link } from 'react-router-dom';
+
 const MovieManagement = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -113,7 +115,7 @@ const MovieManagement = () => {
                 <img width={162} height={232} src={movie.imageURL} alt={movie.MovieName} />
                 <div className={AdminManagementCss.contentinfo}>
                   <p className={AdminManagementCss.contenttitle}>{movie.MovieName}</p>
-                  <a className={AdminManagementCss.contentbtnedit} href="#"><FontAwesomeIcon icon={faPencil} /></a>
+                  <Link to={`/movieUpdateDetails/${movie.id}`} className={AdminManagementCss.contentbtnedit}><FontAwesomeIcon icon={faPencil} /></Link>
                   <a className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteGenre(movie.id)}><FontAwesomeIcon icon={faTrash} /></a>
                 </div>
               </div>
