@@ -1,0 +1,175 @@
+.container{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    width: 80%;
+    /* max-width: 1200px;  */
+    margin: 5em auto;
+}
+
+.containerforthetitle {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  position: absolute;
+  /* top: 20px; */
+  z-index: 1;
+}
+.vl{
+  display: flex;
+  border-left: 6px solid #e1a543;
+  height: 2.5em;
+}
+.Titleofthecontent {
+  margin:  0 10px;
+  font-size: 24px;
+  
+}
+.alinkViewall{
+  text-decoration: none;
+  color: #6cbfce;
+  font-size: 18px; 
+}
+.alinkViewall:hover{
+  color: #168a9e;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+  margin-top: 100px;
+}
+
+
+  .slide {
+    margin-left: 20px;
+    text-align: center;
+    background: #fff;
+    display: block;
+
+  }
+.content {
+  display: flex;
+  flex-direction: column;
+color: #6b6b6d;
+text-align: start;
+transform: color 0.5s ease;
+transition: color 0.5s ease;
+}
+.content .Title{
+  color: #6b6b6d;
+}
+
+  .score {
+    display: flex;
+    gap: 10px;
+  }
+  .score .imgscore{
+    
+    width: auto;
+    max-height: 2em;
+  }
+  .content .scorelabel, .content .Title{
+    font-size: 1.2em;
+  }
+  .content .Title{
+    white-space: nowrap;
+    overflow: hidden;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    margin-left: .5em;
+  }
+  /* .content:hover,.content .Title:hover{
+    color: #168a9e;
+    transform: color 0.5s ease;
+  } */
+  .content:hover {
+    color: #168a9e;
+  }
+  
+  .content:hover .scorelabel,
+  .content:hover .Title {
+    color: #168a9e;
+  }
+  
+
+  .slide .coverimg {
+display: block;
+width: 180px;
+
+height: 258px;
+border-radius: .5rem;
+object-fit: cover;
+transition: filter 0.5s ease;
+}
+
+.slide .coverimg:hover {
+filter: brightness(70%);
+}
+
+@media (max-width: 1024px) {
+  .container{
+    width: 100%;
+  }
+  .slide .coverimg {
+   
+    width: 180px;
+
+    height: 258px;
+    }
+    .slide {
+      max-width: 200px;
+      height: 50%;
+      margin-left:0;
+  
+    }
+    .swiper {
+      width: 90%;
+      height: 350px;
+    }
+    
+
+  }
+
+@media (max-width: 768px) {
+
+
+.swiper {
+    font-size: 1.5em; 
+  }
+
+  .slide {
+    margin-left: 5px;
+
+  }
+  .score .imgscore {
+    max-height: 2em; 
+}
+
+.Titleofthecontent {
+    font-size: 1.2em; 
+}
+
+.alinkViewall {
+    font-size: 1em; 
+}
+
+.content .scorelabel, .content .Title{
+  font-size: 1em;
+}
+.content .Title{
+  margin-left: .2em;
+}
+.vl {
+    height: 2em; 
+}
+.slide .coverimg {
+   
+  width: 180px;
+
+  height: 258px;
+  }
+
+}
