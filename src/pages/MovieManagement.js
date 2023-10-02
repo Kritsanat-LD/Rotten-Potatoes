@@ -109,6 +109,8 @@ const MovieManagement = () => {
       <div className={AdminManagementCss.warpper}>
         {isLoading ? (
           <p>Loading...</p>
+        ) : data.length===0?(
+          <p>No movies found</p>
         ) : (
           <>
             {data.map((movie) => (
@@ -117,7 +119,7 @@ const MovieManagement = () => {
                 <div className={AdminManagementCss.contentinfo}>
                   <p className={AdminManagementCss.contenttitle}>{movie.MovieName}</p>
                   <Link to={`/movieUpdateDetails/${movie.id}`} className={AdminManagementCss.contentbtnedit}><FontAwesomeIcon icon={faPencil} /></Link>
-                  <a className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteMovie(movie.id)}><FontAwesomeIcon icon={faTrash} /></a>
+                  <buutton className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteMovie(movie.id)}><FontAwesomeIcon icon={faTrash} /></buutton>
                 </div>
               </div>
             ))}

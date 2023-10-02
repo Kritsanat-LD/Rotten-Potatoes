@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { uploadImage } from '../context/UploadImg';
 import { addMovieInfoDB } from "../context/addMovieInfo";
 import { db } from '../firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs ,orderBy, query} from 'firebase/firestore';
 import AdminCss from "../css/admin.module.css"
 import { MultiSelect } from 'react-multi-select-component';
 import NavbarAdmin from "./navbaradmin";
@@ -29,12 +29,11 @@ const AddMovie = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'Movie Genre'));
+        const querySnapshot = await getDocs(query(collection(db, 'Movie Genre'),orderBy('MovieGenre')));
         const movieData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        movieData.sort((a, b) => a.MovieGenre.localeCompare(b.MovieGenre));
         setMovieGenreData(movieData);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -82,10 +81,15 @@ const AddMovie = () => {
     window.location.reload();
   };
 
-  const options = movieGenreData.map((genre) => ({
+  const genrePattern = movieGenreData.map((genre) => ({
     label: genre.MovieGenre,
     value : genre.id
   }));
+
+  // const ActorPattern = movieGenreData.map((genre) => ({
+  //   label: genre.MovieGenre,
+  //   value : genre.id
+  // }));
 
   return (
     <>
@@ -127,7 +131,7 @@ const AddMovie = () => {
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Select Genres</label>
               <MultiSelect
-                options={options}
+                options={genrePattern}
                 value={movieGenresSelect}
                 onChange={setMovieGenresSelect}
                 labelledBy={"Select"}

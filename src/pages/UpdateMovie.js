@@ -42,10 +42,8 @@ const UpdateDetails = () => {
           setMovieGenresSelect(movieData.MovieGenres)
           setOldImage(movieData.imageURL)
         }
-        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching movie details:', error);
-        setIsLoading(false);
       }
     };
 
@@ -109,28 +107,28 @@ const UpdateDetails = () => {
 
           <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Movie Name</label>
-              <input class={AdminCss.input} type="text" placeholder="Enter Movie Name" value={movieName} onChange={(e) => setMovieName(e.target.value)} required />
+              <input class={AdminCss.input} type="text" placeholder="Loading..." value={movieName} onChange={(e) => setMovieName(e.target.value)} required />
             </div>
 
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Movie Info</label>
-              <input class={AdminCss.input} type="text" placeholder="Enter Movie Info" value={movieInfo} onChange={(e) => setMovieInfo(e.target.value)} required />
+              <input class={AdminCss.input} type="text" placeholder="Loading..." value={movieInfo} onChange={(e) => setMovieInfo(e.target.value)} required />
             </div>
 
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Trailer</label>
-              <input class={AdminCss.input} type="text" placeholder="Enter Trailer" value={trailer} onChange={(e) => setTrailer(e.target.value)} required />
+              <input class={AdminCss.input} type="text" placeholder="Loading..." value={trailer} onChange={(e) => setTrailer(e.target.value)} required />
             </div>
 
             <div class={AdminCss.column}>
               <div class={AdminCss.inputbox}>
                 <label class={AdminCss.label}>Movie Duration</label>
-                <input class={AdminCss.input} type="number" placeholder="Enter Movie Duration" value={duration} onChange={(e) => setDuration(e.target.value)} required />
+                <input class={AdminCss.input} type="number" placeholder="Loading..." value={duration} onChange={(e) => setDuration(e.target.value)} required />
               </div>
               
               <div class={AdminCss.inputbox}>
                 <label class={AdminCss.label}>Release Date</label>
-                <input class={AdminCss.input} type="date" value={showDate} onChange={(e) => setShowDate(e.target.value)} placeholder="Enter Release Date" required />
+                <input class={AdminCss.input} type="date" value={showDate} onChange={(e) => setShowDate(e.target.value)} placeholder="Loading..." required />
               </div>
             </div>
 

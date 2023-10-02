@@ -10,6 +10,7 @@ const AddMovieGenre = () =>{
 
     const [movieGenre,setMovieGenre] = useState('')
     const [movieGenresList, setMovieGenresList] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleAddGenre = async () =>{
         try{
@@ -46,8 +47,10 @@ const AddMovieGenre = () =>{
               ...doc.data(),
             }));
             setMovieGenresList(movieData);
+            setIsLoading(false);
           } catch (error) {
             console.error('Error fetching movie genres:', error);
+            setIsLoading(false);
           }
         };
         fetchGenres();
@@ -57,13 +60,13 @@ const AddMovieGenre = () =>{
         <>
         <NavbarAdmin />
          <div class={admingenrecss.containeraddandbtn}>
-      <div class={admingenrecss.form}>
-        <div class={admingenrecss.inputbox}>
-          <input class={admingenrecss.input} type="text" placeholder="Enter Movie Genre" value={movieGenre} onChange={(e) => setMovieGenre(e.target.value)} required />
-        </div>
-        <button onClick={handleAddGenre} class={admingenrecss.alinkbtn}>Add Genre</button>
-      </div>
-    </div>
+            <div class={admingenrecss.form}>
+              <div class={admingenrecss.inputbox}>
+                <input class={admingenrecss.input} type="text" placeholder="Enter Movie Genre" value={movieGenre} onChange={(e) => setMovieGenre(e.target.value)} required />
+              </div>
+              <button onClick={handleAddGenre} class={admingenrecss.alinkbtn}>Add Genre</button>
+            </div>
+          </div>
 
     {/* <h2>Genre List</h2><br/>
             {movieGenresList.map((genre)=>(
@@ -73,19 +76,23 @@ const AddMovieGenre = () =>{
             </div>
         ))}  */}
 
-    <div class={admingenrecss.showgenres}>
-      <label class={admingenrecss.title}>Genre List</label>
-      {movieGenresList.map((genre)=>(
-      <div key={genre.id} class={admingenrecss.list}> 
-        {genre.MovieGenre}<br/>
-        <button onClick={() => handleDeleteGenre(genre)}>Delete</button>
-      </div>
-       ))}
-       
-    </div>
+          <div class={admingenrecss.showgenres}>
+            <label class={admingenrecss.title}>Genre List</label>
+            {isLoading ?(
+              <p>Loading...</p>
+            ) :(
+              <>
+              {movieGenresList.map((genre)=>(
+                <div key={genre.id} class={admingenrecss.list}> 
+                  {genre.MovieGenre}<br/>
+                  <button onClick={() => handleDeleteGenre(genre)}>Delete</button>
+                </div>
+                ))}
+              </>
+            )}
+          </div>
         </>
     )
-
 }
 
 export default AddMovieGenre;
