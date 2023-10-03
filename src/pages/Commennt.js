@@ -19,7 +19,7 @@ const CommentPage = () => {
           </div>
         </div>
         <div className={comment.grid_theaters_show}>
-          <h3>63% Surprised by Oxford</h3>
+          <h3>60% Surprised by Oxford</h3>
           <h3>63% Surprised by Oxford</h3>
           <h3>63% Surprised by Oxford</h3>
           <h3>63% Surprised by Oxford</h3>
