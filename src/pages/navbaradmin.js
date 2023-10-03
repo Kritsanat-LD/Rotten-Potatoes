@@ -48,7 +48,7 @@ const NavbarAdmin = () => {
                         <span className={Sidebarcss.icon}>
                             <FontAwesomeIcon icon={faMessage} />
                         </span>
-                        <a href="" className={Sidebarcss.name}>Comment Management</a>
+                        <a href="/commentManagement" className={Sidebarcss.name}>Comment Management</a>
                     </div>
                     <div className={Sidebarcss.content}>
                         <span className={Sidebarcss.icon}>

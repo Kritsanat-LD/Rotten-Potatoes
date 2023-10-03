@@ -41,18 +41,6 @@ const AddActor = () => {
 
     return (
         <>
-            {/* <h1>Add Actor</h1>
-        <label><b>Name</b></label>
-        <input type="text" placeholder="Enter Name" value={name} onChange={(e) => setName(e.target.value)} required/><br/>
-        <label><b>Last Name</b></label>
-        <input type="text" placeholder="Enter Lastname" value={lastname} onChange={(e) => setLastname(e.target.value)} required/><br/>
-        <label><b>Movie Name</b></label>
-        <input type="date" placeholder="Enter BirthDate" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} required/><br/>
-        <label><b>Actor Image</b></label>
-        <input type="file" onChange={handleImageSelection}/>
-
-
-    <br/><button onClick={handleAddActor} >Add Actor</button> */}
      <NavbarAdmin />
                 <section className={AdminCss.warpper}>
                     <section className={AdminCss.container}>

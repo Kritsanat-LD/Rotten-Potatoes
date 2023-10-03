@@ -7,12 +7,13 @@ import UpdateDetails from './pages/UpdateMovie';
 import AddMovieGenre from './pages/AddMovieGenre';
 import AddActor from './pages/AddActor';
 import Comment from './pages/CommentManagement';
+import CommentPage from './pages/Commennt';
 // import Mycom from './pages/testMultiSelect';
 import MovieManagement from './pages/MovieManagement';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './context/ProtectRoutes';
-
+import HomePage from './pages/homepage';
 function App() {
   return (
     <>
@@ -22,6 +23,7 @@ function App() {
           <Route path='/' element={<Login />} />
           <Route path='signup' element={<SignUp />} />
           <Route path='nav' element={<Navbar />} />
+          <Route path='HomePage' element={< HomePage/>} />
 
 
           <Route path='home' element={
@@ -59,11 +61,11 @@ function App() {
               <MovieManagement />
             </ProtectedRoute>
           } />
-          {/* <Route path='eiei' element={
+          <Route path='commentpage' element={
             <ProtectedRoute>
-              <Mycom />
+              <CommentPage />
             </ProtectedRoute>
-          } /> */}
+          } />
 
 
       </Routes>

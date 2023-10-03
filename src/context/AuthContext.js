@@ -25,13 +25,13 @@ import {
         setUser(currentUser);
       });
 
-      // window.addEventListener('beforeunload', handleBeforeUnload); มา uncomment ตอนโปรเจกเสร็จแล้ว เพื่อเวลาปิดแท็บจะlogout aotu
+      // window.addEventListener('beforeunload', handleBeforeUnload); 
 
 
       return () => {
         unsubscribe();
 
-        // window.removeEventListener('beforeunload', handleBeforeUnload); มา uncomment ตอนโปรเจกเสร็จแล้ว เพื่อเวลาปิดแท็บจะlogout aotu
+        // window.removeEventListener('beforeunload', handleBeforeUnload);
       };
     }, []);
   

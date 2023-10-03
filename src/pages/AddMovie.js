@@ -15,6 +15,8 @@ const AddMovie = () => {
   const [movieInfo, setMovieInfo] = useState('')
   const [movieGenresSelect, setMovieGenresSelect] = useState([]);
   const [movieGenreData, setMovieGenreData] = useState([])
+  const [actorData , setActorData] = useState([])
+  const [actorSelect, setActorSelect] = useState([]);
   const [duration, setDuration] = useState(null)
   const [showDate, setShowDate] = useState(null)
   const [rate, setRate] = useState('')
@@ -29,12 +31,20 @@ const AddMovie = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const querySnapshot = await getDocs(query(collection(db, 'Movie Genre'),orderBy('MovieGenre')));
-        const movieData = querySnapshot.docs.map((doc) => ({
+        const genreSnapshot = await getDocs(query(collection(db, 'Movie Genre'),orderBy('MovieGenre')));
+        const genreDataDB = genreSnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        setMovieGenreData(movieData);
+
+        const actorSnapshot = await getDocs(query(collection(db, 'Actor'),orderBy('Name')));
+        const actorDataDB = actorSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+      
+        setMovieGenreData(genreDataDB);
+        setActorData(actorDataDB);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -52,7 +62,8 @@ const AddMovie = () => {
       const data = {
         MovieName: movieName,
         MovieInfo: movieInfo,
-        MovieGenres: movieGenresSelect, // Now an array of genres
+        MovieGenres: movieGenresSelect,
+        Actors: actorSelect,
         Duration: parseInt(duration),
         ShowDate: showDate,
         Rate: rate,
@@ -71,6 +82,7 @@ const AddMovie = () => {
     setMovieName('');
     setMovieInfo('');
     setMovieGenresSelect([]); // Clear selected genres
+    setActorSelect([]);
     setDuration('');
     setShowDate(null);
     setRate('');
@@ -86,10 +98,10 @@ const AddMovie = () => {
     value : genre.id
   }));
 
-  // const ActorPattern = movieGenreData.map((genre) => ({
-  //   label: genre.MovieGenre,
-  //   value : genre.id
-  // }));
+  const actorPattern = actorData.map((actor) =>({
+    label: actor.Name,
+    value : actor.id
+  }))
 
   return (
     <>
@@ -138,6 +150,18 @@ const AddMovie = () => {
                 isCreatable={true}
               />
             </div>
+
+            <div class={AdminCss.inputbox}>
+              <label class={AdminCss.label}>Select Actor</label>
+              <MultiSelect
+                options={actorPattern}
+                value={actorSelect}
+                onChange={setActorSelect}
+                labelledBy={"Select"}
+                isCreatable={true}
+              />
+            </div>
+
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Select Movie Rate</label>
               <div class={AdminCss.selectbox}>

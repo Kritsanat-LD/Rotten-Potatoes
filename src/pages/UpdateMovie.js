@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { db } from '../firebase';
 import { uploadImage } from '../context/UploadImg';
-import { doc, getDoc , getDocs , collection , updateDoc } from 'firebase/firestore';
+import { doc, getDoc , getDocs , collection , updateDoc,query,orderBy } from 'firebase/firestore';
 import AdminCss from "../css/admin.module.css"
 import { MultiSelect } from 'react-multi-select-component';
 import NavbarAdmin from "./navbaradmin";
@@ -12,7 +12,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 const UpdateDetails = () => {
   const { id } = useParams(); // Get the "id" parameter from the URL
 
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const [trailer, setTrailer] = useState('')
   const [duration, setDuration] = useState(null)
   const [movieName, setMovieName] = useState('')
@@ -21,6 +21,8 @@ const UpdateDetails = () => {
   const [rate, setRate] = useState('')
   const [movieGenresSelect, setMovieGenresSelect] = useState([]);
   const [movieGenreData, setMovieGenreData] = useState([])
+  const [actorData , setActorData] = useState([])
+  const [actorSelect, setActorSelect] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [oldImage, setOldImage] = useState(null);
 
@@ -40,6 +42,7 @@ const UpdateDetails = () => {
           setTrailer(movieData.Trailer)
           setRate(movieData.Rate)
           setMovieGenresSelect(movieData.MovieGenres)
+          setActorSelect(movieData.Actors)
           setOldImage(movieData.imageURL)
         }
       } catch (error) {
@@ -53,13 +56,21 @@ const UpdateDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'Movie Genre'));
-        const movieData = querySnapshot.docs.map((doc) => ({
+        const genreSnapshot = await getDocs(query(collection(db, 'Movie Genre'),orderBy('MovieGenre')));
+        const genreDataDB = genreSnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        movieData.sort((a, b) => a.MovieGenre.localeCompare(b.MovieGenre));
-        setMovieGenreData(movieData);
+        // movieData.sort((a, b) => a.MovieGenre.localeCompare(b.MovieGenre));
+
+        const actorSnapshot = await getDocs(query(collection(db, 'Actor'),orderBy('Name')));
+        const actorDataDB = actorSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        setMovieGenreData(genreDataDB);
+        setActorData(actorDataDB);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -67,10 +78,15 @@ const UpdateDetails = () => {
     fetchData();
   }, []);
 
-  const options = movieGenreData.map((genre) => ({
+  const genrePattern = movieGenreData.map((genre) => ({
     label: genre.MovieGenre,
     value : genre.id
   }));
+
+  const actorPattern = actorData.map((actor) =>({
+    label: actor.Name,
+    value : actor.id
+  }))
 
   const handleImageSelection = (event) => {
     setSelectedImage(event.target.files[0]);
@@ -87,7 +103,8 @@ const UpdateDetails = () => {
     await updateDoc(newDocRef, {
       MovieName: movieName,
       MovieInfo: movieInfo,
-      MovieGenres: movieGenresSelect, // Now an array of genres
+      MovieGenres: movieGenresSelect,
+      Actors: actorSelect, 
       Duration: parseInt(duration),
       ShowDate: showDate,
       Rate: rate,
@@ -99,6 +116,7 @@ const UpdateDetails = () => {
 
   return (
     <>
+    <NavbarAdmin />
     <section class={AdminCss.warpper}>
         <section class={AdminCss.container}>
         <a href="/MovieManagement"class={AdminCss.gobackbtn}><FontAwesomeIcon icon={faArrowLeft} /></a>
@@ -135,9 +153,20 @@ const UpdateDetails = () => {
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Select Genres</label>
               <MultiSelect
-                options={options}
+                options={genrePattern}
                 value={movieGenresSelect}
                 onChange={setMovieGenresSelect}
+                labelledBy={"Select"}
+                isCreatable={true}
+              />
+            </div>
+
+            <div class={AdminCss.inputbox}>
+              <label class={AdminCss.label}>Select Actor</label>
+              <MultiSelect
+                options={actorPattern}
+                value={actorSelect}
+                onChange={setActorSelect}
                 labelledBy={"Select"}
                 isCreatable={true}
               />
@@ -162,7 +191,7 @@ const UpdateDetails = () => {
               <input onChange={handleImageSelection} type="file" class={AdminCss.inputfile}/>
             </div>
 
-            <button onClick={handleUpdateMovie} class={AdminCss.addmovie}>Add Movie</button>
+            <button onClick={handleUpdateMovie} class={AdminCss.addmovie}>Update Movie</button>
 
             </div>
         </section>
