@@ -121,7 +121,7 @@ const MovieManagement = () => {
               <div key={movie.id} className={AdminManagementCss.content}>
                 <img width={162} height={232} src={movie.imageURL} alt={movie.MovieName} />
                 <div className={AdminManagementCss.contentinfo}>
-                  <p className={AdminManagementCss.contenttitle}>{movie.MovieName}</p>
+                  <a className={AdminManagementCss.contenttitle}>{movie.MovieName}</a>
                   <p className={AdminManagementCss.contenttitle}>Score : {movie.Score}</p>
                   <Link to={`/movieUpdateDetails/${movie.id}`} className={AdminManagementCss.contentbtnedit}><FontAwesomeIcon icon={faPencil} /></Link>
                   <buutton className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteMovie(movie.id)}><FontAwesomeIcon icon={faTrash} /></buutton>
