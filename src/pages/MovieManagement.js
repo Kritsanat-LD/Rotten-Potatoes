@@ -33,7 +33,6 @@ const MovieManagement = () => {
   }, []);
 
   useEffect(() => {
-    // Fetch movies from Firebase based on the selected genre
     const fetchData = async () => {
       try {
         let querySnapshot;
@@ -44,7 +43,6 @@ const MovieManagement = () => {
             );
             querySnapshot = await getDocs(q)
         }else{
-          // If no genre is selected, fetch all movies
           const q = query(collection(db, "Movies"), orderBy("Score", "desc"));
           querySnapshot = await getDocs(q);
         }
@@ -64,7 +62,7 @@ const MovieManagement = () => {
     };
 
     fetchData();
-  }, [selectedGenre]); // Run this effect whenever the selected genre changes
+  }, [selectedGenre]);
 
   const handleGenreChange = (event) => {
     const selectedGenreValue = event.target.value;
