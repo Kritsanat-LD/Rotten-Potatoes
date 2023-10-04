@@ -1,0 +1,159 @@
+footer
+{
+    margin-top: 500px;
+}
+body{
+    padding: 0;
+    margin: 0;
+    font-family: 'Kanit';font-size: 15px;
+}
+.main_comment{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: 10px;
+}
+
+.main_theaters
+{
+    width: 100%;
+}
+.grid_theaters_show
+{
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    text-align: center;
+}
+.grid_movie_comment{
+    display: grid;
+    background-color: #E9E9EA;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.block_movie_comment{
+
+    border: 1px solid #a0a0a9;
+    text-align: center;
+}
+
+.block_movie_comment.active{
+    background-color: rgb(255, 255, 255);
+
+
+}
+.grid_img
+{
+    display: grid;
+    grid-template-columns: 1fr;
+
+}
+.grid_img_name{
+    display: grid;
+    grid-template-columns: 20% 80% ;
+     gap: 20px;
+     padding-top: 20px;
+}
+.rate_movie{
+    text-align: center;
+    background-color: #E9E9EA;
+    border-radius: 30px;
+}
+.container_movie{
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+}
+.rate_and_review_widget__textbox_textarea {
+border: 1px solid #f8f9f9;
+border-radius: 4px;
+background-color: #f8f9f9;
+width: 60%;
+max-width: 100%;
+font-size: 1rem;
+padding: 25px;
+}
+
+.comment_rate_movie{
+padding: 20px;
+text-align: center;
+background-color: #E9E9EA;
+}
+.comment_movie{
+display: grid;
+grid-template-columns: 1fr 1fr;
+row-gap: 10px;
+column-gap:80px;
+}
+
+.comment_block{
+display: block;
+text-align: center;
+
+}
+.border_comment{
+border: 1px solid black;
+padding: 20px;
+}
+.comment_block img{
+margin-top: 20px;
+}
+.img_show_top
+{
+
+height: 100%;
+width: 100%;
+
+}
+.margin_top30{
+
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+
+.vl_s {
+    border-left: 3px solid #e1a543;
+    padding-left: 10px;
+}
+
+
+.font_we{
+    font-weight: bold;
+    font-size: 17px;
+    color:rgb(100, 99, 99);
+}
+.container_movie_wiper
+{
+
+    max-width: 800px;
+}
+
+
+
+
+
+@media  screen and (max-width: 1086px) {
+.main_comment{
+    display: grid;
+    grid-template-columns:1fr;
+}
+.main_theaters{
+    display: none;
+}
+.comment_movie{
+    grid-template-columns: 1fr;
+}
+.grid_img_name{
+    grid-template-columns: 1fr;
+     padding-top: 20px;
+}
+.img_show_top
+    {
+        display: none;
+    }
+    .container_movie{
+    display: block;
+    width: 90%;
+    padding: 5px;
+}
+
+}

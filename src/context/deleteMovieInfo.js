@@ -1,5 +1,5 @@
 import { db } from '../firebase';
-import { collection, deleteDoc , doc,  getDoc,  getDocs, query, updateDoc, where} from 'firebase/firestore';
+import { collection, deleteDoc , doc,  getDocs, query, updateDoc, where} from 'firebase/firestore';
 
 const deleteMovieInfoDB = async (data) => {
     try{
@@ -36,7 +36,7 @@ const deleteMovieGenreDB = async (data) =>{
 const changeMovieGenreInMovieTable = async (genre) =>{
     const option = {
         label: 'ZZZ',
-        value : 'HCUNy9vDkALp1RhrWd9L'
+        value : 'opz2jtBSDFq6Qwme6X7Y'
     }
     try{
         const querySnapshot = await getDocs(query(collection(db,"Movies"),where("MovieGenres","array-contains",{ label: genre.MovieGenre , value: genre.id})))
@@ -49,7 +49,7 @@ const changeMovieGenreInMovieTable = async (genre) =>{
       
               // Find the index of the genre you want to change
               const indexToChange = currentGenres.findIndex(
-                (e) => e.label == genre.MovieGenre && e.value == genre.id
+                (e) => e.label === genre.MovieGenre && e.value === genre.id
               );
       
               if (indexToChange !== -1) {
@@ -72,5 +72,15 @@ const changeMovieGenreInMovieTable = async (genre) =>{
     }
 }
 
+const deleteCommentDB = async (commentID) =>{
+    try{
+        await deleteDoc(doc(db, "comment", commentID));
+        console.log('Comment deleted from Firestore successfully');
+    }catch(error){
+        console.error('Error deleted comment from Firestore:', error);
+    }
 
-export { deleteMovieInfoDB , deleteMovieGenreDB};
+}
+
+
+export { deleteMovieInfoDB , deleteMovieGenreDB , deleteCommentDB};

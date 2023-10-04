@@ -7,6 +7,7 @@ import UpdateDetails from './pages/UpdateMovie';
 import AddMovieGenre from './pages/AddMovieGenre';
 import AddActor from './pages/AddActor';
 import Comment from './pages/CommentManagement';
+import CommentPage from './pages/Commennt';
 // import Mycom from './pages/testMultiSelect';
 import MovieManagement from './pages/MovieManagement';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -60,11 +61,11 @@ function App() {
               <MovieManagement />
             </ProtectedRoute>
           } />
-          {/* <Route path='eiei' element={
+          <Route path='commentpage' element={
             <ProtectedRoute>
-              <Mycom />
+              <CommentPage />
             </ProtectedRoute>
-          } /> */}
+          } />
 
 
       </Routes>

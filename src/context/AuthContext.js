@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import {
-    signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged,
   } from 'firebase/auth';
@@ -12,21 +11,27 @@ import {
   export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState({});
   
-     const signIn = (email, password) =>  {
-      return signInWithEmailAndPassword(auth, email, password)
-     }
-  
     const logout = () => {
         return signOut(auth)
     }
   
+    // const handleBeforeUnload = () => {
+    //   // Sign out the user before unloading the page/tab
+    //   logout();
+    // };
+
     useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-        // console.log(currentUser);
         setUser(currentUser);
       });
+
+      // window.addEventListener('beforeunload', handleBeforeUnload); 
+
+
       return () => {
         unsubscribe();
+
+        // window.removeEventListener('beforeunload', handleBeforeUnload);
       };
     }, []);
   

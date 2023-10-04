@@ -1,7 +1,7 @@
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
 import 'swiper/css/bundle';
-
+import "../css/swiper.css"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import swipercss from "../css/swiper.module.css"
 import listcss from "../css/list.module.css"

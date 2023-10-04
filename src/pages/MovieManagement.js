@@ -33,25 +33,26 @@ const MovieManagement = () => {
   }, []);
 
   useEffect(() => {
-    // Fetch movies from Firebase based on the selected genre
     const fetchData = async () => {
       try {
         let querySnapshot;
         if(selectedGenre.MovieGenre){
             const q = query(
                 collection(db,"Movies"),
-                where("MovieGenres",'array-contains',{ label: selectedGenre.MovieGenre , value: selectedGenre.id}),
+                where("MovieGenres",'array-contains',{ label: selectedGenre.MovieGenre , value: selectedGenre.id})
             );
             querySnapshot = await getDocs(q)
         }else{
-          // If no genre is selected, fetch all movies
-          querySnapshot = await getDocs(collection(db, 'Movies'));
+          const q = query(collection(db, "Movies"), orderBy("Score", "desc"));
+          querySnapshot = await getDocs(q);
         }
 
         const fetchedData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
+          Score: parseInt(doc.data().Score, 10),
         }));
+        fetchedData.sort((a, b) => b.Score - a.Score);
         setData(fetchedData);
         setIsLoading(false);
       } catch (error) {
@@ -61,7 +62,7 @@ const MovieManagement = () => {
     };
 
     fetchData();
-  }, [selectedGenre]); // Run this effect whenever the selected genre changes
+  }, [selectedGenre]);
 
   const handleGenreChange = (event) => {
     const selectedGenreValue = event.target.value;
@@ -103,21 +104,25 @@ const MovieManagement = () => {
             </option>
           ))}
         </select>
+        
         <a className={AdminManagementCss.alinkbtn} href="/AddMovie">Add Movie</a>
         <a className={AdminManagementCss.alinkbtn} href="/addmoviegenre">Add Genres</a>
       </div>
       <div className={AdminManagementCss.warpper}>
         {isLoading ? (
           <p>Loading...</p>
+        ) : data.length===0?(
+          <p>No movies found</p>
         ) : (
           <>
             {data.map((movie) => (
               <div key={movie.id} className={AdminManagementCss.content}>
                 <img width={162} height={232} src={movie.imageURL} alt={movie.MovieName} />
                 <div className={AdminManagementCss.contentinfo}>
-                  <p className={AdminManagementCss.contenttitle}>{movie.MovieName}</p>
+                  <a className={AdminManagementCss.contenttitle}>{movie.MovieName}</a>
+                  <p className={AdminManagementCss.contenttitle}>Score : {movie.Score}</p>
                   <Link to={`/movieUpdateDetails/${movie.id}`} className={AdminManagementCss.contentbtnedit}><FontAwesomeIcon icon={faPencil} /></Link>
-                  <a className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteMovie(movie.id)}><FontAwesomeIcon icon={faTrash} /></a>
+                  <button className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteMovie(movie.id)}><FontAwesomeIcon icon={faTrash} /></button>
                 </div>
               </div>
             ))}
