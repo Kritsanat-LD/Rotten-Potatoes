@@ -101,6 +101,7 @@ const UpdateDetails = () => {
 
   return (
     <>
+    <NavbarAdmin/>
     <section class={AdminCss.warpper}>
         <section class={AdminCss.container}>
         <a href="/MovieManagement"class={AdminCss.gobackbtn}><FontAwesomeIcon icon={faArrowLeft} /></a>

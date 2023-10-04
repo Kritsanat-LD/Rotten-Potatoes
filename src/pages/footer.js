@@ -8,31 +8,37 @@ const Footer = () => {
   return (
     <>
     
-       <footer className={footerCss.footer}>
-        <div className={footerCss.footersection}>
-            <label className={footerCss.title}>Links</label>
+    
+    <footer className={footerCss.footer}>
+    <section className={footerCss.container}>
+        <div className={footerCss.about}>
+            <h3 className={footerCss.title}>About US</h3>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+            </p>
+        </div>
+        <div className={footerCss.services}>
+            <h3 className={footerCss.title}>services</h3>
             <ul className={footerCss.list}>
-                <li className={footerCss.order}><a href="#" class={footerCss.a}>Link 1</a></li>
-                <li className={footerCss.order}><a href="#" class={footerCss.a}>Link 2</a></li>
-                <li className={footerCss.order}><a href="#" class={footerCss.a}>Link 3</a></li>
+                <li><a href="" className={footerCss.alink}> Link1</a></li>
+                <li><a href="" className={footerCss.alink}> Link2</a></li>
+                <li><a href="" className={footerCss.alink}> Link3</a></li>
+                <li><a href="" className={footerCss.alink}> Link4</a></li>
             </ul>
         </div>
-        <div className={footerCss.footersection}>
-            <label className={footerCss.title}>Names</label>
+        <div className={footerCss.contact}>
+            <h3 className={footerCss.title}>contact</h3>
             <ul className={footerCss.list}>
-                <li className={footerCss.order}>Name 1</li>
-                <li className={footerCss.order}>Name 2</li>
-                <li className={footerCss.order}>Name 3</li>
-                <li className={footerCss.order}>Name 4</li>
+                <li><label className={footerCss.member}> KON 1</label></li>
+                <li><label className={footerCss.member}> KON 1</label></li>
+                <li><label className={footerCss.member}> KON 1</label></li>
+                <li><label className={footerCss.member}> KON 1</label></li>
             </ul>
         </div>
-        <div className={footerCss.footersection}>
-            <label className={footerCss.title}>Three Lines</label>
-            <p>Line 1 of text.</p>
-            <p>Line 2 of text.</p>
-            <p>Line 3 of text.</p>
-        </div>
-    </footer>
+    </section>
+</footer>
+
     </>
   )
 
