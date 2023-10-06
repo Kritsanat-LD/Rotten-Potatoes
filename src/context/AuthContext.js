@@ -3,17 +3,23 @@ import {
     signOut,
     onAuthStateChanged,
   } from 'firebase/auth';
-  import { auth } from '../firebase';
+  import { auth , db} from '../firebase';
+  import { doc, getDoc, } from 'firebase/firestore';
 
   const UserContext = createContext();
 
 
   export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState({});
-  
+    const [userRole, setUserRole] = useState("");
+
     const logout = () => {
         return signOut(auth)
     }
+
+    const updateUserRole  = (role) => {
+      setUserRole(role);
+    };
   
     // const handleBeforeUnload = () => {
     //   // Sign out the user before unloading the page/tab
@@ -21,8 +27,17 @@ import {
     // };
 
     useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
         setUser(currentUser);
+        if (currentUser) {
+          // Retrieve the user's role from Firestore
+          const userDocRef = doc(db, 'user', currentUser.uid);
+          const userDocSnapshot = await getDoc(userDocRef);
+          const userData = userDocSnapshot.data();
+          if (userData && userData.role) {
+            setUserRole(userData.role); // Update the user role in your AuthContext
+          }
+        }
       });
 
       // window.addEventListener('beforeunload', handleBeforeUnload); 
@@ -36,9 +51,12 @@ import {
     }, []);
   
     return (
-      <UserContext.Provider value={{ user , logout}}>
-        {children}
-      </UserContext.Provider>
+      // <UserContext.Provider value={{ user , logout}}>
+      //   {children}
+      // </UserContext.Provider>
+    <UserContext.Provider value={{ user, logout, userRole, updateUserRole }}>
+      {children}
+    </UserContext.Provider>
     );
   };
 

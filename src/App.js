@@ -24,13 +24,7 @@ function App() {
           <Route path='signup' element={<SignUp />} />
           <Route path='nav' element={<Navbar />} />
           <Route path='HomePage' element={< HomePage/>} />
-
-
-          <Route path='home' element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          } />
+          <Route path='home' element={< Home/>} />
           <Route path='addmovie' element={
             <ProtectedRoute>
               <AddMovie />
@@ -66,13 +60,10 @@ function App() {
               <CommentPage />
             </ProtectedRoute>
           } />
-
-
       </Routes>
     </BrowserRouter>
     </AuthContextProvider>
     </>
   );
 }
-
 export default App;

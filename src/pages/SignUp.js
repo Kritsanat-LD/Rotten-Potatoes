@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import RegisterCss from "../css/Login.module.css"
-import { auth, app, db } from "../firebase"
+import { auth, db } from "../firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from 'react-router-dom'
-import { doc, setDoc, serverTimestamp, collection } from "firebase/firestore";
+import { doc, setDoc, } from "firebase/firestore";
 
 
 const SignUp = () => {
@@ -29,23 +29,23 @@ const SignUp = () => {
                     password: password,
                     name: name,
                     phone: phone,
-                    role : 0
+                    role : 'customer'
                 });
             })
             .catch((error) => {
                 // console.log(error)
                 
                 var errorMessage = error.message;
-                if (error.code == 'auth/weak-password') {
+                if (error.code === 'auth/weak-password') {
                     errorlabelid.innerHTML ='The password is too weak';
                 } 
-                else if (error.code == 'auth/email-already-in-use') {
+                else if (error.code === 'auth/email-already-in-use') {
                     errorlabelid.innerHTML ='email already in use';
                   }
-                  else if (error.code == 'auth/invalid-email') {
+                  else if (error.code === 'auth/invalid-email') {
                     errorlabelid.innerHTML ='invalid email';
                   }
-                  else if (error.code == 'auth/operation-not-allowed') {
+                  else if (error.code === 'auth/operation-not-allowed') {
                     errorlabelid.innerHTML ='operation not allowd';
                   }else {
                     errorlabelid.innerHTML =errorMessage.code;

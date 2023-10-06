@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 
 const ProtectedRoute = ({ children }) => {
-  const { user } = UserAuth();
+  const { user , userRole} = UserAuth();
+
+  const [isRoleFetched, setIsRoleFetched] = useState(false);
+
+  setTimeout(() => {
+    setIsRoleFetched(true);
+  }, 2250); 
 
   if (!user) {
     return <Navigate to='/' />;
   }
-  return children;
+  if (!isRoleFetched) {
+    // Show loading indicator while fetching the role
+    return <div></div>;
+  }
+  if(userRole === "admin"){
+    return children;
+  }
+  else {
+    return <Navigate to="/home" />;
+  }
 };
 
 export default ProtectedRoute;

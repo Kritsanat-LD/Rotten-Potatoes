@@ -1,27 +1,60 @@
 import React, { useState } from "react";
 import LoginCss from "../css/Login.module.css"
-import { auth, app } from "../firebase"
+import { auth } from "../firebase"
+import { db } from '../firebase';
+import { doc, getDoc, } from 'firebase/firestore';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from 'react-router-dom'
+import { UserAuth } from '../context/AuthContext';
+// import { AuthContextProvider } from '../context/AuthContext';
 
 const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const { updateUserRole } = UserAuth();
+    // const [userRole,setUserRole] = useState('')
     const navigate = useNavigate('')
 
-    const handleLogin = (e) => {
+    // const handleLogin = (e) => {
+    //     let errorlabelid = document.getElementById("errorlabel")
+    //     e.preventDefault();
+    //     signInWithEmailAndPassword(auth, email, password)
+    //         .then((userCredential) => {
+    //             navigate("/home")
+    //         })
+    //         .catch((error) => {
+    //             errorlabelid.innerHTML = "You have no Account yet";
+    //         });
+    // }
+
+    const handleLogin = async (e) => {
         let errorlabelid = document.getElementById("errorlabel")
-        console.log(e)
         e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                navigate("/home")
-            })
-            .catch((error) => {
-                errorlabelid.innerHTML = "You have no Account yet";
-            });
-    }
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+    
+            // Retrieve the user's role from the database
+            const userDocRef = doc(db, "user", user.uid);
+            const userDocSnapshot = await getDoc(userDocRef);
+            const userData = userDocSnapshot.data();
+            const Role = userData?.role || "customer"; // Default to "customer" if role is not set
+    
+            // Store the user's role in your app's state or context
+            // Update the user role in your AuthContext
+            updateUserRole(Role);
+    
+            // Redirect based on user role
+            if (Role === "admin") {
+                navigate("/movieManagement"); // Redirect admin to admin page
+            } else {
+                navigate("/home"); // Redirect customer to customer page
+            }
+        } catch (error) {
+            errorlabelid.innerHTML = "You have no Account yet";
+        }
+    };
 
 
 
