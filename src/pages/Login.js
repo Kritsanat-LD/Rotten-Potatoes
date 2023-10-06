@@ -40,16 +40,16 @@ const Login = () => {
             const userDocSnapshot = await getDoc(userDocRef);
             const userData = userDocSnapshot.data();
             const Role = userData?.role || "customer"; // Default to "customer" if role is not set
-    
+            const Name = userData.name
+            console.log(Name)
             // Store the user's role in your app's state or context
             // Update the user role in your AuthContext
             updateUserRole(Role);
-    
             // Redirect based on user role
             if (Role === "admin") {
                 navigate("/movieManagement"); // Redirect admin to admin page
             } else {
-                navigate("/home"); // Redirect customer to customer page
+                navigate("/homepage"); // Redirect customer to customer page
             }
         } catch (error) {
             errorlabelid.innerHTML = "You have no Account yet";

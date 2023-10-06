@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Navcss from "../css/nav.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { UserAuth } from '../context/AuthContext';
 
 const Navbar = () => {
-
+    const { user } = UserAuth();
 
   return (
     <>
@@ -25,8 +26,13 @@ const Navbar = () => {
                 <a  className={Navcss.a}>Movie</a>
             </div>
             <div  className={Navcss.content}>
-                <img className={Navcss.img} src="./images/usericon.png" />
-                <a  className={Navcss.a}>Login / Sign up</a>
+            <img className={Navcss.img} src="./images/usericon.png" />
+                {user?(
+                    <a  className={Navcss.a}>{user.email}</a>
+                ) :(
+                    <a  className={Navcss.a}>Login / Sign up</a>
+                )
+                }
             </div>
         </section>
 

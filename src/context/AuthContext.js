@@ -54,7 +54,7 @@ import {
       // <UserContext.Provider value={{ user , logout}}>
       //   {children}
       // </UserContext.Provider>
-    <UserContext.Provider value={{ user, logout, userRole, updateUserRole }}>
+    <UserContext.Provider value={{ user , logout, userRole, updateUserRole }}>
       {children}
     </UserContext.Provider>
     );

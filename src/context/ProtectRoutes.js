@@ -3,8 +3,8 @@ import { Navigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 
 const ProtectedRoute = ({ children }) => {
-  const { user , userRole} = UserAuth();
-
+  const { user , userRole , userName} = UserAuth();
+  console.log(userName)
   const [isRoleFetched, setIsRoleFetched] = useState(false);
 
   setTimeout(() => {

@@ -6,7 +6,7 @@ import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 
 const Home = () => {
-  const { user, logout } = UserAuth();
+  const { user, logout , userName} = UserAuth();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
