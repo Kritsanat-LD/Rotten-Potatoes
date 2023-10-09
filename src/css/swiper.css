@@ -33,3 +33,24 @@
     background-image: url("../../public/images/right-arrow-hover.png");
 
   }
+  /* .swiper-horizontal > .swiper-scrollbar{
+    display: none;
+  } */
+
+
+  @media (max-width:768px) {
+    .swiper-button-prev,
+.swiper-button-next {
+  display: none;
+}
+/* .swiper-horizontal > .swiper-scrollbar{
+    display: flex;
+} */
+
+
+  
+
+  }
+  .swiper-slide{
+    width: 200px;
+   }

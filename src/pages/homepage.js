@@ -13,14 +13,12 @@ const HomePage = () => {
     const breakpoints = {
       768: {
         width: 768,
-        slidesPerView: 3,
-        // spaceBetween: 1,
+        slidesPerView: 2,
 
       },
       1024: {
         width: 1024,
         slidesPerView: 6,
-        // spaceBetween: 5
       },
       };
   return (
@@ -39,65 +37,376 @@ const HomePage = () => {
        breakpoints={breakpoints}
        
     >
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
       <div class={swipercss.content}>
         <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
         <a href='' class={swipercss.Title}>นรกชนบ้านยาวแบบจัดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ</a>
       </div>
+      </div>
       </SwiperSlide>
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/movie1.jpg"/>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie1.jpg"/>
       <div class={swipercss.content}>
         <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
         <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
       </div>
-      </SwiperSlide>
-      
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
-      <div class={swipercss.content}>
-        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
-        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
       </div>
       </SwiperSlide>
       
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
       <div class={swipercss.content}>
         <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
         <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
-      </div>
+      </div></div>
       </SwiperSlide>
       
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/movie4.jpg"/>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie4.jpg"/>
       <div class={swipercss.content}>
         <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
         <a href='' class={swipercss.Title}>นรกชนบ้านยาววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie6.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาวแบบจัดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ</a>
+      </div>
       </div>
       </SwiperSlide>
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie1.jpg"/>
       <div class={swipercss.content}>
         <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
         <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
       </div>
-      </SwiperSlide>
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/movie6.jpg"/>
-      <div class={swipercss.content}>
-        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
-        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
-      </div>
-      </SwiperSlide>
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
-      <div class={swipercss.content}>
-        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
-        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
-      </div>
-      </SwiperSlide>
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
-      <div class={swipercss.content}>
-        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
-        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
       </div>
       </SwiperSlide>
       
-
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie4.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie6.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>     <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาวแบบจัดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie1.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie4.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie6.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>     <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาวแบบจัดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie1.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie4.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie6.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>     <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาวแบบจัดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie1.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie4.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie6.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>     <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาวแบบจัดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie1.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie4.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie6.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>     <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาวแบบจัดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie1.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie4.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie6.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>     <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาวแบบจัดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie1.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie4.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie6.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
       
      
     </Swiper>
@@ -105,9 +414,8 @@ const HomePage = () => {
      {/* ------------------------------------------- end slider  ------------------------------------------- */}
 
  {/* ------------------------------------------- start slider  ------------------------------------------- */}
-
-    <div class={swipercss.container}>
-        <div class={swipercss.containerforthetitle}><div className={swipercss.vl}><h2 class={swipercss.Titleofthecontent}>NEW & UPCOMING ON STREAMING</h2></div><a href="" className={swipercss.alinkViewall}>View All</a></div>
+ <div class={swipercss.container}>
+        <div class={swipercss.containerforthetitle}><div className={swipercss.vl}><h2 class={swipercss.Titleofthecontent}>NEW & UPCOMING MOVIES IN THEATERS</h2></div><a href="" className={swipercss.alinkViewall}>View All</a></div>
    <Swiper
        className={swipercss.swiper}
        modules={[Navigation, Scrollbar]}
@@ -116,70 +424,380 @@ const HomePage = () => {
        breakpoints={breakpoints}
        
     >
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
       <div class={swipercss.content}>
         <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
         <a href='' class={swipercss.Title}>นรกชนบ้านยาวแบบจัดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ</a>
       </div>
+      </div>
       </SwiperSlide>
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/movie1.jpg"/>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie1.jpg"/>
       <div class={swipercss.content}>
         <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
         <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
       </div>
-      </SwiperSlide>
-      
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
-      <div class={swipercss.content}>
-        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
-        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
       </div>
       </SwiperSlide>
       
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
       <div class={swipercss.content}>
         <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
         <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
-      </div>
+      </div></div>
       </SwiperSlide>
       
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/movie4.jpg"/>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie4.jpg"/>
       <div class={swipercss.content}>
         <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
         <a href='' class={swipercss.Title}>นรกชนบ้านยาววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie6.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาวแบบจัดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ</a>
+      </div>
       </div>
       </SwiperSlide>
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie1.jpg"/>
       <div class={swipercss.content}>
         <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
         <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
       </div>
-      </SwiperSlide>
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/movie6.jpg"/>
-      <div class={swipercss.content}>
-        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
-        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
-      </div>
-      </SwiperSlide>
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
-      <div class={swipercss.content}>
-        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
-        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
-      </div>
-      </SwiperSlide>
-      <SwiperSlide className={swipercss.slide}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
-      <div class={swipercss.content}>
-        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
-        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
       </div>
       </SwiperSlide>
       
-
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie4.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie6.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>     <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาวแบบจัดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie1.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie4.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie6.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>     <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาวแบบจัดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie1.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie4.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie6.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>     <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาวแบบจัดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie1.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie4.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie6.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>     <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาวแบบจัดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie1.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie4.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie6.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>     <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาวแบบจัดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie1.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie4.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie6.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>     <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/ashfall.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาวแบบจัดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie1.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div>
+      </div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src="./images/movie2.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie3.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie4.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้านยาววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie5.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
+      <SwiperSlide className={swipercss.slide}> <div className={swipercss.warpper}><img class={swipercss.coverimg} src="./images/movie6.jpg"/>
+      <div class={swipercss.content}>
+        <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>80%</p></div>
+        <a href='' class={swipercss.Title}>นรกชนบ้าน</a>
+      </div></div>
+      </SwiperSlide>
       
      
     </Swiper>
     </div>
-
        {/* ------------------------------------------- end slider  ------------------------------------------- */}
 
           {/* ------------------------------------------- start list  ------------------------------------------- */}
