@@ -14,26 +14,25 @@ const Footer = () => {
         <div className={footerCss.about}>
             <h3 className={footerCss.title}>About US</h3>
             <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+            Welcome to Rotten Potatoes, your go-to destination for all things movies and TV shows! Established with a passion for cinema, Rotten Potatoes is dedicated to providing you with the most comprehensive and honest reviews, insightful articles, and the latest entertainment news.
             </p>
         </div>
         <div className={footerCss.services}>
             <h3 className={footerCss.title}>services</h3>
             <ul className={footerCss.list}>
-                <li><a href="" className={footerCss.alink}> Link1</a></li>
-                <li><a href="" className={footerCss.alink}> Link2</a></li>
-                <li><a href="" className={footerCss.alink}> Link3</a></li>
-                <li><a href="" className={footerCss.alink}> Link4</a></li>
+                <li><a href="" className={footerCss.alink}> Home</a></li>
+                <li><a href="" className={footerCss.alink}> Movie</a></li>
+                <li><a href="" className={footerCss.alink}> Login</a></li>
+                <li><a href="" className={footerCss.alink}> Register</a></li>
             </ul>
         </div>
         <div className={footerCss.contact}>
-            <h3 className={footerCss.title}>contact</h3>
+            <h3 className={footerCss.title}>Code By</h3>
             <ul className={footerCss.list}>
                 <li><label className={footerCss.member}> KON 1</label></li>
-                <li><label className={footerCss.member}> KON 1</label></li>
-                <li><label className={footerCss.member}> KON 1</label></li>
-                <li><label className={footerCss.member}> KON 1</label></li>
+                <li><label className={footerCss.member}> KON 2</label></li>
+                <li><label className={footerCss.member}> KON 3</label></li>
+                <li><label className={footerCss.member}> KON 4</label></li>
             </ul>
         </div>
     </section>

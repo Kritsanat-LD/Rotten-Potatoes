@@ -28,7 +28,7 @@ const Navbar = () => {
             <div  className={Navcss.content}>
             <img className={Navcss.img} src="./images/usericon.png" />
                 {user?(
-                    <a  className={Navcss.a}>{user.email}</a>
+                    <a  className={Navcss.a}>{user.username}</a>
                 ) :(
                     <a  className={Navcss.a}>Login / Sign up</a>
                 )

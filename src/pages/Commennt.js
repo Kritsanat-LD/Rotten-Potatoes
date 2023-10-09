@@ -159,7 +159,6 @@ const CommentPage = () => {
         </div>
       </div>
     </div>
-    <footer></footer>
   </div>
   )
 

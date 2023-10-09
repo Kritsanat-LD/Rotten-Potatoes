@@ -72,6 +72,13 @@
         font-size: .99em;
           padding: 0 10px;
           color: white;
+          cursor: pointer;
+      }
+      .listpage .a:hover{
+      
+          color: rgb(236, 229, 229);
+          text-decoration: underline;
+      
       }
       .listpage .img{
         display: none;
