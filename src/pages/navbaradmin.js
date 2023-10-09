@@ -42,7 +42,7 @@ const NavbarAdmin = () => {
                         <span className={Sidebarcss.icon}>
                             <FontAwesomeIcon icon={faUserTie} />
                         </span>
-                        <a href="" className={Sidebarcss.name}>Actor Management</a>
+                        <a href="/actorManagement" className={Sidebarcss.name}>Actor Management</a>
                     </div>
                     <div className={Sidebarcss.content}>
                         <span className={Sidebarcss.icon}>

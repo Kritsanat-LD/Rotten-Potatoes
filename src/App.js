@@ -10,6 +10,7 @@ import Comment from './pages/CommentManagement';
 import CommentPage from './pages/Commennt';
 // import Mycom from './pages/testMultiSelect';
 import MovieManagement from './pages/MovieManagement';
+import ActorManagement from './pages/ActorManagement';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './context/ProtectRoutes';
@@ -25,6 +26,8 @@ function App() {
           <Route path='nav' element={<Navbar />} />
           <Route path='HomePage' element={< HomePage/>} />
           <Route path='home' element={< Home/>} />
+
+
           <Route path='addmovie' element={
             <ProtectedRoute>
               <AddMovie />
@@ -53,6 +56,11 @@ function App() {
           <Route path='movieManagement' element={
             <ProtectedRoute>
               <MovieManagement />
+            </ProtectedRoute>
+          } />
+          <Route path='actorManagement' element={
+            <ProtectedRoute>
+              <ActorManagement />
             </ProtectedRoute>
           } />
           <Route path='commentpage' element={

@@ -3,13 +3,13 @@ import { Navigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 
 const ProtectedRoute = ({ children }) => {
-  const { user , userRole , userName} = UserAuth();
-  console.log(userName)
+  const { user , userRole } = UserAuth();
+  console.log(userRole)
   const [isRoleFetched, setIsRoleFetched] = useState(false);
 
   setTimeout(() => {
     setIsRoleFetched(true);
-  }, 2250); 
+  }, 2750); 
 
   if (!user) {
     return <Navigate to='/' />;

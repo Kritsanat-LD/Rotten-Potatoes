@@ -1,5 +1,5 @@
 import { db } from '../firebase';
-import { collection, deleteDoc , doc,  getDocs, query, updateDoc, where} from 'firebase/firestore';
+import { collection, deleteDoc , doc,  getDocs, query, updateDoc, where , deleteField } from 'firebase/firestore';
 
 const deleteMovieInfoDB = async (data) => {
     try{
@@ -79,8 +79,55 @@ const deleteCommentDB = async (commentID) =>{
     }catch(error){
         console.error('Error deleted comment from Firestore:', error);
     }
+}
 
+const deleteActorInfoDB = async (actorId,actorName) =>{
+    try{
+        await deleteActorInMovieOnActorDeleted(actorId,actorName)
+        await deleteDoc(doc(db,'Actor',actorId))
+        console.log('Actor deleted from Firestore successfully');
+    }catch(error){
+        console.error('Error deleted actor from Firestore:', error);
+    }
+}
+
+const deleteActorInMovieOnActorDeleted = async (actorId,actorName) =>{
+    try{
+        const q = query(collection(db,'Movies'),
+        where("Actors",'array-contains',{label: actorName , value: actorId}))
+        const querySnapshot = await getDocs(q)
+    
+        querySnapshot.forEach(async (doc) => {
+            const movieRef = doc.ref;
+      
+            try {
+              // Get the current MovieGenres array
+              const currentActors = doc.data().Actors;
+      
+              // Find the index of the genre you want to change
+              const indexToDelete  = currentActors.findIndex(
+                (e) => e.label === actorName && e.value === actorId
+              );
+      
+              if (indexToDelete !== -1) {
+      
+                const updatedActors = [...currentActors.slice(0, indexToDelete), ...currentActors.slice(indexToDelete + 1)];
+                
+                await updateDoc(movieRef, {
+                    Actors: updatedActors,
+                  });
+      
+                console.log('Delete Actor in that movie success');
+              }
+            } catch (error) {
+              console.log('Update MovieGenre in that movie fail', error);
+            }
+          });
+    }catch(error){
+    console.error('Error Change Genre:', error);
+    }   
 }
 
 
-export { deleteMovieInfoDB , deleteMovieGenreDB , deleteCommentDB};
+
+export { deleteMovieInfoDB , deleteMovieGenreDB , deleteCommentDB , deleteActorInfoDB};
