@@ -6,7 +6,7 @@ import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 
 const Home = () => {
-  const { user, logout , userName} = UserAuth();
+  const { user, logout } = UserAuth();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -75,6 +75,7 @@ const Home = () => {
   return !isLoading ? (
     // return(
     <>
+    
       <h1>ดีครับ</h1>
       <p style={textStyle}>User Email: {user && user.email}</p>
       <div style={center}>

@@ -3,6 +3,7 @@ import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import Navbar from './pages/nav';
 import AddMovie from './pages/AddMovie';
+import MovieDetail from './pages/MovieDetail';
 import UpdateDetails from './pages/UpdateMovie';
 import AddMovieGenre from './pages/AddMovieGenre';
 import AddActor from './pages/AddActor';
@@ -15,6 +16,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './context/ProtectRoutes';
 import HomePage from './pages/homepage';
+import Movies from './pages/movies';
 function App() {
   return (
     <>
@@ -23,7 +25,7 @@ function App() {
       <Routes>
           <Route path='/' element={<Login />} />
           <Route path='signup' element={<SignUp />} />
-          <Route path='nav' element={<Navbar />} />
+          <Route path='Movies' element={<Movies />} />
           <Route path='HomePage' element={< HomePage/>} />
           <Route path='home' element={< Home/>} />
 
@@ -31,6 +33,11 @@ function App() {
           <Route path='addmovie' element={
             <ProtectedRoute>
               <AddMovie />
+            </ProtectedRoute>
+          } />
+          <Route path='movieDetails/:id' element={
+            <ProtectedRoute>
+              <MovieDetail />
             </ProtectedRoute>
           } />
           <Route path='movieUpdateDetails/:id' element={

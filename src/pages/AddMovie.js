@@ -53,6 +53,8 @@ const AddMovie = () => {
   }, []);
 
   const handleUploadMovie = async () => {
+    
+
     try {
       let imageURL = null;
       if (selectedImage) {
@@ -71,6 +73,12 @@ const AddMovie = () => {
         imageURL: imageURL,
         Score: 0
       };
+
+      if(data.MovieName=='' || data.MovieInfo==''|| data.MovieGenres==''|| data.Actors==''
+      || data.Duration==''|| data.ShowDate==''|| data.Rate==''|| data.Trailer==''|| data.imageURL==null){
+        window.alert('You forget to add something');
+        return 0;
+      }
 
       await addMovieInfoDB(data);
       console.log('Movie data added successfully');
@@ -106,7 +114,7 @@ const AddMovie = () => {
   return (
     <>
       <NavbarAdmin />
-
+    {/* <form> */}
       <section class={AdminCss.warpper}>
         <section class={AdminCss.container}>
         <a href="/MovieManagement"class={AdminCss.gobackbtn}><FontAwesomeIcon icon={faArrowLeft} /></a>
@@ -187,7 +195,7 @@ const AddMovie = () => {
           </div>
         </section>
       </section>
-
+      {/* </form> */}
 
     </>
   )

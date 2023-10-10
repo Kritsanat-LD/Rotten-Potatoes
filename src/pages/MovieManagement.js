@@ -116,10 +116,10 @@ const MovieManagement = () => {
         ) : (
           <>
             {data.map((movie) => (
-              <div key={movie.id} className={AdminManagementCss.content}>
-                <img width={162} height={232} src={movie.imageURL} alt={movie.MovieName} />
+              <div key={movie.id} className={AdminManagementCss.content}>       
+                <Link to={`/movieDetails/${movie.id}`}><img width={162} height={232} src={movie.imageURL} alt={movie.MovieName} /></Link>
                 <div className={AdminManagementCss.contentinfo}>
-                  <a className={AdminManagementCss.contenttitle}>{movie.MovieName}</a>
+                <Link to={`/movieDetails/${movie.id}`}><a className={AdminManagementCss.contenttitle}>{movie.MovieName}</a></Link>
                   <p className={AdminManagementCss.contenttitle}>Score : {movie.Score}</p>
                   <Link to={`/movieUpdateDetails/${movie.id}`} className={AdminManagementCss.contentbtnedit}><FontAwesomeIcon icon={faPencil} /></Link>
                   <button className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteMovie(movie.id)}><FontAwesomeIcon icon={faTrash} /></button>

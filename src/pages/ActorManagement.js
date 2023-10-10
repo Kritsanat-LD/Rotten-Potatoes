@@ -5,6 +5,7 @@ import AdminManagementCss from "../css/adminmanagement.module.css"
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { deleteActorInfoDB } from '../context/deleteMovieInfo';
+import NavbarAdmin from './navbaradmin';
 const ActorManagement = () =>{
     const [actor,setActor] = useState([])
 
@@ -41,18 +42,25 @@ const ActorManagement = () =>{
 
     return(
     <>
+    <NavbarAdmin/>
+     <div className={AdminManagementCss.container}>
+     <div className={AdminManagementCss.selectbox}>
         <h1>Actor Management</h1>
-        <a href='/addactor'>Add Actor</a>
+        <a className={AdminManagementCss.alinkbtn} href='/addactor'>Add Actor</a>
+        </div>
+        <div className={AdminManagementCss.warpper}>
         {actor.map((e)=>(
             <div key={e.id} className={AdminManagementCss.content}>
-                <img width={162} height={232} src={e.ActorImage} />
-                <div className={AdminManagementCss.contentinfo}>
-                  <a className={AdminManagementCss.contenttitle}>{e.Name}</a>
-                  <a className={AdminManagementCss.contenttitle}>{e.BirthDate}</a>
-                  <button className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteActor(e.id,e.Name)}><FontAwesomeIcon icon={faTrash} /></button>
+                <img className={AdminManagementCss.img} width={162} height={232} src={e.ActorImage} />
+                <div className={AdminManagementCss.contentinfoActor}>
+                  <a className={AdminManagementCss.contentactorname}>{e.Name}</a>
+                  <a className={AdminManagementCss.contentactorDate}>{e.BirthDate}</a>
                 </div>
+                <button className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteActor(e.id,e.Name)}><FontAwesomeIcon icon={faTrash} /></button>
               </div>
         ))}
+         </div>
+        </div>
     </>
     )
 }
