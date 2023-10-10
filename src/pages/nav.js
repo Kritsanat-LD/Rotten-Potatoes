@@ -19,11 +19,11 @@ const Navbar = () => {
         <section className={Navcss.listpage}>
             <div className={Navcss.content}>
                 <img className={Navcss.img} src="./images/homeicon.png"/>
-                <a className={Navcss.a}>Home</a>
+                <a href="homepage" className={Navcss.a}>Home</a>
             </div>
             <div className={Navcss.content}>
                 <img className={Navcss.img} src="./images/movieicon.png" />
-                <a  className={Navcss.a}>Movie</a>
+                <a href="Movies" className={Navcss.a}>Movie</a>
             </div>
             <div  className={Navcss.content}>
             <img className={Navcss.img} src="./images/usericon.png" />

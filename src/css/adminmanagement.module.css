@@ -118,6 +118,10 @@
     color: white;
     border-color: #333;
 }
+.contentinfoActor{
+    display: flex;
+    flex-flow: column;
+}
 @media screen and (max-width: 1300px) {
     .container {
         margin-left: 0;

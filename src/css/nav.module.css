@@ -72,6 +72,7 @@
         font-size: .99em;
           padding: 0 10px;
           color: white;
+          text-decoration: none;
           cursor: pointer;
       }
       .listpage .a:hover{

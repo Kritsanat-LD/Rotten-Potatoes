@@ -15,6 +15,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './context/ProtectRoutes';
 import HomePage from './pages/homepage';
+import Movies from './pages/movies';
 function App() {
   return (
     <>
@@ -23,7 +24,7 @@ function App() {
       <Routes>
           <Route path='/' element={<Login />} />
           <Route path='signup' element={<SignUp />} />
-          <Route path='nav' element={<Navbar />} />
+          <Route path='Movies' element={<Movies />} />
           <Route path='HomePage' element={< HomePage/>} />
           <Route path='home' element={< Home/>} />
 

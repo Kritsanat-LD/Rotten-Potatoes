@@ -117,7 +117,7 @@ const MovieManagement = () => {
           <>
             {data.map((movie) => (
               <div key={movie.id} className={AdminManagementCss.content}>
-                <img width={162} height={232} src={movie.imageURL} alt={movie.MovieName} />
+                <img className={AdminManagementCss.img}  width={162} height={232} src={movie.imageURL} alt={movie.MovieName} />
                 <div className={AdminManagementCss.contentinfo}>
                   <a className={AdminManagementCss.contenttitle}>{movie.MovieName}</a>
                   <p className={AdminManagementCss.contenttitle}>Score : {movie.Score}</p>
