@@ -22,7 +22,7 @@ const ProtectedRoute = ({ children }) => {
     return children;
   }
   else {
-    return <Navigate to="/home" />;
+    return <Navigate to="/HomePage" />;
   }
 };
 

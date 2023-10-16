@@ -1,35 +1,15 @@
 import React from 'react';
 import comment from "../css/comment.module.css"
+import Navbar from './nav';
 const CommentPage = () => {
 
 
   return (
+    <>
+    <Navbar/>
     <div className={comment.container_movie}>
     <div className={comment.main_comment}>
-      <div className={comment.main_theaters}>
-        <div className={comment.grid_movie_comment}>
-          <div className={`${comment.block_movie_comment} ${comment.active}`}>
-            <h2>IN</h2>
-          </div>
-          <div className={comment.block_movie_comment}>
-            <h2>Streaming</h2>
-          </div>
-          <div className={comment.block_movie_comment}>
-            <h2>TV</h2>
-          </div>
-        </div>
-        <div className={comment.grid_theaters_show}>
-          <h3>60% Surprised by Oxford</h3>
-          <h3>63% Surprised by Oxford</h3>
-          <h3>63% Surprised by Oxford</h3>
-          <h3>63% Surprised by Oxford</h3>
-          <h3>63% Surprised by Oxford</h3>
-          <h3>63% Surprised by Oxford</h3>
-          <h3>63% Surprised by Oxford</h3>
-          <h3>63% Surprised by Oxford</h3>
-          <h3>63% Surprised by Oxford</h3>
-        </div>
-      </div>
+      
       <div className={comment.grid_img}>
         <img src="https://whatson.ae/wp-content/uploads/2019/02/innerNovo-high-res-07.jpg" alt="" width="100%" />
         <div className={comment.grid_img_name}>
@@ -160,6 +140,8 @@ const CommentPage = () => {
       </div>
     </div>
   </div>
+    </>
+    
   )
 
 }

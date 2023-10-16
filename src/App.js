@@ -28,6 +28,7 @@ function App() {
           <Route path='Movies' element={<Movies />} />
           <Route path='HomePage' element={< HomePage/>} />
           <Route path='home' element={< Home/>} />
+          <Route path='FrontMovieDetail' element={< CommentPage/>} />
 
 
           <Route path='addmovie' element={

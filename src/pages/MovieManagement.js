@@ -14,6 +14,21 @@ const MovieManagement = () => {
   const [selectedGenre, setSelectedGenre] = useState({}); // State for selected genre
   const [movieGenres, setMovieGenres] = useState([]); // State for movie genres
 
+  const itemsPerPage = 14; // จำนวนรายการต่อหน้า
+  const [currentPage, setCurrentPage] = useState(1); // หน้าเริ่มต้น
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const itemsToDisplay = data.slice(startIndex, endIndex);
+
+  const handlePageChange = (page) => {
+  setCurrentPage(page);
+  };
+
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+
   useEffect(() => {
     // Fetch movie genres from Firebase
     const fetchGenres = async () => {
@@ -115,7 +130,7 @@ const MovieManagement = () => {
           <p>No movies found</p>
         ) : (
           <>
-            {data.map((movie) => (
+            {/* {data.map((movie) => (
               <div key={movie.id} className={AdminManagementCss.content}>       
                 <Link to={`/movieDetails/${movie.id}`}><img width={162} height={232} src={movie.imageURL} alt={movie.MovieName} /></Link>
                 <div className={AdminManagementCss.contentinfo}>
@@ -125,10 +140,40 @@ const MovieManagement = () => {
                   <button className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteMovie(movie.id)}><FontAwesomeIcon icon={faTrash} /></button>
                 </div>
               </div>
-            ))}
+            ))} */}
+                    {itemsToDisplay.map((movie) => (
+  <div key={movie.id} className={AdminManagementCss.content}>
+    <Link to={`/movieDetails/${movie.id}`}>
+      <img width={162} height={232} src={movie.imageURL} alt={movie.MovieName} />
+    </Link>
+    <div className={AdminManagementCss.contentinfo}>
+      <Link to={`/movieDetails/${movie.id}`}>
+        <a className={AdminManagementCss.contenttitle}>{movie.MovieName}</a>
+      </Link>
+      <p className={AdminManagementCss.contenttitle}>Score: {movie.Score}</p>
+      <Link to={`/movieUpdateDetails/${movie.id}`} className={AdminManagementCss.contentbtnedit}>
+        <FontAwesomeIcon icon={faPencil} />
+      </Link>
+      <button className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteMovie(movie.id)}>
+        <FontAwesomeIcon icon={faTrash} />
+      </button>
+    </div>
+  </div>
+))}      
           </>
         )}
-      </div>
+        </div>
+        <div className={AdminManagementCss.pagination}>
+          {pageNumbers.map((page) => (
+            <button
+              key={page}
+              onClick={() => handlePageChange(page)}
+              className={currentPage === page ? AdminManagementCss.activePage : ''}
+            >
+              {page}
+            </button>
+          ))}
+        </div>
       </div>
     </>
   );
