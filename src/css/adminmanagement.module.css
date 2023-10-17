@@ -76,12 +76,7 @@
     color: #606263;
     transition: background-color 0.7s ease;
     display: block;
-
-}
-.contentbtndelete1:hover {
-    background-color: rgb(47, 116, 245);
-    color: white;
-    border-color: rgb(47, 116, 245);
+    
 }
 .contentbtnedit:hover {
     background-color: rgb(47, 116, 245);
@@ -90,6 +85,11 @@
 }
 
 .contentbtndelete:hover {
+    background-color: rgb(114, 25, 25);
+    color: white;
+    border-color: rgb(114, 25, 25);
+}
+.contentbtndelete1:hover {
     background-color: rgb(114, 25, 25);
     color: white;
     border-color: rgb(114, 25, 25);
