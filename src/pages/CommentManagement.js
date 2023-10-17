@@ -119,12 +119,12 @@ const Comment = () => {
           <>
             <div className={AdminManagementCss.warpper_comment}>
             {filteredComments.map((e, index) => (
-              <div key={index}>
-                <p>User Name: {e.userName}</p>
-                <p>Movie: {e.movieName}</p>
-                <p>Comment: {e.comment}</p>
-                <p>Time : {e.time}</p>
-                <button className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteComment(e.id)}><FontAwesomeIcon icon={faTrash} /></button>
+              <div key={index}  className={AdminManagementCss.bordercomment}>
+                <p><strong>User Name:</strong>  {e.userName}</p>
+                <p><strong>Movie:</strong>      {e.movieName}</p>
+                <p><strong>Comment:</strong>    {e.comment}</p>
+                <p><strong>Time :</strong>      {e.time}</p>
+                <button className={AdminManagementCss.contentbtndelete1} onClick={() => handleDeleteComment(e.id)}><FontAwesomeIcon icon={faTrash} /></button>
                 <br />
                 <br />
               </div>
