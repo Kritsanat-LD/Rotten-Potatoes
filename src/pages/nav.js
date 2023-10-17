@@ -3,9 +3,20 @@ import Navcss from "../css/nav.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { UserAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-    const { user , userRole} = UserAuth();
+    const { user , userRole,logout} = UserAuth();
+    const navigate = useNavigate();
+    const handleLogout = async () => {
+        try {
+          await logout();
+          navigate('/');
+          console.log('You are logged out');
+        } catch (e) {
+          console.log(e.message);
+        }
+      };
   return (
     <>
          <nav className={Navcss.nav}>
@@ -35,7 +46,10 @@ const Navbar = () => {
             <div  className={Navcss.content}>
                 <img className={Navcss.img} src="./images/usericon.png" />
                     {user?(
+                        <>
                         <a disabled className={Navcss.a}>{user.email}</a>
+                        <a disabled className={Navcss.a} onClick={handleLogout}>Logout</a>
+                        </>
                     ) :(
                         <a  className={Navcss.a}>Login / Sign up</a>
                     )
