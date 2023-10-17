@@ -13,6 +13,9 @@ import { Link } from 'react-router-dom';
 
 const HomePage = () => {
 
+    const rand = Math.floor(Math.random() * 3)
+
+
     const [movieData, setMovieData] = useState([])
     const [movieSortShowDate, setmovieSortShowDate] = useState([])//เทียบกับวันที่ปัจจุบัน ถ้าหนังฉายไปแล้ว จะไม่เเสดง
     const [movieSortScore, setmovieSortScore] = useState([])
@@ -65,6 +68,7 @@ const HomePage = () => {
     <>
     <Navbar/>
   {/* ------------------------------------------- start slider new up coming ------------------------------------------- */}
+
     <div class={swipercss.container}>
         <div class={swipercss.containerforthetitle}><div className={swipercss.vl}><h2 class={swipercss.Titleofthecontent}>NEW & UPCOMING MOVIES IN THEATERS</h2></div></div>
     <Swiper
@@ -95,8 +99,15 @@ const HomePage = () => {
 
 
  {/* ------------------------------------------- start slider Top Score  ------------------------------------------- */}
+
  <div class={swipercss.container}>
-        <div class={swipercss.containerforthetitle}><div className={swipercss.vl}><h2 class={swipercss.Titleofthecontent}>NEW & UPCOMING MOVIES IN THEATERS</h2></div><a href="" className={swipercss.alinkViewall}>View All</a></div>
+  {rand==0?(
+        <div class={swipercss.containerforthetitle}><div className={swipercss.vl}><h2 class={swipercss.Titleofthecontent}>BEST HORROR MOVIES</h2></div><a href="" className={swipercss.alinkViewall}>View All</a></div>
+  ):rand==1?(
+    <div class={swipercss.containerforthetitle}><div className={swipercss.vl}><h2 class={swipercss.Titleofthecontent}>BEST ACTION MOVIES</h2></div><a href="" className={swipercss.alinkViewall}>View All</a></div>
+  ):(
+    <div class={swipercss.containerforthetitle}><div className={swipercss.vl}><h2 class={swipercss.Titleofthecontent}>BEST DRAMA MOVIES</h2></div><a href="" className={swipercss.alinkViewall}>View All</a></div>
+  )}
    <Swiper
        className={swipercss.swiper}
        modules={[Navigation, Scrollbar]}

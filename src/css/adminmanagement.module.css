@@ -12,6 +12,8 @@
 
 }
 
+
+
 .content {
     overflow: hidden;
     padding: 1rem;
@@ -101,7 +103,17 @@
     align-items: center;
 
 }
+.button_next{
 
+    padding: 10px 20px;
+    background: rgb(225,165,67);
+    border: none;
+    margin:5px 10px ;
+}
+.activePage{
+
+    border: black solid 2px;
+}
 
 .alinkbtn {
     margin-left: 20px;
@@ -137,3 +149,30 @@
       display: block;
     }
       }
+
+      .warpper_comment {
+        margin: 50px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+    }
+
+    @media screen and (max-width: 1086px) {
+
+        .warpper_comment {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+    @media screen and (max-width: 768px) {
+
+        .warpper_comment {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+    @media screen and (max-width: 468px) {
+
+        .warpper_comment {
+            grid-template-columns: 1fr;
+        }
+    }
+    

@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs, query ,doc,getDoc,orderBy} from 'firebase/firestore';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { db } from '../firebase';
 import { deleteCommentDB } from '../context/deleteMovieInfo';
+
+
+
+import AdminManagementCss from "../css/adminmanagement.module.css"
+import NavbarAdmin from './navbaradmin';
 
 const Comment = () => {
   const [commentsWithNames, setCommentsWithNames] = useState([]);
@@ -84,6 +91,14 @@ const Comment = () => {
 
   return (
     <>
+     <NavbarAdmin/>
+
+
+
+
+      <div className={AdminManagementCss.container}>
+
+
       <h1>Comment Management</h1>
       <label>Select a Movie: </label>
       <select
@@ -102,20 +117,26 @@ const Comment = () => {
           <p>Loading...</p>
         ) : (
           <>
+            <div className={AdminManagementCss.warpper_comment}>
             {filteredComments.map((e, index) => (
               <div key={index}>
                 <p>User Name: {e.userName}</p>
                 <p>Movie: {e.movieName}</p>
                 <p>Comment: {e.comment}</p>
                 <p>Time : {e.time}</p>
-                <button onClick={() => handleDeleteComment(e.id)}>Delete</button>
+                <button className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteComment(e.id)}><FontAwesomeIcon icon={faTrash} /></button>
                 <br />
                 <br />
               </div>
             ))}
+            </div>
           </>
         )}
       </ul>
+
+
+
+        </div>
       </>
     );
 }

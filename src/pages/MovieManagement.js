@@ -14,7 +14,7 @@ const MovieManagement = () => {
   const [selectedGenre, setSelectedGenre] = useState({}); // State for selected genre
   const [movieGenres, setMovieGenres] = useState([]); // State for movie genres
 
-  const itemsPerPage = 14; // จำนวนรายการต่อหน้า
+  const itemsPerPage = 7; // จำนวนรายการต่อหน้า
   const [currentPage, setCurrentPage] = useState(1); // หน้าเริ่มต้น
 
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -168,7 +168,7 @@ const MovieManagement = () => {
             <button
               key={page}
               onClick={() => handlePageChange(page)}
-              className={currentPage === page ? AdminManagementCss.activePage : ''}
+              className={ `${currentPage === page ? AdminManagementCss.activePage :'' } ${AdminManagementCss.button_next} ` }
             >
               {page}
             </button>
