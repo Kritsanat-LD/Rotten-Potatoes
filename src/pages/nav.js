@@ -37,7 +37,7 @@ const Navbar = () => {
                     {user?(
                         <a disabled className={Navcss.a}>{user.email}</a>
                     ) :(
-                        <a  className={Navcss.a}>Login / Sign up</a>
+                        <a href='/'  className={Navcss.a}>Login / Sign up</a>
                     )
                     }
             </div>

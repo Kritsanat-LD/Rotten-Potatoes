@@ -17,6 +17,7 @@ import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './context/ProtectRoutes';
 import HomePage from './pages/homepage';
 import Movies from './pages/movies';
+import Search from './pages/testSearch';
 function App() {
   return (
     <>
@@ -25,6 +26,7 @@ function App() {
       <Routes>
           <Route path='/' element={<Login />} />
           <Route path='signup' element={<SignUp />} />
+          <Route path='search' element={<Search />} />
           <Route path='Movies' element={<Movies />} />
           <Route path='HomePage' element={< HomePage/>} />
           <Route path='home' element={< Home/>} />

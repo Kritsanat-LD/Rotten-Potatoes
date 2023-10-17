@@ -18,10 +18,10 @@ const Footer = () => {
             </p>
         </div>
         <div className={footerCss.services}>
-            <h3 className={footerCss.title}>services</h3>
+            <h3 className={footerCss.title}>Services</h3>
             <ul className={footerCss.list}>
-                <li><a href="" className={footerCss.alink}> Home</a></li>
-                <li><a href="" className={footerCss.alink}> Movie</a></li>
+                <li><a href="HomePage" className={footerCss.alink}> HomePage</a></li>
+                <li><a href="Movies" className={footerCss.alink}> Movies</a></li>
                 <li><a href="" className={footerCss.alink}> Login</a></li>
                 <li><a href="" className={footerCss.alink}> Register</a></li>
             </ul>
@@ -29,10 +29,10 @@ const Footer = () => {
         <div className={footerCss.contact}>
             <h3 className={footerCss.title}>Code By</h3>
             <ul className={footerCss.list}>
-                <li><label className={footerCss.member}> KON 1</label></li>
-                <li><label className={footerCss.member}> KON 2</label></li>
-                <li><label className={footerCss.member}> KON 3</label></li>
-                <li><label className={footerCss.member}> KON 4</label></li>
+                <li><label className={footerCss.member}> Phanuphan</label></li>
+                <li><label className={footerCss.member}> Sarawut</label></li>
+                <li><label className={footerCss.member}> Kritsanat</label></li>
+                <li><label className={footerCss.member}> Kittikhun</label></li>
             </ul>
         </div>
     </section>
