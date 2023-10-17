@@ -22,8 +22,6 @@ const Footer = () => {
             <ul className={footerCss.list}>
                 <li><a href="" className={footerCss.alink}> Home</a></li>
                 <li><a href="" className={footerCss.alink}> Movie</a></li>
-                <li><a href="" className={footerCss.alink}> Login</a></li>
-                <li><a href="" className={footerCss.alink}> Register</a></li>
             </ul>
         </div>
         <div className={footerCss.contact}>

@@ -54,7 +54,7 @@ const NavbarAdmin = () => {
                         <span className={Sidebarcss.icon}>
                             <FontAwesomeIcon icon={faHouse} />
                         </span>
-                        <a href="/homepage" className={Sidebarcss.name}>Home Page User</a>
+                        <a href="/" className={Sidebarcss.name}>Home Page User</a>
                     </div>
                     <div className={Sidebarcss.content} onClick={handleLogout}>
                         <span className={Sidebarcss.icon}>

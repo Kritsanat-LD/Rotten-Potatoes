@@ -23,10 +23,10 @@ function App() {
     <AuthContextProvider>
     <BrowserRouter>
       <Routes>
-          <Route path='/' element={<Login />} />
+          <Route path='login' element={<Login />} />
           <Route path='signup' element={<SignUp />} />
           <Route path='Movies' element={<Movies />} />
-          <Route path='HomePage' element={< HomePage/>} />
+          <Route path='/' element={< HomePage/>} />
           <Route path='home' element={< Home/>} />
           <Route path='FrontMovieDetail' element={< CommentPage/>} />
 
