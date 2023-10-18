@@ -137,7 +137,10 @@ const MovieManagement = () => {
     </Link>
     <div className={AdminManagementCss.contentinfo}>
       <Link to={`/movieDetails/${movie.id}`}>
-        <a className={AdminManagementCss.contenttitle}>{movie.MovieName}</a>
+        <a className={AdminManagementCss.contenttitle}>
+          {movie.MovieName.length > 15? 
+          `${movie.MovieName.slice(0, 15)}...`
+          : movie.MovieName}</a>
       </Link>
       <p className={AdminManagementCss.contenttitle}>Score: {movie.Score}</p>
       <Link to={`/movieUpdateDetails/${movie.id}`} className={AdminManagementCss.contentbtnedit}>

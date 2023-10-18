@@ -49,7 +49,7 @@ const Login = () => {
             if (Role === "admin") {
                 navigate("/movieManagement"); // Redirect admin to admin page
             } else {
-                navigate("/homepage"); // Redirect customer to customer page
+                navigate("/"); // Redirect customer to customer page
             }
         } catch (error) {
             errorlabelid.innerHTML = "You have no Account yet";

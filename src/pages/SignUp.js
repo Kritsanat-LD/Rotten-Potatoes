@@ -23,7 +23,7 @@ const SignUp = () => {
         e.preventDefault();
         createUserWithEmailAndPassword(auth, email, password)
             .then(cred => {
-                navigate("/")
+                navigate("/login")
                 return setDoc(doc(db, "user", cred.user.uid), {
                     email: email,
                     password: password,

@@ -74,8 +74,8 @@ const AddMovie = () => {
         Score: 0
       };
 
-      if(data.MovieName=='' || data.MovieInfo==''|| data.MovieGenres==''|| data.Actors==''
-      || data.Duration==''|| data.ShowDate==''|| data.Rate==''|| data.Trailer==''|| data.imageURL==null){
+      if(data.MovieName==='' || data.MovieInfo===''|| data.MovieGenres===''|| data.Actors===''
+      || data.Duration===''|| data.ShowDate===''|| data.Rate===''|| data.Trailer===''|| data.imageURL===null){
         window.alert('You forget to add something');
         return 0;
       }
@@ -127,12 +127,12 @@ const AddMovie = () => {
 
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Movie Info</label>
-              <input class={AdminCss.input} type="text" placeholder="Enter Movie Info" value={movieInfo} onChange={(e) => setMovieInfo(e.target.value)} required />
+              <input class={AdminCss.input} type="text" placeholder="Enter Movie Info" value={movieInfo} onChange={(e) => setMovieInfo(e.target.value)} required pattern="[\w\s]{2,600}"/>
             </div>
 
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Trailer</label>
-              <input class={AdminCss.input} type="text" placeholder="Enter Trailer" value={trailer} onChange={(e) => setTrailer(e.target.value)} required />
+              <input class={AdminCss.input} type="text" placeholder="Enter Trailer" value={trailer} onChange={(e) => setTrailer(e.target.value)} required pattern="<iframe .+$</iframe>"/>
             </div>
 
             <div class={AdminCss.column}>
