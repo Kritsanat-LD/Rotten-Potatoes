@@ -21,7 +21,9 @@ const Navbar = () => {
         <>
                <input type="checkbox" className={Navcss.menu} id="menuToggle" />
              <nav className={Navcss.nav}>
+             <a href="/" className={Navcss.logoLink}>
                 <img src="./images/Rotten-potato.png" className={Navcss.logo} />
+                </a>
                 <form className={Navcss.search}>
                     <button className={Navcss.btn}><FontAwesomeIcon icon={faSearch} /></button>
                     <input className={Navcss.input} type="search" placeholder="Search Movie" />
@@ -51,26 +53,26 @@ const Navbar = () => {
                     </section>
             </nav>
                 <section className={Navcss.listpage}>
-                    <div className={Navcss.content}>
+                    <section className={Navcss.content}>
                     <FontAwesomeIcon icon={faHome} className={Navcss.img} />
                         <a href="homepage" className={Navcss.a}>Home</a>
-                    </div>
-                    <div className={Navcss.content}>
+                    </section>
+                    <section className={Navcss.content}>
                     <FontAwesomeIcon icon={faFilm} className={Navcss.img} />
                         <a href="Movies" className={Navcss.a}>Movie</a>
-                    </div>
+                    </section>
                     {userRole === 'admin' ? (
                           <>
-                            <div className={Navcss.content}>
+                            <section className={Navcss.content}>
                             <FontAwesomeIcon icon={faFilm} className={Navcss.img} />
                                 <a href="movieManagement" className={Navcss.a}>Manage Movie</a>
-                                </div>
+                                </section>
                             </>
                         ) : (
                             <></>
                         )}
 
-                    <div className={Navcss.content}>
+                    <section className={Navcss.content}>
                     <FontAwesomeIcon icon={faRightFromBracket} className={Navcss.img} />
                         {user ? (
                             <>
@@ -81,7 +83,7 @@ const Navbar = () => {
                             <a href="Login" className={Navcss.a}>Login / Sign up</a>
                         )
                         }
-                    </div>
+                    </section>
                 </section>
 
         </>

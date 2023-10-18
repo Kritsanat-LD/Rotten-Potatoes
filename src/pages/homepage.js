@@ -10,6 +10,8 @@ import listcss from "../css/list.module.css"
 import Navbar from './nav';
 import Footer from './footer';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendar, faStar } from '@fortawesome/free-solid-svg-icons';
 
 const HomePage = () => {
 
@@ -20,7 +22,15 @@ const HomePage = () => {
     const [movieSortScore, setmovieSortScore] = useState([])
     const [isLoading, setIsLoading] = useState(true);
     
-
+  const formatDateToEnglish = (dateString) => {
+    const options = {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    };
+    return new Date(dateString).toLocaleDateString('th-TH', options);
+  };
+  
     useEffect(() => {
       const fetchData = async () => {
         try {
@@ -106,8 +116,10 @@ const HomePage = () => {
             <img className={swipercss.coverimg} src={movie.imageURL} />
             <div className={swipercss.content}>
               <div className={swipercss.score}>
-                <img className={swipercss.imgscore} src="./images/potatoicon.svg" />
-                <p className={swipercss.scorelabel}>{movie.ShowDate}</p>
+                <FontAwesomeIcon icon={faCalendar} className={swipercss.dateicon} />
+                <p className={swipercss.datetext}>
+                        {formatDateToEnglish(movie.ShowDate)}
+                      </p>
               </div>
               <a href="" className={swipercss.Title}>{movie.MovieName}</a>
             </div>
@@ -140,7 +152,7 @@ const HomePage = () => {
       {randMovieGenre.map((movie)=>(
         <SwiperSlide key={movie.id} className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src={movie.imageURL}/>
         <div class={swipercss.content}>
-          <div class={swipercss.score}><img class={swipercss.imgscore} src="./images/potatoicon.svg" /><p class={swipercss.scorelabel}>{(movie.Score/10)*100} %</p></div>
+          <div class={swipercss.score}> <FontAwesomeIcon icon={faStar} className={swipercss.dateicon} /><p class={swipercss.scorelabel}>{(movie.Score/10)*100} %</p></div>
            <a class={swipercss.Title}>{movie.MovieName}</a>
           </div>
         </div>

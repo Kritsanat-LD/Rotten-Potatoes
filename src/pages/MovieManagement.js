@@ -132,14 +132,14 @@ const MovieManagement = () => {
           <>
                     {itemsToDisplay.map((movie) => (
   <div key={movie.id} className={AdminManagementCss.content}>
-    <Link to={`/movieDetails/${movie.id}`}>
-      <img width={162} height={232} src={movie.imageURL} alt={movie.MovieName} />
+    <Link to={`/movieDetails/${movie.id}`} >
+      <img width={162} height={232} className={AdminManagementCss.img} src={movie.imageURL} alt={movie.MovieName} />
     </Link>
     <div className={AdminManagementCss.contentinfo}>
-      <Link to={`/movieDetails/${movie.id}`}>
-        <a className={AdminManagementCss.contenttitle}>{movie.MovieName}</a>
+      <Link to={`/movieDetails/${movie.id}`} className={AdminManagementCss.contenttitle}>
+        {movie.MovieName}
       </Link>
-      <p className={AdminManagementCss.contenttitle}>Score: {movie.Score}</p>
+      <p className={AdminManagementCss.contentscore}>Score: {movie.Score}</p>
       <Link to={`/movieUpdateDetails/${movie.id}`} className={AdminManagementCss.contentbtnedit}>
         <FontAwesomeIcon icon={faPencil} />
       </Link>

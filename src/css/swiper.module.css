@@ -93,7 +93,9 @@ color: #6b6b6d;
   color: #168a9e;
 }
 
-
+.dateicon{
+  margin-top: 5px;
+}
 .slide .coverimg {
 display: flex;
 /* width: 100%;

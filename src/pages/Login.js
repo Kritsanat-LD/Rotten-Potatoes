@@ -6,6 +6,8 @@ import { doc, getDoc, } from 'firebase/firestore';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from 'react-router-dom'
 import { UserAuth } from '../context/AuthContext';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 // import { AuthContextProvider } from '../context/AuthContext';
 
 const Login = () => {
@@ -49,7 +51,7 @@ const Login = () => {
             if (Role === "admin") {
                 navigate("/movieManagement"); // Redirect admin to admin page
             } else {
-                navigate("/homepage"); // Redirect customer to customer page
+                navigate("/"); // Redirect customer to customer page
             }
         } catch (error) {
             errorlabelid.innerHTML = "You have no Account yet";
@@ -63,6 +65,7 @@ const Login = () => {
             <div className={LoginCss.container}>
                 <div className={LoginCss.card}>
                     <form className={LoginCss.form} onSubmit={handleLogin}>
+                        <a  href="/" className={LoginCss.icon}><FontAwesomeIcon icon={faArrowLeft}/></a>
                         <h2 className={LoginCss.title}>Login</h2>
 
                         <label className={LoginCss.label} htmlFor="uname"><b>E-mail</b></label>

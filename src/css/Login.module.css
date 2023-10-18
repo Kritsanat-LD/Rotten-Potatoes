@@ -59,3 +59,15 @@
   color: rgba(225,165,67,1);
   text-decoration: none;
 }
+
+.icon {
+  float: left;
+  position: absolute;
+  cursor: pointer;
+  color: #333;
+}
+
+
+.icon:hover{
+  color:rgba(225,165,67,1);
+}

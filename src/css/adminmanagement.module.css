@@ -15,6 +15,9 @@
 
 
 .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     overflow: hidden;
     padding: 1rem;
 }
@@ -34,10 +37,20 @@
     filter: brightness(70%);
 }
 
-.content .contenttitle {
-    margin: 1em .5em;
+.content .contenttitle,.content .contentscore {
+    margin: 1em 0;
+    color: #606263;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
 }
 
+.contenttitle:hover{
+    color: #dbbc08;
+    text-decoration: underline;
+}
 .content .contentinfo {
     font-size: 1em;
 
@@ -150,6 +163,7 @@
     display: flex;
     flex-flow: column;
 }
+
 @media screen and (max-width: 1300px) {
     .container {
         margin-left: 0;
