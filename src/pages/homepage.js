@@ -15,8 +15,8 @@ import { faCalendar, faStar } from '@fortawesome/free-solid-svg-icons';
 
 const HomePage = () => {
 
-    const rand = Math.floor(Math.random() * 3)
     const [movieData, setMovieData] = useState([])
+    const [rand, setRand] = useState()
     const [movieSortShowDate, setmovieSortShowDate] = useState([])//เทียบกับวันที่ปัจจุบัน ถ้าหนังฉายไปแล้ว จะไม่เเสดง
     const [randMovieGenre,setRandMovieGenre] = useState([])
     const [movieSortScore, setmovieSortScore] = useState([])
@@ -33,6 +33,7 @@ const HomePage = () => {
   
     useEffect(() => {
       const fetchData = async () => {
+        let random = Math.floor(Math.random() * 3)
         try {
           let MovieGenre,id;
           const querySnapshot = await getDocs(collection(db, 'Movies'));
@@ -50,10 +51,10 @@ const HomePage = () => {
           const sortedByScore = [...fetchedData].sort((a, b) => b.Score - a.Score);
           const top10Movies = sortedByScore.slice(0, 10);
 
-          if(rand==0){
+          if(random==0){
             MovieGenre = 'Horror'
             id = 'yeJc9PjMwbKFKcQi6COU'
-          }else if(rand==1){
+          }else if(random==1){
             MovieGenre = 'Action'
             id = 'KKimddkY99kOYVuWIBTZ'
           }else{
@@ -66,7 +67,7 @@ const HomePage = () => {
             );
           });
 
-          
+          setRand(random)
           setMovieData(fetchedData);
           setmovieSortScore(top10Movies);
           setmovieSortShowDate(upcomingMovies);
@@ -113,6 +114,7 @@ const HomePage = () => {
       {movieSortShowDate.map((movie) => (
         <SwiperSlide key={movie.id} className={swipercss.slide}>
           <div className={swipercss.warpper}>
+          <Link to={`/FrontMovieDetail/${movie.id}`} className={swipercss.link}>
             <img className={swipercss.coverimg} src={movie.imageURL} />
             <div className={swipercss.content}>
               <div className={swipercss.score}>
@@ -121,8 +123,9 @@ const HomePage = () => {
                         {formatDateToEnglish(movie.ShowDate)}
                       </p>
               </div>
-              <a href="" className={swipercss.Title}>{movie.MovieName}</a>
+              <p className={swipercss.Title}>{movie.MovieName}</p>
             </div>
+            </Link>
           </div>
         </SwiperSlide>
       ))}    

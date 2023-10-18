@@ -22,7 +22,7 @@ const Navbar = () => {
                <input type="checkbox" className={Navcss.menu} id="menuToggle" />
              <nav className={Navcss.nav}>
              <a href="/" className={Navcss.logoLink}>
-                <img src="./images/Rotten-potato.png" className={Navcss.logo} />
+                <img src="https://scontent.fbkk29-1.fna.fbcdn.net/v/t1.15752-9/384545857_675567911184503_8510996570336686687_n.png?stp=dst-png_s2048x2048&_nc_cat=100&ccb=1-7&_nc_sid=ae9488&_nc_ohc=rX8gZ1JHdagAX9hQC_h&_nc_ht=scontent.fbkk29-1.fna&_nc_e2o=s&oh=03_AdRTawtv1il0tQ5Z4vMM9F8u_DgdseKab9oS4phoewM2aw&oe=6544F51C" className={Navcss.logo} />
                 </a>
                 <form className={Navcss.search}>
                     <button className={Navcss.btn}><FontAwesomeIcon icon={faSearch} /></button>
@@ -30,9 +30,9 @@ const Navbar = () => {
                 </form>
                 <label htmlFor="menuToggle" className={Navcss.bars}>
                         <FontAwesomeIcon icon={faBars} />
-                    </label>
+                </label>
                 <section className={Navcss.Topcontent}>
-                    <a href="homepage" className={Navcss.a}>Home</a>
+                    <a href="" className={Navcss.a}>Home</a>
                     <a href="Movies" className={Navcss.a}>Movie</a>
                     {userRole === 'admin' ? (
                           <>
@@ -55,7 +55,7 @@ const Navbar = () => {
                 <section className={Navcss.listpage}>
                     <section className={Navcss.content}>
                     <FontAwesomeIcon icon={faHome} className={Navcss.img} />
-                        <a href="homepage" className={Navcss.a}>Home</a>
+                        <a href="" className={Navcss.a}>Home</a>
                     </section>
                     <section className={Navcss.content}>
                     <FontAwesomeIcon icon={faFilm} className={Navcss.img} />

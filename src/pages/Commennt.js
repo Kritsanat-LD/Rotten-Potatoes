@@ -1,48 +1,116 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { db } from '../firebase';
 import comment from "../css/comment.module.css"
 import Navbar from './nav';
-const CommentPage = () => {
+import { useParams } from 'react-router-dom';
+import { doc, getDoc , getDocs , collection , updateDoc,query,orderBy } from 'firebase/firestore';
+import Footer from './footer';
 
+
+
+const CommentPage = () => {
+  const { id } = useParams(); 
+
+  const [trailer, setTrailer] = useState('')
+  const [duration, setDuration] = useState(null)
+  const [score, setScore] = useState(null)
+  const [movieName, setMovieName] = useState('')
+  const [movieInfo, setMovieInfo] = useState('')
+  const [showDate, setShowDate] = useState(null)
+  const [rate, setRate] = useState('')
+  const [movieGenreData, setMovieGenre] = useState([])
+  const [actorData , setActor] = useState([])
+  const [imageURL , setImageURL] = useState(null)
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const fetchMovieDetails = async () => {
+      try {
+        // Fetch movie details based on the "id" parameter
+        const movieDocRef = doc(db, 'Movies', id);
+        const movieDocSnapshot = await getDoc(movieDocRef);
+        const movieData = movieDocSnapshot.data();
+
+        if (movieData) {
+          setMovieName(movieData.MovieName)
+          setMovieInfo(movieData.MovieInfo)
+          setShowDate(movieData.ShowDate)
+          setDuration(movieData.Duration)
+          setRate(movieData.Rate)
+          setMovieGenre(movieData.MovieGenres)
+          setActor(movieData.Actors)
+          setImageURL(movieData.imageURL)
+          setScore(movieData.Score)
+          setTrailer(movieData.Trailer)
+        }
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching movie details:', error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchMovieDetails();
+  }, [id]);
+
+  const modifyTrailer = (iframeContent) => {
+    const widthModified = iframeContent.replace(/width="\d+"/, `width="100%"`);
+    const heightModified = widthModified.replace(/height="\d+"/, `height="500px"`);
+    return heightModified;
+  };
+
+  const modifiedTrailer = modifyTrailer(trailer);
+
+  const convertMinutesToHoursAndMinutes = (durationInMinutes) =>{
+    const hours = Math.floor(durationInMinutes / 60);
+    const minutes = durationInMinutes % 60;
+    return `${hours}h ${minutes}m`;
+  }
+  
+  const formatDateToEnglish = (dateString) => {
+    const options = {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    };
+    return new Date(dateString).toLocaleDateString('th-TH', options);
+  };
 
   return (
     <>
+
     <Navbar/>
     <div className={comment.container_movie}>
     <div className={comment.main_comment}>
-      
       <div className={comment.grid_img}>
-        <img src="https://whatson.ae/wp-content/uploads/2019/02/innerNovo-high-res-07.jpg" alt="" width="100%" />
+        <div dangerouslySetInnerHTML={{ __html: modifiedTrailer }} />
         <div className={comment.grid_img_name}>
           <div className={comment.rate_movie}>
-            <img className={comment.img_show_top} src="http://embassycineplex.com/uploads/movie/yFOAuT74gm202307291810.jpg" alt="" />
+            <img className={comment.img_show_top} src={imageURL} />
           </div>
           <div className={comment.rate_movie}>
-            <h1>Saw X</h1>
-            <h3>2023, Horror/Mystery & thriller, 1h 58m</h3>
+            <h2>{movieName}</h2>
+            <h3>
+              {showDate ? showDate.split('-')[0] : 'Year not available'},{' '}
+              {movieGenreData.map((genre) => genre.label).join(', ')}, {convertMinutesToHoursAndMinutes(duration)}
+            </h3>
+            <h1>{(score/10)*100} %</h1>
           </div>
         </div>
-        <h3 className={`${comment.margin_top30} ${comment.vl_s}`}>WHAT TO KNOWS</h3>
-        <h5 className={comment.margin_top30}>WHAT TO KNOW</h5>
-        <h5 className={comment.margin_top30}>Led by a franchise-best performance from Tobin Bell, Saw X reinvigorates the series with an installment that has a surprising amount of heart to go with all the gore. Read critic reviews</h5>
-        <h3 className={`${comment.margin_top30} ${comment.vl_s}`}>WHERE TO WATCH SAW X</h3>
-        <h5 className={comment.margin_top30}>Buy Saw X on Vudu.</h5>
         <h3 className={`${comment.margin_top30} ${comment.vl_s}`}>RATE AND REVIEW</h3>
         <div className={`${comment.comment_rate_movie}  ${comment.margin_top30}`}>
-          <textarea
+          <textarea 
             className={`${comment.rate_and_review_widget__textbox_textarea}`}
             placeholder="What did you think of the movie? (optional)"
           ></textarea>
         </div>
         <h3 className={`${comment.margin_top30} ${comment.vl_s}`}>MOVIE INFO</h3>
-        <h5><strong className={`${comment.margin_top30} ${comment.font_we}`} >Rating : </strong> (Some Drug Use|Language|Grisly Bloody Violence|Torture) </h5>
-        <h5><strong className={`${comment.margin_top30} ${comment.font_we}`} >Movie Genre :</strong>  Horror, Mystery & thriller</h5>
-        <h5><strong className={`${comment.margin_top30} ${comment.font_we}`} >Release Date  :</strong> Sep 29, 2023  Wide</h5>
+        <h5><bold className={`${comment.margin_top30} ${comment.font_we}`} >Rating : </bold> {rate} </h5>
+        <h5><strong className={`${comment.margin_top30} ${comment.font_we}`} >Movie Genre : </strong>  {movieGenreData.map((genre) => genre.label).join(', ')}</h5>
+        <h5><strong className={`${comment.margin_top30} ${comment.font_we}`} >Release Date  : </strong>{formatDateToEnglish(showDate)}</h5>
 
 
-        <h5 className={`${comment.margin_top30}`}>
-          John Kramer (Tobin Bell) is back. The most chilling installment of the SAW franchise yet explores the untold chapter of Jigsaw's most personal game. Set between the events of SAW I and II, a sick and desperate John travels to Mexico for a risky and experimental medical procedure in hopes of a miracle cure for his cancer -- only to discover the entire operation is a scam to defraud the most vulnerable. Armed with a newfound purpose, John returns to his work, turning the tables on the con artists in his signature visceral way through a series of ingenious and terrifying traps.
-        </h5>
-        <h3 className={`${comment.margin_top30} ${comment.vl_s}`} >CRITIC REVIEWS FOR SAW X</h3>
+        <h5 className={`${comment.margin_top30}`}>{movieInfo}</h5>
+        <h3 className={`${comment.margin_top30} ${comment.vl_s}`} >CRITIC REVIEWS FOR {movieName}</h3>
 
         <div className={`${comment.comment_movie} ${comment.margin_top30}`}>
           <div className={comment.comment_block}>
@@ -140,6 +208,7 @@ const CommentPage = () => {
       </div>
     </div>
   </div>
+  <Footer/>
     </>
     
   )

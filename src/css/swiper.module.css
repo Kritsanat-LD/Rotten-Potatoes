@@ -30,11 +30,11 @@ font-size: 24px;
 }
 .alinkViewall{
 text-decoration: none;
-color: #6cbfce;
+color: #e1a543;
 font-size: 18px; 
 }
 .alinkViewall:hover{
-color: #168a9e;
+color:  rgba(191, 134, 40, 1);;
 }
 .swiper {
 width: 100%;
@@ -62,6 +62,8 @@ transition: color 0.5s ease;
 .content .Title{
   white-space: normal;
 color: #6b6b6d;
+transform: color 0.5s ease;
+transition: color 0.5s ease;
 }
 
 .score {
@@ -85,12 +87,12 @@ color: #6b6b6d;
 }
 
 .content:hover {
-  color: #168a9e;
+  color:  rgba(191, 134, 40, 1);;
 }
 
 .content:hover .scorelabel,
 .content:hover .Title {
-  color: #168a9e;
+  color: #e1a543;
 }
 
 .dateicon{
@@ -115,7 +117,9 @@ transition: filter 0.5s ease;
 filter: brightness(70%);
 }
 
-
+.link{
+  text-decoration: none;
+}
 @media (max-width: 1024px) {
 /* .container{
   width: 100%;
