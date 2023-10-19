@@ -1,86 +1,50 @@
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
-import Home from './pages/Home';
-import AddMovie from './pages/AddMovie';
-import MovieDetail from './pages/MovieDetail';
-import UpdateDetails from './pages/UpdateMovie';
-import AddMovieGenre from './pages/AddMovieGenre';
-import AddActor from './pages/AddActor';
-import Comment from './pages/CommentManagement';
-import CommentPage from './pages/MovieDetails';
-// import Mycom from './pages/testMultiSelect';
-import MovieManagement from './pages/MovieManagement';
-import ActorManagement from './pages/ActorManagement';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './context/ProtectRoutes';
-import HomePage from './pages/homepage';
-import Movies from './pages/movies';
-import Search from './pages/testSearch';
+const LazyLogin = lazy(() => import('./pages/Login'));
+const LazySignUp = lazy(() => import('./pages/SignUp'));
+const LazySearch = lazy(() => import('./pages/testSearch'));
+const LazyMovies = lazy(() => import('./pages/movies'));
+const LazyHomePage = lazy(() => import('./pages/homepage'));
+const LazyHome = lazy(() => import('./pages/Home'));
+const LazyCommentPage = lazy(() => import('./pages/MovieDetails'));
+const LazyAddMovie = lazy(() => import('./pages/AddMovie'));
+const LazyMovieDetail = lazy(() => import('./pages/MovieDetail'));
+const LazyUpdateDetails = lazy(() => import('./pages/UpdateMovie'));
+const LazyAddMovieGenre = lazy(() => import('./pages/AddMovieGenre'));
+const LazyAddActor = lazy(() => import('./pages/AddActor'));
+const LazyComment = lazy(() => import('./pages/CommentManagement'));
+const LazyMovieManagement = lazy(() => import('./pages/MovieManagement'));
+const LazyActorManagement = lazy(() => import('./pages/ActorManagement'));
+
 function App() {
   return (
-    <>
     <AuthContextProvider>
-    <BrowserRouter>
-      <Routes>
-          <Route path='login' element={<Login />} />
-          <Route path='signup' element={<SignUp />} />
-          <Route path='search' element={<Search />} />
-          <Route path='Movies' element={<Movies />} />
-          <Route path='/' element={< HomePage/>} />
-          <Route path='home' element={< Home/>} />
-          <Route path='FrontMovieDetail/:id' element={< CommentPage/>} />
+      <Router>
+        <Suspense fallback={<div></div>}>
+          <Routes>
+            <Route path="login" element={<LazyLogin />} />
+            <Route path="signup" element={<LazySignUp />} />
+            <Route path="search" element={<LazySearch />} />
+            <Route path="Movies" element={<LazyMovies />} />
+            <Route path="/" element={<LazyHomePage />} />
+            <Route path="home" element={<LazyHome />} />
+            <Route path="FrontMovieDetail/:id" element={<LazyCommentPage />} />
 
-
-          <Route path='addmovie' element={
-            <ProtectedRoute>
-              <AddMovie />
-            </ProtectedRoute>
-          } />
-          <Route path='movieDetails/:id' element={
-            <ProtectedRoute>
-              <MovieDetail />
-            </ProtectedRoute>
-          } />
-          <Route path='movieUpdateDetails/:id' element={
-            <ProtectedRoute>
-              <UpdateDetails />
-            </ProtectedRoute>
-          } />
-          <Route path='addmoviegenre' element={
-            <ProtectedRoute>
-              <AddMovieGenre />
-            </ProtectedRoute>
-          } />
-          <Route path='addactor' element={
-            <ProtectedRoute>
-              <AddActor />
-            </ProtectedRoute>
-          } />
-          <Route path='commentManagement' element={
-            <ProtectedRoute>
-              <Comment />
-            </ProtectedRoute>
-          } />
-          <Route path='movieManagement' element={
-            <ProtectedRoute>
-              <MovieManagement />
-            </ProtectedRoute>
-          } />
-          <Route path='actorManagement' element={
-            <ProtectedRoute>
-              <ActorManagement />
-            </ProtectedRoute>
-          } />
-          <Route path='commentpage' element={
-            <ProtectedRoute>
-              <CommentPage />
-            </ProtectedRoute>
-          } />
-      </Routes>
-    </BrowserRouter>
+            <Route path="addmovie" element={<ProtectedRoute><LazyAddMovie /></ProtectedRoute>} />
+            <Route path="movieDetails/:id" element={<ProtectedRoute><LazyMovieDetail /></ProtectedRoute>} />
+            <Route path="movieUpdateDetails/:id" element={<ProtectedRoute><LazyUpdateDetails /></ProtectedRoute>} />
+            <Route path="addmoviegenre" element={<ProtectedRoute><LazyAddMovieGenre /></ProtectedRoute>} />
+            <Route path="addactor" element={<ProtectedRoute><LazyAddActor /></ProtectedRoute>} />
+            <Route path="commentManagement" element={<ProtectedRoute><LazyComment /></ProtectedRoute>} />
+            <Route path="movieManagement" element={<ProtectedRoute><LazyMovieManagement /></ProtectedRoute>} />
+            <Route path="actorManagement" element={<ProtectedRoute><LazyActorManagement /></ProtectedRoute>} />
+          </Routes>
+        </Suspense>
+      </Router>
     </AuthContextProvider>
-    </>
   );
 }
+
 export default App;
