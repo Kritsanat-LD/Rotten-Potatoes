@@ -65,7 +65,7 @@ const MovieManagement = () => {
         const fetchedData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
-          Score: parseInt(doc.data().Score, 10),
+          Score: parseFloat(doc.data().Score, 10),
         }));
         fetchedData.sort((a, b) => b.Score - a.Score);
         setData(fetchedData);
@@ -132,17 +132,17 @@ const MovieManagement = () => {
           <>
                     {itemsToDisplay.map((movie) => (
   <div key={movie.id} className={AdminManagementCss.content}>
-    <Link to={`/movieDetails/${movie.id}`} >
+    <Link to={`/FrontMovieDetail/${movie.id}`} >
       <img width={162} height={232} className={AdminManagementCss.img} src={movie.imageURL} alt={movie.MovieName} />
     </Link>
     <div className={AdminManagementCss.contentinfo}>
-      <Link to={`/movieDetails/${movie.id}`} className={AdminManagementCss.contenttitle}>
+      <Link to={`/FrontMovieDetail/${movie.id}`} className={AdminManagementCss.contenttitle}>
         <a>
           {movie.MovieName.length > 15? 
           `${movie.MovieName.slice(0, 15)}...`
           : movie.MovieName}</a>
       </Link>
-      <p className={AdminManagementCss.contentscore}>Score: {movie.Score}</p>
+      <p className={AdminManagementCss.contentscore}>Score: {(movie.Score/10)*100} %</p>
       <Link to={`/movieUpdateDetails/${movie.id}`} className={AdminManagementCss.contentbtnedit}>
         <FontAwesomeIcon icon={faPencil} />
       </Link>

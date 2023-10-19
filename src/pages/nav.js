@@ -32,11 +32,11 @@ const Navbar = () => {
                         <FontAwesomeIcon icon={faBars} />
                 </label>
                 <section className={Navcss.Topcontent}>
-                    <a href="" className={Navcss.a}>Home</a>
-                    <a href="Movies" className={Navcss.a}>Movie</a>
+                    <a href="../" className={Navcss.a}>Home</a>
+                    <a href="../Movies" className={Navcss.a}>Movie</a>
                     {userRole === 'admin' ? (
                           <>
-                          <a href="movieManagement" className={Navcss.a}>Manage Movie</a>
+                          <a href="../movieManagement" className={Navcss.a}>Manage Movie</a>
                           </>
                            ) : (
                             <></>
@@ -47,7 +47,7 @@ const Navbar = () => {
                                 <a disabled className={Navcss.a} onClick={handleLogout}>Logout</a>
                             </>
                         ) : (
-                            <a href="Login" className={Navcss.a}>Login / Sign up</a>
+                            <a href="../Login" className={Navcss.a}>Login / Sign up</a>
                         )
                         }
                     </section>
@@ -55,17 +55,17 @@ const Navbar = () => {
                 <section className={Navcss.listpage}>
                     <section className={Navcss.content}>
                     <FontAwesomeIcon icon={faHome} className={Navcss.img} />
-                        <a href="" className={Navcss.a}>Home</a>
+                        <a href="../" className={Navcss.a}>Home</a>
                     </section>
                     <section className={Navcss.content}>
                     <FontAwesomeIcon icon={faFilm} className={Navcss.img} />
-                        <a href="Movies" className={Navcss.a}>Movie</a>
+                        <a href="../Movies" className={Navcss.a}>Movie</a>
                     </section>
                     {userRole === 'admin' ? (
                           <>
                             <section className={Navcss.content}>
                             <FontAwesomeIcon icon={faFilm} className={Navcss.img} />
-                                <a href="movieManagement" className={Navcss.a}>Manage Movie</a>
+                                <a href="../movieManagement" className={Navcss.a}>Manage Movie</a>
                                 </section>
                             </>
                         ) : (
@@ -80,7 +80,7 @@ const Navbar = () => {
                                 <a disabled className={Navcss.a} onClick={handleLogout}>Logout</a>
                             </>
                         ) : (
-                            <a href="Login" className={Navcss.a}>Login / Sign up</a>
+                            <a href="../Login" className={Navcss.a}>Login / Sign up</a>
                         )
                         }
                     </section>

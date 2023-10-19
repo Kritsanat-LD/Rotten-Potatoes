@@ -153,11 +153,15 @@ const HomePage = () => {
        breakpoints={breakpoints} 
     >
       {randMovieGenre.map((movie)=>(
-        <SwiperSlide key={movie.id} className={swipercss.slide}><div className={swipercss.warpper}> <img class={swipercss.coverimg} src={movie.imageURL}/>
-        <div class={swipercss.content}>
-          <div class={swipercss.score}> <FontAwesomeIcon icon={faStar} className={swipercss.dateicon} /><p class={swipercss.scorelabel}>{(movie.Score/10)*100} %</p></div>
-           <a class={swipercss.Title}>{movie.MovieName}</a>
+        <SwiperSlide key={movie.id} className={swipercss.slide}>
+          <div className={swipercss.warpper}> 
+          <Link to={`/FrontMovieDetail/${movie.id}`} className={swipercss.link}>
+            <img class={swipercss.coverimg} src={movie.imageURL}/>
+             <div class={swipercss.content}>
+              <div class={swipercss.score}> <FontAwesomeIcon icon={faStar} className={swipercss.dateicon} /><p class={swipercss.scorelabel}>{(movie.Score/10)*100} %</p></div>
+            <a class={swipercss.Title}>{movie.MovieName}</a>
           </div>
+          </Link>
         </div>
       </SwiperSlide>
       ))}

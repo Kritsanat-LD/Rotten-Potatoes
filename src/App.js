@@ -7,7 +7,7 @@ import UpdateDetails from './pages/UpdateMovie';
 import AddMovieGenre from './pages/AddMovieGenre';
 import AddActor from './pages/AddActor';
 import Comment from './pages/CommentManagement';
-import CommentPage from './pages/Commennt';
+import CommentPage from './pages/MovieDetails';
 // import Mycom from './pages/testMultiSelect';
 import MovieManagement from './pages/MovieManagement';
 import ActorManagement from './pages/ActorManagement';
