@@ -8,6 +8,7 @@ import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import Loading from './loading';
 
 function Movies() {
 
@@ -60,7 +61,7 @@ function Movies() {
     return (
         <>       
         {isLoading?(
-          <></>
+          <Loading/>
         ):(
           <>
                    <Navbar/>

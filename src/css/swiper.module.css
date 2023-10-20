@@ -20,7 +20,7 @@ z-index: 1;
 }
 .vl{
 display: flex;
-border-left: 6px solid #e1a543;
+border-left: 6px solid #fbd02f;
 height: 2.5em;
 }
 .Titleofthecontent {
@@ -30,11 +30,12 @@ font-size: 24px;
 }
 .alinkViewall{
 text-decoration: none;
-color: #e1a543;
+color: #b49111;
 font-size: 18px; 
 }
 .alinkViewall:hover{
-color:  rgba(191, 134, 40, 1);;
+color:  rgb(201, 147, 60);
+text-decoration: underline;
 }
 .swiper {
 width: 100%;

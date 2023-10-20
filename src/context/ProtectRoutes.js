@@ -10,7 +10,7 @@ const ProtectedRoute = ({ children }) => {
 
   setTimeout(() => {
     setIsRoleFetched(true);
-  }, 2750); 
+  }, 2200); 
 
   if (!user) {
     return <Navigate to='/' />;

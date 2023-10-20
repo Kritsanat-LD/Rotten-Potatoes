@@ -11,7 +11,9 @@ import Navbar from './nav';
 import Footer from './footer';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendar, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faPlayCircle, faStar } from '@fortawesome/free-solid-svg-icons';
+import MovieRecommendStyles from "../css/movieRecommend.module.css";
+import Loading from './loading';
 
 const HomePage = () => {
 
@@ -21,6 +23,8 @@ const HomePage = () => {
     const [randMovieGenre,setRandMovieGenre] = useState([])
     const [movieSortScore, setmovieSortScore] = useState([])
     const [isLoading, setIsLoading] = useState(true);
+    const [randomMovie, setRandomMovie] = useState(null);
+    const [videoId, setVideoId] = useState(null); 
     
   const formatDateToEnglish = (dateString) => {
     const options = {
@@ -66,12 +70,17 @@ const HomePage = () => {
               (genre) => genre.label === MovieGenre && genre.value === id
             );
           });
-
+          const randomMovie = fetchedData[Math.floor(Math.random() * fetchedData.length)];
+          setRandomMovie(randomMovie);
+          const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+          const videoId = randomMovie.Trailer.match(regex)[1];
+          setVideoId(videoId);
+          // console.log(randomMovie)
           setRand(random)
           setMovieData(fetchedData);
           setmovieSortScore(top10Movies);
           setmovieSortShowDate(upcomingMovies);
-          console.log(genreMovies);
+          // console.log(genreMovies);
           setRandMovieGenre(genreMovies);
           setIsLoading(false);
         } catch (error) {
@@ -92,16 +101,38 @@ const HomePage = () => {
         slidesPerView: 6,
         },
       };
-      
+      const convertMinutesToHoursAndMinutes = (durationInMinutes) =>{
+        const hours = Math.floor(durationInMinutes / 60);
+        const minutes = durationInMinutes % 60;
+        return `${hours}h ${minutes}m`;
+      }
   return (
     <>
     {isLoading?(
-      <></>
+      <Loading/>
     ):(
       <>
       <Navbar/>
-  {/* ------------------------------------------- start slider new up coming ------------------------------------------- */}
+      {/* Movie Recommend Start */}
 
+      <div className={MovieRecommendStyles.container}>
+      <img className={MovieRecommendStyles.img} src={`http://i3.ytimg.com/vi/${videoId}/mqdefault.jpg`} />
+      <div className={MovieRecommendStyles['text-container']}>
+        <div className={MovieRecommendStyles.MovieRecom}>Movie Recommendation</div>
+        <div className={MovieRecommendStyles.Title}>{randomMovie.MovieName}</div>
+        <div className={MovieRecommendStyles.Duration}><FontAwesomeIcon icon={faPlayCircle} className={MovieRecommendStyles.icon}/>{convertMinutesToHoursAndMinutes(randomMovie.Duration)}</div>
+        <div className={MovieRecommendStyles.MovieInfo}>
+        {randomMovie.MovieInfo}
+        </div>
+        <Link to={`/FrontMovieDetail/${randomMovie.id}`} >
+        <a className={MovieRecommendStyles.whatmorebtn}>Watch more</a>
+        </Link>
+      </div>
+    </div>
+
+      {/* Movie Recommend end */}
+  {/* ------------------------------------------- start slider new up coming ------------------------------------------- */}
+      
     <div class={swipercss.container}>
         <div class={swipercss.containerforthetitle}><div className={swipercss.vl}><h2 class={swipercss.Titleofthecontent}>NEW & UPCOMING MOVIES IN THEATERS</h2></div></div>
     <Swiper
@@ -139,11 +170,11 @@ const HomePage = () => {
 
  <div class={swipercss.container}>
   {rand==0?(
-        <div class={swipercss.containerforthetitle}><div className={swipercss.vl}><h2 class={swipercss.Titleofthecontent}>BEST HORROR MOVIES</h2></div><a href="" className={swipercss.alinkViewall}>View All</a></div>
+        <div class={swipercss.containerforthetitle}><div className={swipercss.vl}><h2 class={swipercss.Titleofthecontent}>BEST HORROR MOVIES</h2></div><a href="movies" className={swipercss.alinkViewall}>View All</a></div>
   ):rand==1?(
-    <div class={swipercss.containerforthetitle}><div className={swipercss.vl}><h2 class={swipercss.Titleofthecontent}>BEST ACTION MOVIES</h2></div><a href="" className={swipercss.alinkViewall}>View All</a></div>
+    <div class={swipercss.containerforthetitle}><div className={swipercss.vl}><h2 class={swipercss.Titleofthecontent}>BEST ACTION MOVIES</h2></div><a href="movies" className={swipercss.alinkViewall}>View All</a></div>
   ):(
-    <div class={swipercss.containerforthetitle}><div className={swipercss.vl}><h2 class={swipercss.Titleofthecontent}>BEST DRAMA MOVIES</h2></div><a href="" className={swipercss.alinkViewall}>View All</a></div>
+    <div class={swipercss.containerforthetitle}><div className={swipercss.vl}><h2 class={swipercss.Titleofthecontent}>BEST DRAMA MOVIES</h2></div><a href="movies" className={swipercss.alinkViewall}>View All</a></div>
   )}
    <Swiper
        className={swipercss.swiper}
@@ -158,7 +189,7 @@ const HomePage = () => {
           <Link to={`/FrontMovieDetail/${movie.id}`} className={swipercss.link}>
             <img class={swipercss.coverimg} src={movie.imageURL}/>
              <div class={swipercss.content}>
-              <div class={swipercss.score}> <FontAwesomeIcon icon={faStar} className={swipercss.dateicon} /><p class={swipercss.scorelabel}>{(movie.Score/10)*100} %</p></div>
+              <div class={swipercss.score}> <FontAwesomeIcon icon={faStar} className={swipercss.dateicon} /><p class={swipercss.datetext}>{(movie.Score/10)*100} %</p></div>
             <a class={swipercss.Title}>{movie.MovieName}</a>
           </div>
           </Link>

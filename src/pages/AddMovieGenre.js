@@ -5,7 +5,8 @@ import { db } from '../firebase';
 import { collection, getDocs ,orderBy, query} from 'firebase/firestore';
 import admingenrecss from "../css/admingenre.module.css"
 import NavbarAdmin from "./navbaradmin";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 const AddMovieGenre = () =>{
 
     const [movieGenre,setMovieGenre] = useState('')
@@ -59,12 +60,13 @@ const AddMovieGenre = () =>{
     return(
         <>
         <NavbarAdmin />
-         <div class={admingenrecss.containeraddandbtn}>
-            <div class={admingenrecss.form}>
-              <div class={admingenrecss.inputbox}>
-                <input class={admingenrecss.input} type="text" placeholder="Enter Movie Genre" value={movieGenre} onChange={(e) => setMovieGenre(e.target.value)} required />
+         <div className={admingenrecss.containeraddandbtn}>
+         <a href="/MovieManagement" className={admingenrecss.gobackbtn}><FontAwesomeIcon icon={faArrowLeft}  className={admingenrecss.backicon}/></a>
+            <div className={admingenrecss.form}>
+              <div className={admingenrecss.inputbox}>
+                <input className={admingenrecss.input} type="text" placeholder="Enter Movie Genre" value={movieGenre} onChange={(e) => setMovieGenre(e.target.value)} required />
               </div>
-              <button onClick={handleAddGenre} class={admingenrecss.alinkbtn}>Add Genre</button>
+              <button onClick={handleAddGenre} className={admingenrecss.alinkbtn}>Add Genre</button>
             </div>
           </div>
 
@@ -76,16 +78,16 @@ const AddMovieGenre = () =>{
             </div>
         ))}  */}
 
-          <div class={admingenrecss.showgenres}>
-            <label class={admingenrecss.title}>Genre List</label>
+          <div className={admingenrecss.showgenres}>
+            <label className={admingenrecss.title}>Genre List</label>
             {isLoading ?(
               <p>Loading...</p>
             ) :(
               <>
               {movieGenresList.map((genre)=>(
-                <div key={genre.id} class={admingenrecss.list}> 
+                <div key={genre.id} className={admingenrecss.list}> 
                   {genre.MovieGenre}<br/>
-                  <button onClick={() => handleDeleteGenre(genre)}>Delete</button>
+                  <button className={admingenrecss.deletebtn} onClick={() => handleDeleteGenre(genre)}>Delete</button>
                 </div>
                 ))}
               </>

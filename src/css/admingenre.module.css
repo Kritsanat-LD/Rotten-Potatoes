@@ -64,7 +64,26 @@
     margin: 0 10px;
   }
   
-  
+  .deletebtn{
+    padding: 2px;
+    background-color: transparent;
+    border-radius: 10%;
+    transition: all 0.5s;
+
+  }
+  .deletebtn:hover{
+   color: red;
+   border-color: red;
+  }
+  .gobackbtn{
+    padding: 10px;
+    font-size: 1em;
+  }
+  .backicon{
+    color: #333;
+    margin-right: 10px;
+    font-size: 2em;
+  }
     @media screen and (max-width: 1300px) {
     .containeraddandbtn {
         padding: 1rem 0;

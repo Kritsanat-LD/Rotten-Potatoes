@@ -14,7 +14,7 @@ const Footer = () => {
         <div className={footerCss.about}>
             <h3 className={footerCss.title}>About US</h3>
             <p>
-            Welcome to Rotten Potatoes, your go-to destination for all things movies and TV shows! Established with a passion for cinema, Rotten Potatoes is dedicated to providing you with the most comprehensive and honest reviews, insightful articles, and the latest entertainment news.
+            Welcome to Rotten Potatoes, your go-to destination for all things movies! Established with a passion for cinema, Rotten Potatoes is dedicated to providing you with the most comprehensive and honest reviews.
             </p>
         </div>
         <div className={footerCss.services}>

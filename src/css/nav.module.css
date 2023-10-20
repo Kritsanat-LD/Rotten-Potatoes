@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Mitr&display=swap');
+
+    @import url('https://fonts.googleapis.com/css2?family=Mitr&display=swap');
 
 * {
     box-sizing: border-box;
@@ -18,8 +19,14 @@
     justify-content: space-around;
     gap: 4%;
     align-items: center;
-    background: rgb(225, 165, 67);
-    background: linear-gradient(90deg, rgba(225, 165, 67, 1) 0%, rgba(191, 134, 40, 1) 100%);
+    background: #2C2C2C;
+    /* background: linear-gradient(90deg, rgba(225, 165, 67, 1) 0%, rgba(191, 134, 40, 1) 100%); */
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+      border-top: 1px solid rgba(255, 255, 255, .1);
+      border-left: 5px solid transparent;
+    height: 6rem; /* Assuming you want a fixed height for the nav */
+  
 }
 
 .search {
@@ -37,7 +44,7 @@
     padding: 10px;
     border-radius: 0 40px 40px 0;
     outline: none;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(44,44,44,0.8);
     color: #ffffff;
 }
 
@@ -57,7 +64,7 @@
     height: 40%;
     border-radius: 40px 0 0 40px;
     outline: none;
-    background: rgba(0, 0, 0, 0.5);
+    background:  rgba(44,44,44,0.8);
     color: #ffffff;
     cursor: pointer;
 }
@@ -161,7 +168,7 @@
 
     .listpage .content {
         box-sizing: border-box;
-        border-bottom: 1px solid rgb(180, 119, 21);
+        border-bottom: 1px solid rgb(0, 0, 0);
         border-top: 1px solid rgba(255, 159, 6, 0.1);
         height: 65px;
         width: 100%;
@@ -205,9 +212,9 @@
         align-items: none;
         text-align: none;
         padding-right: 1em;
-        background: rgb(225, 165, 67);
+        background:#2C2C2C;
         align-items: start;
-        background: linear-gradient(90deg, rgba(225, 165, 67, 1) 0%, rgba(191, 134, 40, 1) 100%);
+        /* background: #333; */
         display: block;
         height: auto;
         position: relative;
@@ -246,18 +253,17 @@
     .Topcontent .aname {
         font-size: 1em;
         padding: 0 10px;
-        color: white;
+        color: #ffffff;
         text-decoration: none;
     }
     
     .Topcontent .a:hover {
         cursor: pointer;
-        color: rgb(236, 229, 229);
+        color: #e6b82c;
         text-decoration: underline;
     
     }
 
 }
-
 
 

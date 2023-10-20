@@ -116,7 +116,6 @@ const UpdateDetails = () => {
 
   return (
     <>
-    <NavbarAdmin/>
     <NavbarAdmin />
     <section class={AdminCss.warpper}>
         <section class={AdminCss.container}>
