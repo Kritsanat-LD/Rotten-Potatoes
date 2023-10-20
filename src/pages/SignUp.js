@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { doc, setDoc, } from "firebase/firestore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-
+import Loading from "./loading"; 
 const SignUp = () => {
 
     const [email, setEmail] = useState('')
@@ -14,7 +14,7 @@ const SignUp = () => {
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
     const navigate = useNavigate('')
-
+    const [isLoading, setIsLoading] = useState(false); 
 
     //role = 0 : user
     //role = 1 : admin
@@ -22,6 +22,7 @@ const SignUp = () => {
     const signUp = async (e) => {
         let errorlabelid = document.getElementById("errorlabel")
         e.preventDefault();
+        setIsLoading(true); 
         createUserWithEmailAndPassword(auth, email, password)
             .then(cred => {
                 navigate("/")
@@ -32,8 +33,10 @@ const SignUp = () => {
                     phone: phone,
                     role : 'customer'
                 });
+                
             })
             .catch((error) => {
+                
                 // console.log(error)
                 
                 var errorMessage = error.message;
@@ -51,6 +54,7 @@ const SignUp = () => {
                   }else {
                     errorlabelid.innerHTML =errorMessage.code;
                 }
+                setIsLoading(false);
             });
     }
 
@@ -81,7 +85,7 @@ const SignUp = () => {
                     </form>
                 </div>
             </div>
-
+            {isLoading && <Loading />}
         </>
     )
 

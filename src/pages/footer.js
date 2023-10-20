@@ -20,8 +20,8 @@ const Footer = () => {
         <div className={footerCss.services}>
             <h3 className={footerCss.title}>Services</h3>
             <ul className={footerCss.list}>
-                <li><a href="" className={footerCss.alink}> Home</a></li>
-                <li><a href="" className={footerCss.alink}> Movie</a></li>
+                <li><a href="/" className={footerCss.alink}> Home</a></li>
+                <li><a href="Movies" className={footerCss.alink}> Movie</a></li>
             </ul>
         </div>
         <div className={footerCss.contact}>

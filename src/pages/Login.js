@@ -8,13 +8,15 @@ import { useNavigate } from 'react-router-dom'
 import { UserAuth } from '../context/AuthContext';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-// import { AuthContextProvider } from '../context/AuthContext';
+import Loading from "./loading"; 
 
 const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const { updateUserRole } = UserAuth();
+    const [isLoading, setIsLoading] = useState(false); 
+
     // const [userRole,setUserRole] = useState('')
     const navigate = useNavigate('')
 
@@ -33,6 +35,7 @@ const Login = () => {
     const handleLogin = async (e) => {
         let errorlabelid = document.getElementById("errorlabel")
         e.preventDefault();
+        setIsLoading(true); 
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
@@ -53,7 +56,9 @@ const Login = () => {
             } else {
                 navigate("/"); // Redirect customer to customer page
             }
+            setIsLoading(false);
         } catch (error) {
+            setIsLoading(false);
             errorlabelid.innerHTML = "You have no Account yet";
         }
     };
@@ -78,7 +83,7 @@ const Login = () => {
                         <label className={LoginCss.errorlabel} id="errorlabel"></label>
                         <button className={LoginCss.btn} type="submit" >Login</button>
                         
-
+                        {isLoading && <Loading />}
                         <div className={LoginCss.switch}>Don't have an account? <a className={LoginCss.a}href="/signup">Sign up</a></div>
                         
                     </form>

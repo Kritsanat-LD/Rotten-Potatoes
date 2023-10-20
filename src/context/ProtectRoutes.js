@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
+import Loading from '../pages/loading';
 
 const ProtectedRoute = ({ children }) => {
   const { user , userRole } = UserAuth();
@@ -16,7 +17,7 @@ const ProtectedRoute = ({ children }) => {
   }
   if (!isRoleFetched) {
     // Show loading indicator while fetching the role
-    return <div></div>;
+    return <Loading/>;
   }
   if(userRole === "admin"){
     return children;
