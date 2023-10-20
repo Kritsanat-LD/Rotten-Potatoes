@@ -5,6 +5,8 @@ import Navbar from './nav';
 import { useParams } from 'react-router-dom';
 import { doc, getDoc , getDocs , collection , updateDoc,query,orderBy } from 'firebase/firestore';
 import Footer from './footer';
+import { Rating } from 'semantic-ui-react'
+import ReactStars from "react-rating-stars-component";
 
 
 
@@ -22,6 +24,17 @@ const CommentPage = () => {
   const [actorData , setActor] = useState([])
   const [imageURL , setImageURL] = useState(null)
   const [isLoading, setIsLoading] = useState(true);
+  
+  const ratingChanged = (newRating) => {
+    console.log(newRating);
+  };
+
+    const [sliderValue, setSliderValue] = useState(5); // เริ่มต้นค่าที่ต้องการ
+  
+    const handleSliderChange = (event) => {
+      setSliderValue(event.target.value);
+    }
+  
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
@@ -98,11 +111,23 @@ const CommentPage = () => {
         </div>
         <h3 className={`${comment.margin_top30} ${comment.vl_s}`}>RATE AND REVIEW</h3>
         <div className={`${comment.comment_rate_movie}  ${comment.margin_top30}`}>
+        <div className="slidecontainer">
+        <ReactStars
+    count={5}
+    onChange={ratingChanged}
+    size={24}
+    activeColor="#ffd700"
+  />
+    <br />
+    <br />
+    </div>
           <textarea 
             className={`${comment.rate_and_review_widget__textbox_textarea}`}
             placeholder="What did you think of the movie? (optional)"
           ></textarea>
         </div>
+
+        
         <h3 className={`${comment.margin_top30} ${comment.vl_s}`}>MOVIE INFO</h3>
         <h5><bold className={`${comment.margin_top30} ${comment.font_we}`} >Rating : </bold> {rate} </h5>
         <h5><strong className={`${comment.margin_top30} ${comment.font_we}`} >Movie Genre : </strong>  {movieGenreData.map((genre) => genre.label).join(', ')}</h5>

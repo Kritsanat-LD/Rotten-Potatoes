@@ -14,9 +14,12 @@
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
     "react-multi-select-component": "^4.3.4",
+    "react-rating-stars-component": "^2.2.0",
     "react-router-dom": "^6.15.0",
     "react-script-tag": "^1.1.2",
     "react-scripts": "5.0.1",
+    "react-slider": "^2.0.6",
+    "semantic-ui-react": "^2.1.4",
     "swiper": "^10.3.1",
     "web-vitals": "^2.1.4"
   },
