@@ -12,6 +12,7 @@ import {
   export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [userRole, setUserRole] = useState("");
+    const [Username, setUsername] = useState("");
 
     const logout = () => {
         return signOut(auth)
@@ -35,6 +36,7 @@ import {
           const userDocSnapshot = await getDoc(userDocRef);
           const userData = userDocSnapshot.data();
           if (userData && userData.role) {
+            setUsername(userData.name);
             setUserRole(userData.role); // Update the user role in your AuthContext
           }
         }
@@ -54,7 +56,7 @@ import {
       // <UserContext.Provider value={{ user , logout}}>
       //   {children}
       // </UserContext.Provider>
-    <UserContext.Provider value={{ user , logout, userRole, updateUserRole }}>
+    <UserContext.Provider value={{ user , logout, userRole, updateUserRole, Username }}>
       {children}
     </UserContext.Provider>
     );

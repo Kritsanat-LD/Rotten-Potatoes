@@ -23,7 +23,7 @@
 }
 
 .title {
-  color: #cea926;
+  color: #e0a502;
   margin-bottom: 20px;
 }
 
@@ -50,7 +50,7 @@
 
 .btn {
   padding: 10px;
-  background-color:  #c7a323;
+  background-color:  #e0a902;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -64,8 +64,12 @@
 }
 
 .switch .a {
-  color: #fbd02f;
+  color: #e0a902;
   text-decoration: none;
+}
+.switch .a:hover {
+  color: #d87a00;
+  text-decoration: underline;
 }
 
 .icon {
@@ -77,5 +81,5 @@
 
 
 .icon:hover{
-  color:rgba(225,165,67,1);
+  color:rgb(226, 140, 1);
 }

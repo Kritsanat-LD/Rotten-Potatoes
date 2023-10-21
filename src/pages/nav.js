@@ -11,7 +11,7 @@ import "../css/swiper.css"
 import { collection, getDocs } from 'firebase/firestore';
 
 const Navbar = () => {
-    const { user, userRole, logout } = UserAuth();
+    const { user, userRole, logout,Username } = UserAuth();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [results, setResults] = useState([]);
@@ -27,7 +27,7 @@ const Navbar = () => {
             })).sort((a, b) => new Date(b.showdate) - new Date(a.showdate));
 
             setMovieData(fetchedDataMovie)
-            console.log(fetchedDataMovie)
+            // console.log(fetchedDataMovie)
           } catch (error) {
             console.error('Error fetching data:', error);
           }
@@ -59,7 +59,7 @@ const Navbar = () => {
       const handleResultSelect = (e, { result }) => {
         setValue(result.title);
         navigate(`/FrontMovieDetail/${result.id}`);
-        console.log(result.id)
+        // console.log(result.id)
       };
     
       const CustomResultsRenderer = ({ title, description, image }) => (
@@ -101,7 +101,7 @@ const Navbar = () => {
                 </label>
                 <section className={Navcss.Topcontent}>
                     <a href="../" className={Navcss.a}>Home</a>
-                    <a href="../Movies" className={Navcss.a}>Movie</a>
+                    <a href="../Movies" className={Navcss.a}>Movies</a>
                     {userRole === 'admin' ? (
                           <>
                           <a href="../movieManagement" className={Navcss.a}>Manage Movie</a>
@@ -111,7 +111,7 @@ const Navbar = () => {
                         )}
                          {user ? (
                             <>
-                                <a disabled className={Navcss.aname}>{user.email}</a>
+                                <a disabled className={Navcss.aname}>{Username}</a>
                                 <a disabled className={Navcss.a} onClick={handleLogout}>Logout</a>
                             </>
                         ) : (
@@ -127,7 +127,7 @@ const Navbar = () => {
                     </section>
                     <section className={Navcss.content}>
                     <FontAwesomeIcon icon={faFilm} className={Navcss.img} />
-                        <a href="../Movies" className={Navcss.a}>Movie</a>
+                        <a href="../Movies" className={Navcss.a}>Movies</a>
                     </section>
                     {userRole === 'admin' ? (
                           <>
@@ -144,7 +144,7 @@ const Navbar = () => {
                     <FontAwesomeIcon icon={faRightFromBracket} className={Navcss.img} />
                         {user ? (
                             <>
-                                <a disabled className={Navcss.aname}>{user.email}</a>
+                                <a disabled className={Navcss.aname}>{Username}</a>
                                 <a disabled className={Navcss.a} onClick={handleLogout}>Logout</a>
                             </>
                         ) : (

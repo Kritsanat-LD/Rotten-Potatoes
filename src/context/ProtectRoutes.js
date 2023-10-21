@@ -2,28 +2,29 @@ import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 import Loading from '../pages/loading';
+import NotFound from '../pages/notfoundpage';
 
 const ProtectedRoute = ({ children }) => {
   const { user , userRole } = UserAuth();
-  console.log(userRole)
   const [isRoleFetched, setIsRoleFetched] = useState(false);
 
   setTimeout(() => {
     setIsRoleFetched(true);
-  }, 2200); 
-
+  }, 2300); 
+  console.log(userRole)
   if (!user) {
-    return <Navigate to='/' />;
+    return <NotFound/>;
   }
   if (!isRoleFetched) {
-    // Show loading indicator while fetching the role
+   
     return <Loading/>;
-  }
-  if(userRole === "admin"){
-    return children;
-  }
-  else {
-    return <Navigate to="/" />;
+  }else{
+    if(userRole === "admin"){
+      return children;
+    }
+    else {
+      return <NotFound/>;
+    }
   }
 };
 

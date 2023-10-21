@@ -84,10 +84,12 @@ margin-bottom: 20px;
 }
 
 .whatmorebtn:not([disabled]):focus {
+  color: #FFFFFF;
   box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(243, 174, 25, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
 }
 
 .whatmorebtn:not([disabled]):hover {
+  color: #FFFFFF;
   box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(243, 174, 25, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
 }
 
