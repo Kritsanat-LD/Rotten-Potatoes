@@ -60,7 +60,7 @@ const NavbarAdmin = () => {
                         <span className={Sidebarcss.icon}>
                             <FontAwesomeIcon icon={faRightFromBracket} />
                         </span>
-                        <a href="" className={Sidebarcss.name}>Logout</a>
+                        <a className={Sidebarcss.name}>Logout</a>
                     </div>
                 </div>
             </div>

@@ -147,10 +147,10 @@ const MovieManagement = () => {
     </Link>
     <div className={AdminManagementCss.contentinfo}>
       <Link to={`/FrontMovieDetail/${movie.id}`} className={AdminManagementCss.contenttitle}>
-        <a>
+        <p>
           {movie.MovieName.length > 15? 
           `${movie.MovieName.slice(0, 15)}...`
-          : movie.MovieName}</a>
+          : movie.MovieName}</p>
       </Link>
       <p className={AdminManagementCss.contentscore}>Score: {(movie.Score/10)*100} %</p>
       <Link to={`/movieUpdateDetails/${movie.id}`} className={AdminManagementCss.contentbtnedit}>
