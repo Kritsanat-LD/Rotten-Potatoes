@@ -13,7 +13,7 @@
 }
 
 .Title {
-    color: black;
+    color:#2c2c2c;
     font-size: 1.5em;
     margin-left: 10px;
 }
@@ -37,11 +37,13 @@
 flex: 1;
 white-space: nowrap; 
 overflow: hidden;
+color:#2c2c2c;
 text-overflow: ellipsis;
 }
 
 .number {
     font-weight: bold;
+    color:#2c2c2c;
     margin-left: 10px;
 }
 

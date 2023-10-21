@@ -5,8 +5,7 @@ import Navbar from './nav';
 import { useParams } from 'react-router-dom';
 import { doc, getDoc , getDocs , collection , updateDoc,query,orderBy } from 'firebase/firestore';
 import Footer from './footer';
-import { Rating } from 'semantic-ui-react'
-import ReactStars from "react-rating-stars-component";
+import Rating from '@mui/material/Rating';
 
 
 
@@ -26,7 +25,7 @@ const CommentPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   
   const ratingChanged = (newRating) => {
-    console.log(newRating);
+    console.log(newRating.target.value*2);
   };
 
     const [sliderValue, setSliderValue] = useState(5); // เริ่มต้นค่าที่ต้องการ
@@ -111,13 +110,8 @@ const CommentPage = () => {
         </div>
         <h3 className={`${comment.margin_top30} ${comment.vl_s}`}>RATE AND REVIEW</h3>
         <div className={`${comment.comment_rate_movie}  ${comment.margin_top30}`}>
-        <div className="slidecontainer">
-        <ReactStars
-    count={5}
-    onChange={ratingChanged}
-    size={24}
-    activeColor="#ffd700"
-  />
+        <div className={`${comment.slidecontainer}`}>
+        <Rating name="half-rating" defaultValue={2.5} precision={0.5} size="large"  onChange={ratingChanged}/>
     <br />
     <br />
     </div>

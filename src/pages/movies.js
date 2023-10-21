@@ -66,7 +66,7 @@ function Movies() {
           <>
                    <Navbar/>
       <div className={movieCss.container}>
-        <h1>Movies in Theaters (2023)</h1>
+        <h1 className={movieCss.TopText}>Movies in Theaters (2023)</h1>
         <div className={movieCss.listsearch}>
           <div className={movieCss.selectbox}>
             <select className={movieCss.dropdown} onChange={(e) => setSelectedMovieRate(e.target.value)}>

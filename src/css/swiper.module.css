@@ -1,3 +1,4 @@
+
 .container{
   display: flex;
   justify-content: center;
@@ -24,6 +25,7 @@ border-left: 6px solid #fbd02f;
 height: 2.5em;
 }
 .Titleofthecontent {
+  color:#2c2c2c;
 margin:  0 10px;
 font-size: 24px;
 

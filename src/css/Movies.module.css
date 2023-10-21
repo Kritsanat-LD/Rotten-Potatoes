@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Mitr&display=swap');
+
+
 
 .container{
     padding: 2em;
@@ -9,8 +12,11 @@ justify-content: center; */
     flex-wrap: wrap;
 
 }
-
+.TopText{
+    color:#2c2c2c;
+}
 .content {
+    
     overflow: hidden;
     padding: 1rem;
 }
@@ -31,6 +37,7 @@ justify-content: center; */
 }
 
 .content .contenttitle ,.content .contentscore{
+    
     margin: 1em .5em;
 }
 
@@ -72,6 +79,7 @@ font-size: 1em;
     border: none;
     color: #707070;
     font-size: 1rem;
+    font-family: 'Mitr', sans-serif !important
 }
 .content:hover .contentinfo{
     color: rgba(225,165,67,1);

@@ -1,6 +1,6 @@
 footer
 {
-    margin-top: 500px;
+    margin-top: 200px;
 }
 body{
     padding: 0;
@@ -160,6 +160,7 @@ width: 100%;
 
 }
 .slidecontainer {
+    text-align: start;
     width: 100%;
   }
   

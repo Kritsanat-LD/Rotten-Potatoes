@@ -7,7 +7,6 @@ const LazySignUp = lazy(() => import('./pages/SignUp'));
 const LazySearch = lazy(() => import('./pages/testSearch'));
 const LazyMovies = lazy(() => import('./pages/movies'));
 const LazyHomePage = lazy(() => import('./pages/homepage'));
-const LazyHome = lazy(() => import('./pages/Home'));
 const LazyCommentPage = lazy(() => import('./pages/MovieDetails'));
 const LazyAddMovie = lazy(() => import('./pages/AddMovie'));
 const LazyMovieDetail = lazy(() => import('./pages/MovieDetail'));
@@ -29,7 +28,6 @@ function App() {
             <Route path="search" element={<LazySearch />} />
             <Route path="Movies" element={<LazyMovies />} />
             <Route path="/" element={<LazyHomePage />} />
-            <Route path="home" element={<LazyHome />} />
             <Route path="FrontMovieDetail/:id" element={<LazyCommentPage />} />
 
             <Route path="addmovie" element={<ProtectedRoute><LazyAddMovie /></ProtectedRoute>} />
