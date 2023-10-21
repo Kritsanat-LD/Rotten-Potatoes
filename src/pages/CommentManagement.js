@@ -114,7 +114,7 @@ const Comment = () => {
       </select>
       <ul>
         {isLoading ? (
-          <p>Loading...</p>
+           <span className={AdminManagementCss.loader}></span>
         ) : (
           <>
             <div className={AdminManagementCss.warpper_comment}>

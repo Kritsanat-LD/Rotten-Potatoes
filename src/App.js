@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './context/ProtectRoutes';
 const LazyLogin = lazy(() => import('./pages/Login'));
 const LazySignUp = lazy(() => import('./pages/SignUp'));
@@ -19,14 +20,15 @@ const NotFound = lazy(() => import('./pages/notfoundpage'));
 
 function App() {
   return (
+    <AuthContextProvider>
       <Router>
         <Suspense fallback={<div></div>}>
           <Routes>
+          <Route path="/" element={<LazyHomePage />} />
             <Route path="login" element={<LazyLogin />} />
             <Route path="signup" element={<LazySignUp />} />
             <Route path="search" element={<LazySearch />} />
             <Route path="Movies" element={<LazyMovies />} />
-            <Route path="/" element={<LazyHomePage />} />
             <Route path="FrontMovieDetail/:id" element={<LazyCommentPage />} />
             <Route path="*" element={<NotFound />} />
 
@@ -41,6 +43,8 @@ function App() {
           </Routes>
         </Suspense>
       </Router>
+    </AuthContextProvider>
+
   );
 }
 

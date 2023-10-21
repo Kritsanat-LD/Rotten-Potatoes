@@ -10,12 +10,12 @@ const ProtectedRoute = ({ children }) => {
 
   setTimeout(() => {
     setIsRoleFetched(true);
-  }, 2300); 
+  }, 2400); 
   console.log(userRole)
   if (!user) {
     return <NotFound/>;
   }
-  if (!isRoleFetched) {
+  if (!isRoleFetched && userRole === "") {
    
     return <Loading/>;
   }else{

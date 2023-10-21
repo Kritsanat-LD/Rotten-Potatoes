@@ -116,7 +116,7 @@ const HomePage = () => {
       {/* Movie Recommend Start */}
 
       <div className={MovieRecommendStyles.container}>
-      <img className={MovieRecommendStyles.img} src={`http://i3.ytimg.com/vi/${videoId}/mqdefault.jpg`} />
+      <img className={MovieRecommendStyles.img} src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`} />
       <div className={MovieRecommendStyles['text-container']}>
         <div className={MovieRecommendStyles.MovieRecom}>Movie Recommendation</div>
         <div className={MovieRecommendStyles.Title}>{randomMovie.MovieName}</div>

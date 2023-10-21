@@ -51,11 +51,12 @@ import {
         // window.removeEventListener('beforeunload', handleBeforeUnload);
       };
     }, []);
-  
+    
     return (
       // <UserContext.Provider value={{ user , logout}}>
       //   {children}
       // </UserContext.Provider>
+      
     <UserContext.Provider value={{ user , logout, userRole, updateUserRole, Username }}>
       {children}
     </UserContext.Provider>

@@ -125,7 +125,7 @@ const MovieManagement = () => {
       </div>
       <div className={AdminManagementCss.warpper}>
         {isLoading ? (
-          <p>Loading...</p>
+              <span className={AdminManagementCss.loader}></span>
         ) : data.length===0?(
           <p>No movies found</p>
         ) : (
