@@ -6,6 +6,9 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { deleteActorInfoDB } from '../context/deleteMovieInfo';
 import NavbarAdmin from './navbaradmin';
+import { ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const ActorManagement = () =>{
     const [actor,setActor] = useState([])
 
@@ -26,17 +29,48 @@ const ActorManagement = () =>{
         fecthActor();
     },[])
 
-    const handleDeleteActor = async (actorId,actorName) =>{
-        try{
-            await deleteActorInfoDB(actorId,actorName);
-            console.log('delete successful')
-        }catch(error){
-            console.error('Error deleting actor:', error);
-        }
-        window.alert('Data deleted successfully!');
-        window.location.reload();
-    }
+    // const handleDeleteActor = (actorId, actorName) => {
+    //     return toast.promise(
+    //         async (resolve) => {
+    //             try {
+    //                 await deleteActorInfoDB(actorId, actorName);
+    //                 // resolve(); 
+    //             } catch (error) {
+    //                 console.error('Error deleting actor:', error);
+    //                 // throw error; 
+    //             }
+    //         },
+    //         {
+    //             pending: 'Deleting actor, please wait...', 
+    //             success: 'Actor deleted successfully!', 
+    //             error: 'Error deleting actor. Please try again later.', 
+    //         }
+    //     ).then(() => {
+    //         setTimeout(() => {
+    //             window.location.reload();
+    //         }, 2500); 
+    //     });
+    // };
     
+    const handleDeleteActor = (actorId, actorName) => {
+        return toast.promise(
+            async (resolve) => {
+                try {
+                    await deleteActorInfoDB(actorId, actorName);
+                } catch (error) {
+                    console.error('Error deleting actor:', error);
+                }
+            },
+            {
+                pending: 'Deleting actor, please wait...',
+                success: 'Actor deleted successfully!',
+                error: 'Error deleting actor. Please try again later.',
+            }
+        ).then(() => {
+            // Filter out the deleted actor from the state
+            setActor((prevActors) => prevActors.filter((actor) => actor.id !== actorId));
+        });
+    };
 
 
 
@@ -60,6 +94,18 @@ const ActorManagement = () =>{
               </div>
         ))}
          </div>
+         <ToastContainer
+                            position="top-center"
+                            autoClose={2500}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss={false}
+                            draggable
+                            pauseOnHover={false}
+                            theme="light"
+                            />
         </div>
     </>
     )

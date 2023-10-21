@@ -8,7 +8,8 @@ import { MultiSelect } from 'react-multi-select-component';
 import NavbarAdmin from "./navbaradmin";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-
+import { ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const AddMovie = () => {
 
   const [movieName, setMovieName] = useState('')
@@ -52,54 +53,137 @@ const AddMovie = () => {
     fetchData();
   }, []);
 
-  const handleUploadMovie = async () => {
+  // const handleUploadMovie = async () => {
     
 
-    try {
-      let imageURL = null;
-      if (selectedImage) {
-        imageURL = await uploadImage(selectedImage);
-      }
+  //   try {
+  //     let imageURL = null;
+  //     if (selectedImage) {
+  //       imageURL = await uploadImage(selectedImage);
+  //     }
 
-      const data = {
-        MovieName: movieName,
-        MovieInfo: movieInfo,
-        MovieGenres: movieGenresSelect,
-        Actors: actorSelect,
-        Duration: parseInt(duration),
-        ShowDate: showDate,
-        Rate: rate,
-        Trailer: trailer,
-        imageURL: imageURL,
-        Score: 0
-      };
+  //     const data = {
+  //       MovieName: movieName,
+  //       MovieInfo: movieInfo,
+  //       MovieGenres: movieGenresSelect,
+  //       Actors: actorSelect,
+  //       Duration: parseInt(duration),
+  //       ShowDate: showDate,
+  //       Rate: rate,
+  //       Trailer: trailer,
+  //       imageURL: imageURL,
+  //       Score: 0
+  //     };
 
-      if(data.MovieName==='' || data.MovieInfo===''|| data.MovieGenres===''|| data.Actors===''
-      || data.Duration===''|| data.ShowDate===''|| data.Rate===''|| data.Trailer===''|| data.imageURL===null){
-        window.alert('You forget to add something');
-        return 0;
-      }
+  //     if(data.MovieName==='' || data.MovieInfo===''|| data.MovieGenres===''|| data.Actors===''
+  //     || data.Duration===''|| data.ShowDate===''|| data.Rate===''|| data.Trailer===''|| data.imageURL===null){
+  //       window.alert('You forget to add something');
+  //       return 0;
+  //     }
 
-      await addMovieInfoDB(data);
-      console.log('Movie data added successfully');
-    } catch (error) {
-      console.error('Error uploading image or adding movie info:', error);
+  //     await addMovieInfoDB(data);
+  //     console.log('Movie data added successfully');
+  //   } catch (error) {
+  //     console.error('Error uploading image or adding movie info:', error);
+  //   }
+
+  //   // Clear the input fields and selections
+  //   setMovieName('');
+  //   setMovieInfo('');
+  //   setMovieGenresSelect([]); // Clear selected genres
+  //   setActorSelect([]);
+  //   setDuration('');
+  //   setShowDate(null);
+  //   setRate('');
+  //   setTrailer('');
+  //   setSelectedImage(null);
+
+  //   window.alert('Data added successfully!');
+  //   window.location.reload();
+  // };
+
+  
+const handleUploadMovie = () => {
+    const validateFields = () => {
+        if (
+            movieName === '' ||
+            movieInfo === '' ||
+            movieGenresSelect.length === 0 ||
+            actorSelect.length === 0 ||
+            duration === '' ||
+            showDate === null ||
+            rate === '' ||
+            trailer === '' ||
+            selectedImage === null
+        ) {
+            toast.error('Please fill in all the fields.', {
+                position: 'top-center',
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: 0,
+                theme: 'light',
+            });
+            return false;
+        }
+        return true;
+    };
+
+    if (!validateFields()) {
+        return; 
     }
 
-    // Clear the input fields and selections
-    setMovieName('');
-    setMovieInfo('');
-    setMovieGenresSelect([]); // Clear selected genres
-    setActorSelect([]);
-    setDuration('');
-    setShowDate(null);
-    setRate('');
-    setTrailer('');
-    setSelectedImage(null);
+    return toast.promise(
+        async (resolve) => {
+            try {
+                let imageURL = await uploadImage(selectedImage);
 
-    window.alert('Data added successfully!');
-    window.location.reload();
-  };
+                const data = {
+                    MovieName: movieName,
+                    MovieInfo: movieInfo,
+                    MovieGenres: movieGenresSelect,
+                    Actors: actorSelect,
+                    Duration: parseInt(duration),
+                    ShowDate: showDate,
+                    Rate: rate,
+                    Trailer: trailer,
+                    imageURL: imageURL,
+                    Score: 0,
+                };
+
+                await addMovieInfoDB(data);
+              
+            } catch (error) {
+                console.error('Error uploading image or adding movie info:', error);
+
+            }
+        },
+        {
+            pending: 'Adding movie, please wait...',
+            success: 'Movie added successfully!',
+            error: 'Error adding movie. Please try again later.',
+            autoClose: 1500, 
+            closeOnClick: true,
+        }
+    ).then(() => {
+      const fileInputContainer = document.getElementById('fileinput');
+      fileInputContainer.value = ''; // Clear the file input value
+      const filedateContainer = document.getElementById('moviedate');
+      filedateContainer.value = ''; // Clear the file input value
+      setMovieName('');
+      setMovieInfo('');
+      setMovieGenresSelect([]);
+      setActorSelect([]);
+      setDuration('');
+      setShowDate(null);
+      setRate('');
+      setTrailer('');
+      setSelectedImage(null);
+    });
+};
+
 
   const genrePattern = movieGenreData.map((genre) => ({
     label: genre.MovieGenre,
@@ -143,7 +227,7 @@ const AddMovie = () => {
               
               <div class={AdminCss.inputbox}>
                 <label class={AdminCss.label}>Release Date</label>
-                <input class={AdminCss.input} type="date" value={showDate} onChange={(e) => setShowDate(e.target.value)} placeholder="Enter Release Date" required />
+                <input class={AdminCss.input} type="date" value={showDate} onChange={(e) => setShowDate(e.target.value)} id="moviedate" required />
               </div>
             </div>
 
@@ -188,7 +272,7 @@ const AddMovie = () => {
 
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Movie Image</label>
-              <input onChange={handleImageSelection} type="file" class={AdminCss.inputfile} />
+              <input onChange={handleImageSelection} type="file" class={AdminCss.inputfile} id="fileinput" />
             </div>
 
             <button onClick={handleUploadMovie} class={AdminCss.addmovie}>Add Movie</button>
@@ -196,6 +280,18 @@ const AddMovie = () => {
         </section>
       </section>
       {/* </form> */}
+      <ToastContainer
+                            position="top-center"
+                            autoClose={1500}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss={false}
+                            draggable
+                            pauseOnHover={false}
+                            theme="light"
+                            />
 
     </>
   )

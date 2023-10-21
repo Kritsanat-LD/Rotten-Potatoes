@@ -8,6 +8,8 @@ import { MultiSelect } from 'react-multi-select-component';
 import NavbarAdmin from "./navbaradmin";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const UpdateDetails = () => {
   const { id } = useParams(); 
@@ -92,27 +94,36 @@ const UpdateDetails = () => {
     setSelectedImage(event.target.files[0]);
   };
 
-  const handleUpdateMovie = async () =>{
-    let imageURL = null;
-    if(selectedImage){
-      imageURL = await uploadImage(selectedImage);
-    }else{
-      imageURL = oldImage;
-    }
-    const newDocRef = doc(db, "Movies", id);
-    await updateDoc(newDocRef, {
-      MovieName: movieName,
-      MovieInfo: movieInfo,
-      MovieGenres: movieGenresSelect,
-      Actors: actorSelect, 
-      Duration: parseInt(duration),
-      ShowDate: showDate,
-      Rate: rate,
-      Trailer: trailer,
-      imageURL: imageURL,
-    });
-    window.alert('อัพละนะ');
-  }
+  const handleUpdateMovie = async () => {
+    return toast.promise(
+      async (resolve) => {
+        let imageURL = null;
+        if (selectedImage) {
+          imageURL = await uploadImage(selectedImage);
+        } else {
+          imageURL = oldImage;
+        }
+        const newDocRef = doc(db, "Movies", id);
+        await updateDoc(newDocRef, {
+          MovieName: movieName,
+          MovieInfo: movieInfo,
+          MovieGenres: movieGenresSelect,
+          Actors: actorSelect,
+          Duration: parseInt(duration),
+          ShowDate: showDate,
+          Rate: rate,
+          Trailer: trailer,
+          imageURL: imageURL,
+        });
+      },
+      {
+        pending: 'Update movie, please wait...',
+        success: 'Update movie successfully!',
+        error: 'Error updating movie. Please try again later.',
+      }
+    );
+  };
+  
 
   return (
     <>
@@ -196,6 +207,18 @@ const UpdateDetails = () => {
             </div>
         </section>
       </section>
+      <ToastContainer
+                            position="top-center"
+                            autoClose={2500}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss={false}
+                            draggable
+                            pauseOnHover={false}
+                            theme="light"
+                            />
     </>
   );
 };

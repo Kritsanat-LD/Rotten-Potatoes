@@ -205,13 +205,18 @@ const HomePage = () => {
     <div class={listcss.container}>
         <div class={listcss.Titleheader}>
             <div class={listcss.vl}><h2 class={listcss.Title}>POPULAR MOVIES ALL THE TIME</h2></div>
-            <a class={listcss.more}>View all</a>
+            <a href="Movies"class={listcss.more}>View All</a>
         </div>
         {movieSortScore.map((movie)=>(
           <>            
           <div class={listcss.listitem} key={movie.id}>
+          <Link to={`/FrontMovieDetail/${movie.id}`} className={swipercss.link}>
             <a class={listcss.text}>{movie.MovieName}</a>
+            </Link>
+            <Link to={`/FrontMovieDetail/${movie.id}`} className={swipercss.link}>
             <a class={listcss.number}>{(movie.Score/10)*100} %</a>
+            </Link>
+            
           </div>
           <hr class={listcss.hl}/>
           </> 

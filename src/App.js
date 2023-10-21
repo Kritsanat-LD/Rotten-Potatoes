@@ -19,6 +19,7 @@ const LazyActorManagement = lazy(() => import('./pages/ActorManagement'));
 const NotFound = lazy(() => import('./pages/notfoundpage'));
 
 function App() {
+  
   return (
     <AuthContextProvider>
       <Router>

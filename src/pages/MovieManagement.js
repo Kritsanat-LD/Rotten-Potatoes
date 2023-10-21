@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import NavbarAdmin from './navbaradmin';
 import { Link } from 'react-router-dom';
+import { ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MovieManagement = () => {
   const [data, setData] = useState([]);
@@ -91,6 +93,8 @@ const MovieManagement = () => {
   };
 
       const handleDeleteMovie = async (movieId) => {
+        return toast.promise(
+          async (resolve) => {
         try {
             console.log(movieId);
             await deleteMovieInfoDB(movieId); // Use your delete function here
@@ -98,10 +102,16 @@ const MovieManagement = () => {
         } catch (error) {
             console.error('Error deleting genre:', error);
         }
-        window.alert('Data deleted successfully!');
-        window.location.reload();
-    }
-
+       },
+       {
+           pending: 'Deleting movie, please wait...', 
+           success: 'Movie deleted successfully!', 
+           error: 'Error deleting moive. Please try again later.', 
+       }
+   ).then(() => {
+          setData((prevData) => prevData.filter((data) => data.id !== movieId));
+   });
+};
   return (
     <>
       <NavbarAdmin/>
@@ -167,6 +177,18 @@ const MovieManagement = () => {
           ))}
         </div>
       </div>
+      <ToastContainer
+                            position="top-center"
+                            autoClose={1500}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss={false}
+                            draggable
+                            pauseOnHover={false}
+                            theme="light"
+                            />
     </>
   );
 };

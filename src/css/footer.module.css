@@ -43,11 +43,10 @@
 }
 
 @media only screen and (max-width:768px) {
-    .footer{
-        margin-bottom: 60px;
-    }
+
     .container{
         flex-direction: column;
+        padding: 100px 20px;
     }
     .services , .contact,.about{
        text-align: center;
