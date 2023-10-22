@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navcss from "../css/nav.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch,faBars, faHome, faFilm, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faSearch,faBars, faHome, faFilm, faRightFromBracket, faFilePen } from '@fortawesome/free-solid-svg-icons'
 import { UserAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Search } from 'semantic-ui-react';
@@ -132,7 +132,7 @@ const Navbar = () => {
                     {userRole === 'admin' ? (
                           <>
                             <section className={Navcss.content}>
-                            <FontAwesomeIcon icon={faFilm} className={Navcss.img} />
+                            <FontAwesomeIcon icon={faFilePen} className={Navcss.img} />
                                 <a href="../movieManagement" className={Navcss.a}>Manage Movie</a>
                                 </section>
                             </>
