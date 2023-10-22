@@ -14,7 +14,20 @@ const AddMovieGenre = () => {
   const [movieGenre, setMovieGenre] = useState('')
   const [movieGenresList, setMovieGenresList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [isPopupVisible, setPopupVisible] = useState(false);
 
+  const openPopup = (genre) => {
+    setSelectedGenre(genre);
+    console.log(genre)
+    setPopupVisible(true);
+  };
+
+  const closePopup = (event) => {
+ 
+      setPopupVisible(false);
+    
+  };
   // const handleAddGenre = async () =>{
   //     try{
   //         const data = {
@@ -85,6 +98,7 @@ const AddMovieGenre = () => {
       }
     });
   };
+
   
 
   useEffect(() => {
@@ -136,12 +150,33 @@ const AddMovieGenre = () => {
             {movieGenresList.map((genre) => (
               <div key={genre.id} className={admingenrecss.list}>
                 {genre.MovieGenre}<br />
-                <button className={admingenrecss.deletebtn} onClick={() => handleDeleteGenre(genre)}>Delete</button>
+                <button className={admingenrecss.deletebtn} onClick={() => openPopup(genre)} id="popupbtn">Delete</button>
               </div>
             ))}
           </>
         )}
       </div>
+      {isPopupVisible && (
+      <div className={admingenrecss.allpage} id="popupcontainer">
+      <div className={admingenrecss.containerpopup}>
+      <div className={admingenrecss.popupTitle}>Delete Genre?</div>
+      <div className={admingenrecss.popupline}></div>
+      <div className={admingenrecss.popupcontent}>
+        <label className={admingenrecss.popuptext}>Are you sure to delete "{selectedGenre.MovieGenre}"</label>
+        {/* <img
+          src="https://scontent.fbkk29-1.fna.fbcdn.net/v/t1.15752-9/394457892_1672833233241862_4956274021755319669_n.png?_nc_cat=101&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=uGd8vjxbn0cAX_8KoVG&_nc_ht=scontent.fbkk29-1.fna&_nc_e2o=s&oh=03_AdSpRgL0hbBfnp1awbr_q-v0aZ3oVVgIRw4hfNfTPCDpBg&oe=655C8869"
+          className={admingenrecss.popupimg}
+          alt="Movie Poster"
+        /> */}
+      </div>
+      <div className={admingenrecss.buttonsContainer}>
+        <button className={admingenrecss.acceptbtn} onClick={() => handleDeleteGenre(selectedGenre)}>Yes</button>
+        <button className={admingenrecss.rejectbtn} onClick={closePopup} >No</button>
+      </div>
+    </div>
+    
+    </div>
+     )}
       <ToastContainer
         position="top-center"
         autoClose={2500}

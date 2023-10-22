@@ -111,7 +111,7 @@ const CommentPage = () => {
         <h3 className={`${comment.margin_top30} ${comment.vl_s}`}>RATE AND REVIEW</h3>
         <div className={`${comment.comment_rate_movie}  ${comment.margin_top30}`}>
         <div className={`${comment.slidecontainer}`}>
-        <Rating name="half-rating" defaultValue={2.5} precision={0.5} size="large"  onChange={ratingChanged}/>
+        <Rating name="half-rating" defaultValue={0} precision={0.5} size="large"  onChange={ratingChanged}/>
     <br />
     <br />
     </div>
