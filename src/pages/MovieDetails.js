@@ -236,16 +236,15 @@ const CommentPage = () => {
 
         <h3 className={`${comment.margin_top30} ${comment.vl_s}`} >CAST & CREW </h3>
 
-
+        <div className={comment.scrollmenu} >
           {actorData.map((actor) => (
-            <div key={actor.id}>
-              {actor.Name}
-              <img src={actor.ActorImage}/>
+            <div>
+              <img  key={actor.id} src={actor.ActorImage}   className={comment.imgnewmovietop}/>
+              <h5 className={comment.textaligncenter}>{actor.Name}</h5> 
             </div>
           ))}
-
-
-
+          
+      </div>
         <h3 className={`${comment.margin_top30} ${comment.vl_s}`} >CRITIC REVIEWS FOR {movieName}</h3>
 
         <div className={`${comment.comment_movie} ${comment.margin_top30}`}>

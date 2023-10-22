@@ -193,3 +193,24 @@ width: 100%;
     background: #04AA6D;
     cursor: pointer;
   }
+
+  div {
+    box-sizing: border-box;
+  }
+  
+  .scrollmenu {
+    white-space: nowrap;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .imgnewmovietop {
+    padding: 20px;
+    width: 200px;
+  }
+  .textaligncenter{
+    text-align: center;
+  }
+  
