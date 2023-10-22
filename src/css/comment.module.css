@@ -112,6 +112,23 @@ width: 100%;
     margin-left: 10px;
 }
 
+.alinkbtn {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 15px 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: background-color 0.7s ease;
+    background-color: #333;
+}
+
+.alinkbtn:hover {
+    background-color: white;
+    color: #333;
+    border-color: #333;
+}
+
 
 .vl_s {
     border-left: 3px solid #e6b82c;

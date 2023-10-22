@@ -13,6 +13,7 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { addCommentDB } from '../context/addMovieInfo';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loading from './loading';
 
 const CommentPage = () => {
   const { id } = useParams();
@@ -240,7 +241,10 @@ delay(2000).then(() => {
 
   return (
     <>
-
+    {isLoading?(
+      <Loading/>
+    ):(
+      <>
       <Navbar />
       <div className={comment.container_movie}>
         <div className={comment.main_comment}>
@@ -273,7 +277,7 @@ delay(2000).then(() => {
                 id='commentarea'
               ></textarea>
               <br />
-              <button onClick={handleComment}>Comment</button>
+              <button className={comment.alinkbtn} onClick={handleComment}>Comment</button>
             </div>
 
 
@@ -332,6 +336,9 @@ delay(2000).then(() => {
         theme="light"
       />
       <Footer />
+      </>
+    )}
+
     </>
 
   )
