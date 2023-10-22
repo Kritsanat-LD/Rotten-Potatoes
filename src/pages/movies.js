@@ -108,7 +108,7 @@ function Movies() {
           <div key={movie.id} className={movieCss.content}>
             <img className={movieCss.img} src={movie.imageURL}/>
             <div className={movieCss.contentinfo}>
-              <p className={movieCss.contentscore}><FontAwesomeIcon icon={faStar} className={swipercss.dateicon} /> {(movie.Score/10)*100} %</p>
+              <p className={movieCss.contentscore}><FontAwesomeIcon icon={faStar} className={swipercss.dateicon} /> {Math.round((movie.Score/10)*100)} %</p>
               <p className={movieCss.contenttitle}>{movie.MovieName}</p>
             </div>
           </div>
