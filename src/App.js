@@ -4,12 +4,10 @@ import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './context/ProtectRoutes';
 const LazyLogin = lazy(() => import('./pages/Login'));
 const LazySignUp = lazy(() => import('./pages/SignUp'));
-const LazySearch = lazy(() => import('./pages/testSearch'));
 const LazyMovies = lazy(() => import('./pages/movies'));
 const LazyHomePage = lazy(() => import('./pages/homepage'));
 const LazyCommentPage = lazy(() => import('./pages/MovieDetails'));
 const LazyAddMovie = lazy(() => import('./pages/AddMovie'));
-const LazyMovieDetail = lazy(() => import('./pages/MovieDetail'));
 const LazyUpdateDetails = lazy(() => import('./pages/UpdateMovie'));
 const LazyAddMovieGenre = lazy(() => import('./pages/AddMovieGenre'));
 const LazyAddActor = lazy(() => import('./pages/AddActor'));
@@ -28,14 +26,11 @@ function App() {
           <Route path="/" element={<LazyHomePage />} />
             <Route path="login" element={<LazyLogin />} />
             <Route path="signup" element={<LazySignUp />} />
-            <Route path="search" element={<LazySearch />} />
             <Route path="Movies" element={<LazyMovies />} />
             <Route path="FrontMovieDetail/:id" element={<LazyCommentPage />} />
             <Route path="*" element={<NotFound />} />
 
-            <Route path="addmovie" element={<ProtectedRoute><LazyAddMovie /></ProtectedRoute>} />
-            <Route path="movieDetails/:id" element={<ProtectedRoute><LazyMovieDetail /></ProtectedRoute>} />
-            <Route path="movieUpdateDetails/:id" element={<ProtectedRoute><LazyUpdateDetails /></ProtectedRoute>} />
+            <Route path="addmovie" element={<ProtectedRoute><LazyAddMovie /></ProtectedRoute>} />            <Route path="movieUpdateDetails/:id" element={<ProtectedRoute><LazyUpdateDetails /></ProtectedRoute>} />
             <Route path="addmoviegenre" element={<ProtectedRoute><LazyAddMovieGenre /></ProtectedRoute>} />
             <Route path="addactor" element={<ProtectedRoute><LazyAddActor /></ProtectedRoute>} />
             <Route path="commentManagement" element={<ProtectedRoute><LazyComment /></ProtectedRoute>} />

@@ -3,14 +3,20 @@ import { db } from '../firebase';
 import comment from "../css/comment.module.css"
 import Navbar from './nav';
 import { useParams } from 'react-router-dom';
-import { doc, getDoc , getDocs , collection , updateDoc,query,orderBy } from 'firebase/firestore';
+import { doc, getDoc , getDocs , collection , updateDoc,query,orderBy, where } from 'firebase/firestore';
 import Footer from './footer';
+import { useNavigate } from 'react-router-dom'
+import { UserAuth } from '../context/AuthContext';
 import Rating from '@mui/material/Rating';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { addCommentDB } from '../context/addMovieInfo';
 
 
 const CommentPage = () => {
   const { id } = useParams(); 
+  const { user} = UserAuth();
+  const navigate = useNavigate('')
 
   const [trailer, setTrailer] = useState('')
   const [duration, setDuration] = useState(null)
@@ -19,28 +25,61 @@ const CommentPage = () => {
   const [movieInfo, setMovieInfo] = useState('')
   const [showDate, setShowDate] = useState(null)
   const [rate, setRate] = useState('')
+  const [nComment, setNComment] = useState(0)
   const [movieGenreData, setMovieGenre] = useState([])
-  const [actorData , setActor] = useState([])
+  const [actorData , setActors] = useState([])
   const [imageURL , setImageURL] = useState(null)
   const [isLoading, setIsLoading] = useState(true);
+  const [movieComment,setMovieComment] = useState([{}])
+  const [newComment,setNewComment] = useState('')
+  const [star,setStar] = useState(null)
   
   const ratingChanged = (newRating) => {
-    console.log(newRating.target.value*2);
+    setStar(newRating.target.value*2)
   };
-
-    const [sliderValue, setSliderValue] = useState(5); // เริ่มต้นค่าที่ต้องการ
-  
-    const handleSliderChange = (event) => {
-      setSliderValue(event.target.value);
-    }
   
   useEffect(() => {
     const fetchMovieDetails = async () => {
+      
       try {
         // Fetch movie details based on the "id" parameter
+        const UserComment = [];
         const movieDocRef = doc(db, 'Movies', id);
         const movieDocSnapshot = await getDoc(movieDocRef);
         const movieData = movieDocSnapshot.data();
+
+        const qComment = query(collection(db,"comment"),where("movie_id","==",id))
+        const commentSnapshot = await getDocs(qComment)
+        const fetchComment = commentSnapshot.docs.map((doc)=>({
+          id: doc.id,
+          ...doc.data(),
+        }))
+
+        const actorIds = movieData.Actors.map(actor => actor.value);
+        const actorPromises = actorIds.map(async actorId => {
+          const actorDocRef = doc(db, 'Actor', actorId);
+          const actorDocSnapshot = await getDoc(actorDocRef);
+          const actorData = actorDocSnapshot.data();
+          return actorData;
+        });
+
+        const actor = await Promise.all(actorPromises);
+
+        const userPromises = fetchComment.map(async (docuser) => {
+          const userDocRef = doc(db, 'user', docuser.user_id);
+          const userDocSnapshot = await getDoc(userDocRef);
+          const userData = userDocSnapshot.data();
+          return {
+            id: docuser.id,
+            comment: docuser.comment,
+            user: userData.name,
+            user_id: docuser.user_id,
+            user_score: docuser.user_score,
+          };
+        });
+
+        const userCommentData = await Promise.all(userPromises);
+        UserComment.push(...userCommentData);
 
         if (movieData) {
           setMovieName(movieData.MovieName)
@@ -49,11 +88,13 @@ const CommentPage = () => {
           setDuration(movieData.Duration)
           setRate(movieData.Rate)
           setMovieGenre(movieData.MovieGenres)
-          setActor(movieData.Actors)
           setImageURL(movieData.imageURL)
           setScore(movieData.Score)
           setTrailer(movieData.Trailer)
+          setNComment(movieData.n_comment)
         }
+        setMovieComment(UserComment)
+        setActors(actor);
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching movie details:', error);
@@ -87,6 +128,64 @@ const CommentPage = () => {
     return new Date(dateString).toLocaleDateString('th-TH', options);
   };
 
+
+  const handleComment = async() =>{
+
+    let check = false;
+    if(user){
+      const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+      const day = currentDate.getDate().toString().padStart(2, '0');
+
+      const formattedDate = `${year}-${month}-${day}`;
+      
+      movieComment.map((comm)=>{
+        if(user.uid == comm.user_id){
+          check=true
+        }
+      })
+
+      if(check==false){
+        try{
+          const data = {
+            comment: newComment,
+            commentDate: formattedDate,
+            movie_id: id,
+            user_id: user.uid,
+            user_score:star
+          }
+
+          console.log(data)
+          await addCommentDB(data);
+          console.log('Comment added successfully');
+          let newscore = (score+star)/(nComment+1)
+
+          const scoreRef = doc(db, "Movies" ,id)
+          await updateDoc(scoreRef, {
+            Score: newscore,
+            n_comment: nComment+1
+          });
+        }catch(error){
+          console.error('Error add comment:', error);
+        }
+      }else{
+        window.alert('คอมเมนต์ไปแล้ว');
+      }
+    
+    }else{
+      window.alert('ยังไม่ได้ล็อกอิน');
+      navigate("/login");
+    }
+
+    
+
+  }
+
+
+
+
+
   return (
     <>
 
@@ -105,20 +204,23 @@ const CommentPage = () => {
               {showDate ? showDate.split('-')[0] : 'Year not available'},{' '}
               {movieGenreData.map((genre) => genre.label).join(', ')}, {convertMinutesToHoursAndMinutes(duration)}
             </h3>
-            <h1>{(score/10)*100} %</h1>
+            <h1>{Math.round((score/10) * 100)} %</h1>
           </div>
         </div>
         <h3 className={`${comment.margin_top30} ${comment.vl_s}`}>RATE AND REVIEW</h3>
         <div className={`${comment.comment_rate_movie}  ${comment.margin_top30}`}>
         <div className={`${comment.slidecontainer}`}>
-        <Rating name="half-rating" defaultValue={2.5} precision={0.5} size="large"  onChange={ratingChanged}/>
+        <Rating name="half-rating" defaultValue={0} precision={0.5} size="large"  onChange={ratingChanged}/>
     <br />
     <br />
     </div>
           <textarea 
+            onChange={(e) => setNewComment(e.target.value)}
             className={`${comment.rate_and_review_widget__textbox_textarea}`}
             placeholder="What did you think of the movie? (optional)"
           ></textarea>
+          <br/>
+          <button onClick={handleComment}>Comment</button>
         </div>
 
         
@@ -128,103 +230,39 @@ const CommentPage = () => {
         <h5><strong className={`${comment.margin_top30} ${comment.font_we}`} >Release Date  : </strong>{formatDateToEnglish(showDate)}</h5>
 
 
+
+
         <h5 className={`${comment.margin_top30}`}>{movieInfo}</h5>
+
+        <h3 className={`${comment.margin_top30} ${comment.vl_s}`} >CAST & CREW </h3>
+
+
+          {actorData.map((actor) => (
+            <div key={actor.id}>
+              {actor.Name}
+              <img src={actor.ActorImage}/>
+            </div>
+          ))}
+
+
+
         <h3 className={`${comment.margin_top30} ${comment.vl_s}`} >CRITIC REVIEWS FOR {movieName}</h3>
 
         <div className={`${comment.comment_movie} ${comment.margin_top30}`}>
-          <div className={comment.comment_block}>
+
+        {movieComment.map((comm)=>(
+          <div key={comm.id} className={comment.comment_block}>
             <div className={comment.border_comment}>
-              <span className={comment.comment}>Saw X wipes that silliness out, positioning itself as a direct sequel to "Saw" and presenting a singular, streamlined story of revenge that works from a clear channel of logic.</span>
+            <FontAwesomeIcon icon={faCircleUser} /> : {comm.user} <br/>
+              <span className={comment.comment}>{comm.comment}</span>
             </div>
-            <img src="http://embassycineplex.com/uploads/movie/yFOAuT74gm202307291810.jpg" alt="" style={{ width: '100px' }} />
-          </div>
-
-          <div className={comment.comment_block}>
-            <div className={comment.border_comment}>
-              <span className="comment">Saw X wipes that silliness out, positioning itself as a direct sequel to "Saw" and presenting a singular, streamlined story of revenge that works from a clear channel of logic.</span>
-            </div>
-            <img src="http://embassycineplex.com/uploads/movie/yFOAuT74gm202307291810.jpg" alt="" style={{ width: '100px' }} />
-          </div>
-
-          <div className={comment.comment_block}>
-            <div className={comment.border_comment}>
-              <span className="comment">Saw X wipes that silliness out, positioning itself as a direct sequel to "Saw" and presenting a singular, streamlined story of revenge that works from a clear channel of logic.</span>
-            </div>
-            <img src="http://embassycineplex.com/uploads/movie/yFOAuT74gm202307291810.jpg" alt="" style={{ width: '100px' }} />
-          </div>
-
-          <div className={comment.comment_block}>
-            <div className={comment.border_comment}>
-              <span className="comment">Saw X wipes that silliness out, positioning itself as a direct sequel to "Saw" and presenting a singular, streamlined story of revenge that works from a clear channel of logic.</span>
-            </div>
-            <img src="http://embassycineplex.com/uploads/movie/yFOAuT74gm202307291810.jpg" alt="" style={{ width: '100px' }} />
-          </div>
-
-          <div className={comment.comment_block}>
-            <div className={comment.border_comment}>
-              <span className="comment">Saw X wipes that silliness out, positioning itself as a direct sequel to "Saw" and presenting a singular, streamlined story of revenge that works from a clear channel of logic.</span>
-            </div>
-            <img src="http://embassycineplex.com/uploads/movie/yFOAuT74gm202307291810.jpg" alt="" style={{ width: '100px' }} />
-          </div>
-
-         <div className={comment.comment_block}>
-            <div className={comment.border_comment}>
-              <span className="comment">Saw X wipes that silliness out, positioning itself as a direct sequel to "Saw" and presenting a singular, streamlined story of revenge that works from a clear channel of logic.</span>
-            </div>
-            <img src="http://embassycineplex.com/uploads/movie/yFOAuT74gm202307291810.jpg" alt="" style={{ width: '100px' }} />
-          </div>
-
-          <div className={comment.comment_block}>
-            <div className={comment.border_comment}>
-              <span className="comment">Saw X wipes that silliness out, positioning itself as a direct sequel to "Saw" and presenting a singular, streamlined story of revenge that works from a clear channel of logic.</span>
-            </div>
-            <img src="http://embassycineplex.com/uploads/movie/yFOAuT74gm202307291810.jpg" alt="" style={{ width: '100px' }} />
-          </div>
-
-          <div className={comment.comment_block}>
-            <div className={comment.border_comment}>
-              <span className="comment">Saw X wipes that silliness out, positioning itself as a direct sequel to "Saw" and presenting a singular, streamlined story of revenge that works from a clear channel of logic.</span>
-            </div>
-            <img src="http://embassycineplex.com/uploads/movie/yFOAuT74gm202307291810.jpg" alt="" style={{ width: '100px' }} />
-          </div>
-
-         <div className={comment.comment_block}>
-            <div className={comment.border_comment}>
-              <span className="comment">Saw X wipes that silliness out, positioning itself as a direct sequel to "Saw" and presenting a singular, streamlined story of revenge that works from a clear channel of logic.</span>
-            </div>
-            <img src="http://embassycineplex.com/uploads/movie/yFOAuT74gm202307291810.jpg" alt="" style={{ width: '100px' }} />
-          </div>
-
-         <div className={comment.comment_block}>
-            <div className={comment.border_comment}>
-              <span className="comment">Saw X wipes that silliness out, positioning itself as a direct sequel to "Saw" and presenting a singular, streamlined story of revenge that works from a clear channel of logic.</span>
-            </div>
-            <img src="http://embassycineplex.com/uploads/movie/yFOAuT74gm202307291810.jpg" alt="" style={{ width: '100px' }} />
-          </div>
-
-         <div className={comment.comment_block}>
-            <div className={comment.border_comment}>
-              <span className="comment">Saw X wipes that silliness out, positioning itself as a direct sequel to "Saw" and presenting a singular, streamlined story of revenge that works from a clear channel of logic.</span>
-            </div>
-            <img src="http://embassycineplex.com/uploads/movie/yFOAuT74gm202307291810.jpg" alt="" style={{ width: '100px' }} />
-          </div>
-
-         <div className={comment.comment_block}>
-            <div className={comment.border_comment}>
-              <span className="comment">Saw X wipes that silliness out, positioning itself as a direct sequel to "Saw" and presenting a singular, streamlined story of revenge that works from a clear channel of logic.</span>
-            </div>
-            <img src="http://embassycineplex.com/uploads/movie/yFOAuT74gm202307291810.jpg" alt="" style={{ width: '100px' }} />
-          </div>
-
-
-
-
-
-
+         </div>
+        ))}
 
 
         </div>
       </div>
+      
     </div>
   </div>
   <Footer/>

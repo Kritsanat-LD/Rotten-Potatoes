@@ -32,4 +32,14 @@ const addMovieInfoDB = async (data) => {
     }
 };
 
-  export { addMovieInfoDB , addActorDB , addMovieGenreDB};
+  const addCommentDB = async (data) =>{
+    try{
+      const newDocRef = collection(db,'comment')
+      await addDoc(newDocRef,data);
+      console.log('Comment added to Firestore successfully');
+    }catch(error){
+      console.error('Error adding Comment to Firestore:', error);
+    }
+  }
+
+  export { addMovieInfoDB , addActorDB , addMovieGenreDB , addCommentDB};

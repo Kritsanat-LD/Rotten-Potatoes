@@ -151,6 +151,7 @@ const handleUploadMovie = () => {
                     Trailer: trailer,
                     imageURL: imageURL,
                     Score: 0,
+                    n_comment: 0
                 };
 
                 await addMovieInfoDB(data);

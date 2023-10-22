@@ -20,17 +20,9 @@ const Comment = () => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const options = {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: true,
-        };
 
         const commentsQuery = collection(db, 'comment');
-        const commentsSnapshot = await getDocs(query(commentsQuery, orderBy('commentDate', 'desc')));
+        const commentsSnapshot = await getDocs(query(commentsQuery));
         const commentsData = [];
         const movieNamesData = [];
 
@@ -56,12 +48,13 @@ const Comment = () => {
               comment: comment.comment,
               userName: user.name,
               movieName: movie.MovieName,
-              time: Intl.DateTimeFormat('en-US', options).format(comment.commentDate.toDate()),
+              time: comment.commentDate,
             });
           }
         }
         setCommentsWithNames(commentsData);
-        setMovieNames(movieNamesData);
+        const uniqueMovieNames = new Set(movieNamesData);
+        setMovieNames(Array.from(uniqueMovieNames));
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching comments:', error);
