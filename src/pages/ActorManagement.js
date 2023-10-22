@@ -11,7 +11,19 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ActorManagement = () =>{
     const [actor,setActor] = useState([])
-
+    const [selectActor, setselectActor] = useState(null);
+    const [isPopupVisible, setPopupVisible] = useState(false);
+    const openPopup = (actor) => {
+        setselectActor(actor);
+        console.log(actor)
+        setPopupVisible(true);
+      };
+    
+      const closePopup = (event) => {
+     
+          setPopupVisible(false);
+        
+      };
     useEffect(()=>{
         const fecthActor = async () =>{
             try{
@@ -53,6 +65,7 @@ const ActorManagement = () =>{
     // };
     
     const handleDeleteActor = (actorId, actorName) => {
+        closePopup()
         return toast.promise(
             async (resolve) => {
                 try {
@@ -90,10 +103,31 @@ const ActorManagement = () =>{
                   <a className={AdminManagementCss.contentactorname}>{e.Name}</a>
                   <a className={AdminManagementCss.contentactorDate}>{e.BirthDate}</a>
                 </div>
-                <button className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteActor(e.id,e.Name)}><FontAwesomeIcon icon={faTrash} /></button>
+                <button className={AdminManagementCss.contentbtndelete} onClick={() => openPopup(e)}><FontAwesomeIcon icon={faTrash} /></button>
               </div>
         ))}
          </div>
+         {isPopupVisible && (
+      <div className={AdminManagementCss.allpage} id="popupcontainer">
+      <div className={AdminManagementCss.containerpopup}>
+      <div className={AdminManagementCss.popupTitle}>Delete Actor?</div>
+      <div className={AdminManagementCss.popupline}></div>
+      <div className={AdminManagementCss.popupcontent}>
+        <label className={AdminManagementCss.popuptext}>Are you sure to delete "{selectActor.Name}"</label>
+        <img
+          src={selectActor.ActorImage}
+          className={AdminManagementCss.popupimg}
+          alt="Movie Poster"
+        />
+      </div>
+      <div className={AdminManagementCss.buttonsContainer}>
+        <button className={AdminManagementCss.acceptbtn} onClick={() => handleDeleteActor(selectActor.id,selectActor.Name)}>Yes</button>
+        <button className={AdminManagementCss.rejectbtn} onClick={closePopup} >No</button>
+      </div>
+    </div>
+    
+    </div>
+     )}
          <ToastContainer
                             position="top-center"
                             autoClose={2500}

@@ -19,7 +19,7 @@ const AddMovieGenre = () => {
 
   const openPopup = (genre) => {
     setSelectedGenre(genre);
-    console.log(genre)
+    // console.log(genre)
     setPopupVisible(true);
   };
 
@@ -77,6 +77,7 @@ const AddMovieGenre = () => {
     )
   };
   const handleDeleteGenre = async (genre) => {
+    closePopup()
     return toast.promise(
       async (resolve) => {
         try {

@@ -14,8 +14,20 @@ const Comment = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedMovie, setSelectedMovie] = useState(''); // State to store the selected movie name
   const [movieNames, setMovieNames] = useState([]); // State to store the list of movie names
+  const [SelectDelete, setSelectDelete] = useState(null);
+  const [isPopupVisible, setPopupVisible] = useState(false);
 
+  const openPopup = (comment) => {
+    setSelectDelete(comment);
+    //  console.log(comment)
+    setPopupVisible(true);
+  };
 
+  const closePopup = (event) => {
+ 
+      setPopupVisible(false);
+    
+  };
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -66,6 +78,7 @@ const Comment = () => {
   }, []);
 
   const handleDeleteComment = async (commentID) => {
+    closePopup()
     return toast.promise(
       async (resolve) => {
         try {
@@ -125,7 +138,7 @@ const Comment = () => {
                     <p><strong>Movie:</strong>      {e.movieName}</p>
                     <p><strong>Comment:</strong>    {e.comment}</p>
                     <p><strong>Time :</strong>      {e.time}</p>
-                    <button className={AdminManagementCss.contentbtndelete1} onClick={() => handleDeleteComment(e.id)}><FontAwesomeIcon icon={faTrash} /></button>
+                    <button className={AdminManagementCss.contentbtndelete1}  onClick={() => openPopup(e)}><FontAwesomeIcon icon={faTrash} /></button>
                     <br />
                     <br />
                   </div>
@@ -134,6 +147,27 @@ const Comment = () => {
             </>
           )}
         </ul>
+        {isPopupVisible && (
+      <div className={AdminManagementCss.allpage} id="popupcontainer">
+      <div className={AdminManagementCss.containerpopup}>
+      <div className={AdminManagementCss.popupTitle}>Delete Comment?</div>
+      <div className={AdminManagementCss.popupline}></div>
+      <div className={AdminManagementCss.popupcontent}>
+        <label className={AdminManagementCss.popuptext}>Are you sure to delete this comment "{SelectDelete.comment}"</label>
+        {/* <img
+          src="https://scontent.fbkk29-1.fna.fbcdn.net/v/t1.15752-9/394457892_1672833233241862_4956274021755319669_n.png?_nc_cat=101&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=uGd8vjxbn0cAX_8KoVG&_nc_ht=scontent.fbkk29-1.fna&_nc_e2o=s&oh=03_AdSpRgL0hbBfnp1awbr_q-v0aZ3oVVgIRw4hfNfTPCDpBg&oe=655C8869"
+          className={admingenrecss.popupimg}
+          alt="Movie Poster"
+        /> */}
+      </div>
+      <div className={AdminManagementCss.buttonsContainer}>
+        <button className={AdminManagementCss.acceptbtn} onClick={() => handleDeleteComment(SelectDelete.id)} >Yes</button>
+        <button className={AdminManagementCss.rejectbtn} onClick={closePopup} >No</button>
+      </div>
+    </div>
+    
+    </div>
+     )}
         <ToastContainer
                             position="top-center"
                             autoClose={2500}

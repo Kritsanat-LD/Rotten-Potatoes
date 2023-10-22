@@ -34,12 +34,13 @@
 }
 
 .text {
-flex: 1;
-white-space: nowrap; 
-overflow: hidden;
-color:#2c2c2c;
-text-overflow: ellipsis;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #2c2c2c;
 }
+
 
 .number {
     font-weight: bold;

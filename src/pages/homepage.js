@@ -210,11 +210,11 @@ const HomePage = () => {
         {movieSortScore.map((movie)=>(
           <>            
           <div class={listcss.listitem} key={movie.id}>
-          <Link to={`/FrontMovieDetail/${movie.id}`} className={swipercss.link}>
-            <a class={listcss.text}>{movie.MovieName}</a>
+          <Link to={`/FrontMovieDetail/${movie.id}`}  class={listcss.text}>
+            <p> {movie.MovieName}</p>
             </Link>
-            <Link to={`/FrontMovieDetail/${movie.id}`} className={swipercss.link}>
-            <a class={listcss.number}>{(movie.Score/10)*100} %</a>
+            <Link to={`/FrontMovieDetail/${movie.id}`} >
+            <p class={listcss.number}> {Math.round((movie.Score/10)*100)} %</p>
             </Link>
             
           </div>

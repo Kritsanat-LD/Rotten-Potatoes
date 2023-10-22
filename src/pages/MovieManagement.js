@@ -15,7 +15,8 @@ const MovieManagement = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedGenre, setSelectedGenre] = useState({}); // State for selected genre
   const [movieGenres, setMovieGenres] = useState([]); // State for movie genres
-
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [isPopupVisible, setPopupVisible] = useState(false);
   const itemsPerPage = 7; // จำนวนรายการต่อหน้า
   const [currentPage, setCurrentPage] = useState(1); // หน้าเริ่มต้น
 
@@ -27,6 +28,17 @@ const MovieManagement = () => {
   setCurrentPage(page);
   };
 
+  const openPopup = (movie) => {
+    setSelectedMovie(movie);
+    // console.log(movie)
+    setPopupVisible(true);
+  };
+
+  const closePopup = (event) => {
+ 
+      setPopupVisible(false);
+    
+  };
   const totalPages = Math.ceil(data.length / itemsPerPage);
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
@@ -93,6 +105,7 @@ const MovieManagement = () => {
   };
 
       const handleDeleteMovie = async (movieId) => {
+        closePopup()
         return toast.promise(
           async (resolve) => {
         try {
@@ -110,6 +123,7 @@ const MovieManagement = () => {
        }
    ).then(() => {
           setData((prevData) => prevData.filter((data) => data.id !== movieId));
+          
    });
 };
   return (
@@ -156,7 +170,7 @@ const MovieManagement = () => {
       <Link to={`/movieUpdateDetails/${movie.id}`} className={AdminManagementCss.contentbtnedit}>
         <FontAwesomeIcon icon={faPencil} />
       </Link>
-      <button className={AdminManagementCss.contentbtndelete} onClick={() => handleDeleteMovie(movie.id)}>
+      <button className={AdminManagementCss.contentbtndelete} onClick={() => openPopup(movie)}>
         <FontAwesomeIcon icon={faTrash} />
       </button>
     </div>
@@ -177,6 +191,27 @@ const MovieManagement = () => {
           ))}
         </div>
       </div>
+      {isPopupVisible && (
+      <div className={AdminManagementCss.allpage} id="popupcontainer">
+      <div className={AdminManagementCss.containerpopup}>
+      <div className={AdminManagementCss.popupTitle}>Delete Movie?</div>
+      <div className={AdminManagementCss.popupline}></div>
+      <div className={AdminManagementCss.popupcontent}>
+        <label className={AdminManagementCss.popuptext}>Are you sure to delete "{selectedMovie.MovieName}"</label>
+        <img
+          src={selectedMovie.imageURL}
+          className={AdminManagementCss.popupimg}
+          alt="Movie Poster"
+        />
+      </div>
+      <div className={AdminManagementCss.buttonsContainer}>
+        <button className={AdminManagementCss.acceptbtn} onClick={() => handleDeleteMovie(selectedMovie.id)}>Yes</button>
+        <button className={AdminManagementCss.rejectbtn} onClick={closePopup} >No</button>
+      </div>
+    </div>
+    
+    </div>
+     )}
       <ToastContainer
                             position="top-center"
                             autoClose={1500}
