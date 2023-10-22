@@ -289,13 +289,14 @@ delay(2000).then(() => {
 
             <h3 className={`${comment.margin_top30} ${comment.vl_s}`} >CAST & CREW </h3>
 
-
-            {actorData.map((actor) => (
-              <div key={actor.id}>
-                {actor.Name}
-                <img src={actor.ActorImage} />
-              </div>
-            ))}
+            <div className={comment.scrollmenu}>
+  {actorData.map((actor) => (
+    <div key={actor.id} className={comment.actorItem}>
+      <img src={actor.ActorImage} alt={actor.Name} className={comment.imgnewmovietop} />
+      <h5 className={comment.textaligncenter}>{actor.Name}</h5>
+    </div>
+  ))}
+</div>
 
 
 
