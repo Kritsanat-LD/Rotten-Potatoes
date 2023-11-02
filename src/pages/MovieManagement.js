@@ -166,7 +166,9 @@ const MovieManagement = () => {
           `${movie.MovieName.slice(0, 15)}...`
           : movie.MovieName}</p>
       </Link>
-      <p className={AdminManagementCss.contentscore}>Score: {Math.round((movie.Score/10)*100)} %</p>
+      <p className={AdminManagementCss.contentscore}>Score: {movie.n_comment > 0
+                ? `${Math.round(((movie.Score / movie.n_comment) / 10) * 100)} %`
+                : '0 %'}</p>
       <Link to={`/movieUpdateDetails/${movie.id}`} className={AdminManagementCss.contentbtnedit}>
         <FontAwesomeIcon icon={faPencil} />
       </Link>

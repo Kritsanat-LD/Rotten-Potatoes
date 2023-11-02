@@ -86,6 +86,7 @@
     bottom: 0;
     width: 100%;
     z-index: 99;
+    
 
 }
 
@@ -113,6 +114,7 @@
     text-align: center;
     text-decoration: none;
     /* margin-top: 0.5rem; */
+    cursor: pointer;
     padding: 0 0;
     font-size: 12px;
 }
@@ -121,7 +123,7 @@
     display: none;
 }
 
-.listpage .img {
+ .img {
     width: 2em;
     height: 2em;
     margin-left: 0;

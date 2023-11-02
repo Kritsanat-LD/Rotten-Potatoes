@@ -189,7 +189,9 @@ const HomePage = () => {
           <Link to={`/FrontMovieDetail/${movie.id}`} className={swipercss.link}>
             <img class={swipercss.coverimg} src={movie.imageURL}/>
              <div class={swipercss.content}>
-              <div class={swipercss.score}> <FontAwesomeIcon icon={faStar} className={swipercss.dateicon} /><p class={swipercss.datetext}>{(movie.Score/10)*100} %</p></div>
+              <div class={swipercss.score}> <FontAwesomeIcon icon={faStar} className={swipercss.dateicon} /><p class={swipercss.datetext}> {movie.n_comment > 0
+                ? `${Math.round(((movie.Score / movie.n_comment) / 10) * 100)} %`
+                : '0 %'}</p></div>
             <a class={swipercss.Title}>{movie.MovieName}</a>
           </div>
           </Link>
@@ -214,7 +216,9 @@ const HomePage = () => {
             <p> {movie.MovieName}</p>
             </Link>
             <Link to={`/FrontMovieDetail/${movie.id}`} >
-            <p class={listcss.number}> {Math.round((movie.Score/10)*100)} %</p>
+            <p class={listcss.number}>{movie.n_comment > 0
+                ? `${Math.round(((movie.Score / movie.n_comment) / 10) * 100)} %`
+                : '0 %'}</p>
             </Link>
             
           </div>

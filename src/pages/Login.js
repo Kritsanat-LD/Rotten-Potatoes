@@ -59,7 +59,7 @@ const Login = () => {
             setIsLoading(false);
         } catch (error) {
             setIsLoading(false);
-            errorlabelid.innerHTML = "You have no Account yet";
+            errorlabelid.innerHTML = "Invalid email or password. Please try again.";
         }
     };
 

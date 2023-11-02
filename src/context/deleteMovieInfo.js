@@ -1,5 +1,5 @@
 import { db } from '../firebase';
-import { collection, deleteDoc , doc,  getDocs, query, updateDoc, where , deleteField } from 'firebase/firestore';
+import { collection, deleteDoc , doc,  getDocs, query, updateDoc, where , deleteField ,getDoc} from 'firebase/firestore';
 
 const deleteMovieInfoDB = async (data) => {
     try{
@@ -74,13 +74,54 @@ const changeMovieGenreInMovieTable = async (genre) =>{
 
 const deleteCommentDB = async (commentID) =>{
     try{
-        await deleteDoc(doc(db, "comment", commentID));
+      // console.log(commentID)
+        await updateScoreandnumbercomment(commentID)
         console.log('Comment deleted from Firestore successfully');
     }catch(error){
         console.error('Error deleted comment from Firestore:', error);
     }
 }
 
+const updateScoreandnumbercomment = async (commentID) =>{
+  try {
+    const commentDocRef = doc(db, "comment", commentID);
+    const commentSnapshot = await getDoc(commentDocRef);
+
+    if (commentSnapshot.exists()) {
+      const commentData = commentSnapshot.data();
+      const movieID = commentData.movie_id;
+      const nScore = commentData.user_score;
+
+      // Get the current movie document
+      const movieDocRef = doc(db, "Movies", movieID);
+      const movieSnapshot = await getDoc(movieDocRef);
+
+      if (movieSnapshot.exists()) {
+        const movieData = movieSnapshot.data();
+        const currentNComment = movieData.n_comment;
+        const currentScore = movieData.Score;
+        console.log(commentData)
+        console.log(movieData)
+        // Update n_comment and score fields
+        await updateDoc(movieDocRef, {
+          n_comment: currentNComment - 1,
+          Score: currentScore - nScore,
+        });
+        await deleteDoc(doc(db, "comment", commentID));
+
+        console.log("Movie document updated successfully!");
+      } else {
+        console.log("Movie document does not exist!");
+      }
+    } else {
+      console.log("Comment document does not exist!");
+    }
+  } catch (error) {
+    console.error("Error updating movie document:", error);
+  }
+
+
+}
 const deleteActorInfoDB = async (actorId,actorName) =>{
     try{
         await deleteActorInMovieOnActorDeleted(actorId,actorName)

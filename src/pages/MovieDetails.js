@@ -23,6 +23,7 @@ const CommentPage = () => {
   const [trailer, setTrailer] = useState('')
   const [duration, setDuration] = useState(null)
   const [score, setScore] = useState(null)
+  const [numbercomment, setnumbercomment] = useState(null)
   const [movieName, setMovieName] = useState('')
   const [movieInfo, setMovieInfo] = useState('')
   const [showDate, setShowDate] = useState(null)
@@ -33,12 +34,25 @@ const CommentPage = () => {
   const [imageURL, setImageURL] = useState(null)
   const [isLoading, setIsLoading] = useState(true);
   const [movieComment, setMovieComment] = useState([{}])
+  const [usercomment, setusercomment] = useState('')
   const [newComment, setNewComment] = useState('')
   const [star, setStar] = useState(0)
+  const [isPopupVisible, setPopupVisible] = useState(false);
 
   const ratingChanged = (newRating) => {
     setStar(newRating.target.value)
   };
+
+
+  const openPopup = (comment) => {
+    setPopupVisible(true);
+  };
+
+  const closePopup = (event) => {
+ 
+    setPopupVisible(false);
+  
+};
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -93,10 +107,15 @@ const CommentPage = () => {
           setMovieGenre(movieData.MovieGenres)
           setImageURL(movieData.imageURL)
           setScore(movieData.Score)
+          setnumbercomment(movieData.n_comment)
           setTrailer(movieData.Trailer)
           setNComment(movieData.n_comment)
         }
         setMovieComment(UserComment)
+
+        const userComments = UserComment.filter(comment => comment.user_id === user.uid);
+        console.log(userComments)
+        setusercomment(userComments)
         setActors(actor);
         setIsLoading(false);
       } catch (error) {
@@ -177,16 +196,16 @@ const CommentPage = () => {
           await addCommentDB(data);
       
 
-            setMovieComment((prevComments) => [...prevComments, data]);
+            // setMovieComment((prevComments) => [...prevComments, data]);
             setNewComment('');
             setStar(0);
             document.getElementById('commentarea').value=''
 
-          let newscore = (score + star* 2) / (nComment + 1)
+          // let newscore = (score + star* 2) / (nComment + 1)
 
           const scoreRef = doc(db, "Movies", id)
           await updateDoc(scoreRef, {
-            Score: newscore,
+            Score: (score + star* 2),
             n_comment: nComment + 1
           });
           console.log(movieComment)
@@ -200,16 +219,17 @@ const CommentPage = () => {
         }
       )
       } else {
-        toast.error('You already have commented.', {
-          position: 'top-center',
-          autoClose: 1500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: 0,
-          theme: 'light',
-        });
+        // toast.error('You already have commented.', {
+        //   position: 'top-center',
+        //   autoClose: 1500,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: false,
+        //   draggable: true,
+        //   progress: 0,
+        //   theme: 'light',
+        // });
+        openPopup();
         return;
       }
 
@@ -235,7 +255,40 @@ delay(2000).then(() => {
 
   }
 
-
+  const UpdateScore = async () => {
+    return toast.promise(
+      async (resolve) => {
+    try {
+      const movieRef = doc(db, 'Movies', id);
+      await updateDoc(movieRef, {
+        Score: score - (usercomment[0]?.user_score) + (star * 2),
+      });
+  
+      const commentRef = doc(db, 'comment', usercomment[0].id);
+      await updateDoc(commentRef, {
+        comment : newComment,
+        user_score: star * 2,
+      });
+      setNewComment('');
+      setStar(0);
+      document.getElementById('commentarea').value=''
+  
+      console.log('Score updated successfully.');
+    } catch (error) {
+      console.error('Error updating score and comment:', error);
+    }
+     },
+      {
+        pending: 'Update comment, please wait...',
+        success: 'Comment updated successfully!',
+        error: 'Error update comment. Please try again later.',
+      }).then(() => {
+        {
+         closePopup()
+       }
+   });
+  };
+  
 
 
 
@@ -260,7 +313,13 @@ delay(2000).then(() => {
                   {showDate ? showDate.split('-')[0] : 'Year not available'},{' '}
                   {movieGenreData.map((genre) => genre.label).join(', ')}, {convertMinutesToHoursAndMinutes(duration)}
                 </h3>
-                <h1>{Math.round((score / 10) * 100)} %</h1>
+                <h1>
+                  {numbercomment > 0
+                    ? `${Math.round(((score / numbercomment) / 10) * 100)} %`
+                    : '0 %'
+                  }
+                </h1>
+
               </div>
             </div>
             <h3 className={`${comment.margin_top30} ${comment.vl_s}`}>RATE AND REVIEW</h3>
@@ -277,8 +336,28 @@ delay(2000).then(() => {
                 id='commentarea'
               ></textarea>
               <br />
-              <button className={comment.alinkbtn} onClick={handleComment}>Comment</button>
+              <button className={comment.alinkbtn}  onClick={handleComment}>Comment</button>
             </div>
+
+            {isPopupVisible && (
+      <div className={comment.allpage} id="popupcontainer">
+      <div className={comment.containerpopup}>
+      <div className={comment.popupTitle}>Update Comment?</div>
+      <div className={comment.popupline}></div>
+      <div className={comment.popupcontent}>
+        <label className={comment.popuptext}>Are you sure to Update From this comment ?</label>
+        <label className={comment.popuptext}>"{usercomment[0]?.comment}"</label>
+        <label className={comment.popuptext}>To</label>
+        <label className={comment.popuptext}>"{newComment}"</label>
+      </div>
+      <div className={comment.buttonsContainer}>
+        <button className={comment.acceptbtn} onClick={UpdateScore}>Yes</button>
+        <button className={comment.rejectbtn}  onClick={closePopup}  >No</button>
+      </div>
+    </div>
+    
+    </div>
+     )}
 
 
             <h3 className={`${comment.margin_top30} ${comment.vl_s}`}>MOVIE INFO</h3>
