@@ -53,56 +53,6 @@ const AddMovie = () => {
     fetchData();
   }, []);
 
-  // const handleUploadMovie = async () => {
-    
-
-  //   try {
-  //     let imageURL = null;
-  //     if (selectedImage) {
-  //       imageURL = await uploadImage(selectedImage);
-  //     }
-
-  //     const data = {
-  //       MovieName: movieName,
-  //       MovieInfo: movieInfo,
-  //       MovieGenres: movieGenresSelect,
-  //       Actors: actorSelect,
-  //       Duration: parseInt(duration),
-  //       ShowDate: showDate,
-  //       Rate: rate,
-  //       Trailer: trailer,
-  //       imageURL: imageURL,
-  //       Score: 0
-  //     };
-
-  //     if(data.MovieName==='' || data.MovieInfo===''|| data.MovieGenres===''|| data.Actors===''
-  //     || data.Duration===''|| data.ShowDate===''|| data.Rate===''|| data.Trailer===''|| data.imageURL===null){
-  //       window.alert('You forget to add something');
-  //       return 0;
-  //     }
-
-  //     await addMovieInfoDB(data);
-  //     console.log('Movie data added successfully');
-  //   } catch (error) {
-  //     console.error('Error uploading image or adding movie info:', error);
-  //   }
-
-  //   // Clear the input fields and selections
-  //   setMovieName('');
-  //   setMovieInfo('');
-  //   setMovieGenresSelect([]); // Clear selected genres
-  //   setActorSelect([]);
-  //   setDuration('');
-  //   setShowDate(null);
-  //   setRate('');
-  //   setTrailer('');
-  //   setSelectedImage(null);
-
-  //   window.alert('Data added successfully!');
-  //   window.location.reload();
-  // };
-
-  
 const handleUploadMovie = () => {
     const validateFields = () => {
         if (
@@ -207,23 +157,23 @@ const handleUploadMovie = () => {
           <div class={AdminCss.form}>
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Movie Name</label>
-              <input class={AdminCss.input} type="text" placeholder="Enter Movie Name" value={movieName} onChange={(e) => setMovieName(e.target.value)} required />
+              <input class={AdminCss.input} pattern="[\w\s]{1,50}" type="text" placeholder="Enter Movie Name" value={movieName} onChange={(e) => setMovieName(e.target.value)} required />
             </div>
 
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Movie Info</label>
-              <input class={AdminCss.input} type="text" placeholder="Enter Movie Info" value={movieInfo} onChange={(e) => setMovieInfo(e.target.value)} required pattern="[\w\s]{2,600}"/>
+              <input class={AdminCss.input} pattern="[\w\s]{2,600}" type="text" placeholder="Enter Movie Info" value={movieInfo} onChange={(e) => setMovieInfo(e.target.value)} required />
             </div>
 
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Trailer</label>
-              <input class={AdminCss.input} type="text" placeholder="Enter Trailer" value={trailer} onChange={(e) => setTrailer(e.target.value)} required pattern="<iframe .+$</iframe>"/>
+              <input class={AdminCss.input} pattern="<iframe[\s\S]*<\/iframe>" type="text" placeholder="Enter Trailer" value={trailer} onChange={(e) => setTrailer(e.target.value)} required/>
             </div>
 
             <div class={AdminCss.column}>
               <div class={AdminCss.inputbox}>
                 <label class={AdminCss.label}>Movie Duration</label>
-                <input class={AdminCss.input} type="number" placeholder="Enter Movie Duration" value={duration} onChange={(e) => setDuration(e.target.value)} required />
+                <input class={AdminCss.input} /*1-300*/pattern="^(0*(?:[1-9][0-9]?|300))$" type="number" placeholder="Enter Movie Duration" value={duration} onChange={(e) => setDuration(e.target.value)} required />
               </div>
               
               <div class={AdminCss.inputbox}>

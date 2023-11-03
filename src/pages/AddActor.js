@@ -18,29 +18,6 @@ const AddActor = () => {
     const handleImageSelection = (event) => {
         setActorImage(event.target.files[0]);
     }
-
-    // const handleAddActor = async () => {
-    //     try {
-    //         let imageURL = null;
-    //         if (actorImage) {
-    //             imageURL = await uploadActorImage(actorImage);
-    //             console.log(imageURL)
-    //         }
-    //         const data = {
-    //             Name: name,
-    //             BirthDate: birthDate,
-    //             ActorImage: imageURL
-    //         };
-    //         await addActorDB(data);
-    //         console.log('Actor added successfully');
-    //     } catch (error) {
-    //         console.error('Error add actor:', error);
-    //     }
-    //     setName('')
-    //     setBirthDate(null)
-    //     window.alert('Data added successfully!');
-    //     window.location.reload()
-    // }
     
     const handleAddActor = async () => {
         if (
@@ -108,7 +85,7 @@ const AddActor = () => {
                         <div className={AdminCss.form}>
                             <div className={AdminCss.inputbox}>
                                 <label className={AdminCss.label}>Actor Name</label>
-                                <input className={AdminCss.input} type="text" placeholder="Enter Actor Name" value={name} onChange={(e) => setName(e.target.value)} required />
+                                <input className={AdminCss.input} pattern="[A-Za-z]{2,50}" type="text" placeholder="Enter Actor Name" value={name} onChange={(e) => setName(e.target.value)} required />
                             </div>
                             <div className={AdminCss.inputbox}>
                                 <label className={AdminCss.label}>Enter BirthDate</label>

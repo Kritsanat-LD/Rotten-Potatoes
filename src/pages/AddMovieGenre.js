@@ -28,30 +28,6 @@ const AddMovieGenre = () => {
       setPopupVisible(false);
     
   };
-  // const handleAddGenre = async () =>{
-  //     try{
-  //         const data = {
-  //             MovieGenre : movieGenre,
-  //         };
-  //         await addMovieGenreDB(data);
-  //         console.log('Movie genre added successfully');
-  //     }catch(error){
-  //         console.error('Error add genre:', error);
-  //     }
-  //     setMovieGenre('')
-  //     window.alert('Data added successfully!');
-  // }
-
-  // const handleDeleteGenre = async (genre) => {
-  //     try {
-  //         await deleteMovieGenreDB(genre); // Use your delete function here
-  //         console.log('Movie genre deleted successfully');
-  //     } catch (error) {
-  //         console.error('Error deleting genre:', error);
-  //     }
-  //     window.alert('delete genre successfull')
-  //     window.location.reload();
-  // }
 
   const handleAddGenre = async () => {
     return toast.promise(
@@ -128,19 +104,11 @@ const AddMovieGenre = () => {
         <a href="/MovieManagement" className={admingenrecss.gobackbtn}><FontAwesomeIcon icon={faArrowLeft} className={admingenrecss.backicon} /></a>
         <div className={admingenrecss.form}>
           <div className={admingenrecss.inputbox}>
-            <input className={admingenrecss.input} type="text" placeholder="Enter Movie Genre" value={movieGenre} onChange={(e) => setMovieGenre(e.target.value)} required />
+            <input className={admingenrecss.input} pattern="[\w\s]{2,50}" type="text" placeholder="Enter Movie Genre" value={movieGenre} onChange={(e) => setMovieGenre(e.target.value)} required />
           </div>
           <button onClick={handleAddGenre} className={admingenrecss.alinkbtn}>Add Genre</button>
         </div>
       </div>
-
-      {/* <h2>Genre List</h2><br/>
-            {movieGenresList.map((genre)=>(
-            <div key={genre.id}>
-            {genre.MovieGenre}
-            <button>eiei</button>
-            </div>
-        ))}  */}
 
       <div className={admingenrecss.showgenres}>
         <label className={admingenrecss.title}>Genre List</label>
@@ -164,11 +132,6 @@ const AddMovieGenre = () => {
       <div className={admingenrecss.popupline}></div>
       <div className={admingenrecss.popupcontent}>
         <label className={admingenrecss.popuptext}>Are you sure to delete "{selectedGenre.MovieGenre}"</label>
-        {/* <img
-          src="https://scontent.fbkk29-1.fna.fbcdn.net/v/t1.15752-9/394457892_1672833233241862_4956274021755319669_n.png?_nc_cat=101&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=uGd8vjxbn0cAX_8KoVG&_nc_ht=scontent.fbkk29-1.fna&_nc_e2o=s&oh=03_AdSpRgL0hbBfnp1awbr_q-v0aZ3oVVgIRw4hfNfTPCDpBg&oe=655C8869"
-          className={admingenrecss.popupimg}
-          alt="Movie Poster"
-        /> */}
       </div>
       <div className={admingenrecss.buttonsContainer}>
         <button className={admingenrecss.acceptbtn} onClick={() => handleDeleteGenre(selectedGenre)}>Yes</button>
