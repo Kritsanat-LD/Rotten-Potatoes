@@ -1,5 +1,4 @@
-
-    @import url('https://fonts.googleapis.com/css2?family=Mitr&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mitr&display=swap');
 
 * {
     box-sizing: border-box;
@@ -113,7 +112,6 @@
     color: black;
     text-align: center;
     text-decoration: none;
-    /* margin-top: 0.5rem; */
     cursor: pointer;
     padding: 0 0;
     font-size: 12px;

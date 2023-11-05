@@ -10,62 +10,49 @@ import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ActorManagement = () =>{
-    const [actor,setActor] = useState([])
-    const [selectActor, setselectActor] = useState(null);
+    const [actor, setActor] = useState([]);
+    const [selectActor, setSelectActor] = useState(null);
     const [isPopupVisible, setPopupVisible] = useState(false);
-    const openPopup = (actor) => {
-        setselectActor(actor);
-        console.log(actor)
-        setPopupVisible(true);
-      };
-    
-      const closePopup = (event) => {
-     
-          setPopupVisible(false);
-        
-      };
-    useEffect(()=>{
-        const fecthActor = async () =>{
-            try{
-                const querySnapshot = await getDocs(query(collection(db,'Actor'),orderBy('Name')));
-                const actorData = querySnapshot.docs.map((doc)=>({
+    const itemsPerPage = 10;
+    const [currentPage, setCurrentPage] = useState(1);
+
+    useEffect(() => {
+        const fetchActor = async () => {
+            try {
+                const querySnapshot = await getDocs(query(collection(db, 'Actor'), orderBy('Name')));
+                const actorData = querySnapshot.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data(),
-                }))
+                }));
                 setActor(actorData);
+            } catch (error) {
+                console.error('Error fetching actors:', error);
             }
-            catch(error){
-                console.error('Error fetching movie:', error);
-            }
-        }
-        fecthActor();
-    },[])
+        };
+        fetchActor();
+    }, []);
 
-    // const handleDeleteActor = (actorId, actorName) => {
-    //     return toast.promise(
-    //         async (resolve) => {
-    //             try {
-    //                 await deleteActorInfoDB(actorId, actorName);
-    //                 // resolve(); 
-    //             } catch (error) {
-    //                 console.error('Error deleting actor:', error);
-    //                 // throw error; 
-    //             }
-    //         },
-    //         {
-    //             pending: 'Deleting actor, please wait...', 
-    //             success: 'Actor deleted successfully!', 
-    //             error: 'Error deleting actor. Please try again later.', 
-    //         }
-    //     ).then(() => {
-    //         setTimeout(() => {
-    //             window.location.reload();
-    //         }, 2500); 
-    //     });
-    // };
-    
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const actorsToDisplay = actor.slice(startIndex, endIndex);
+    const totalPages = Math.ceil(actor.length / itemsPerPage);
+    const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
+    const openPopup = (actor) => {
+        setSelectActor(actor);
+        setPopupVisible(true);
+    };
+
+    const closePopup = () => {
+        setPopupVisible(false);
+    };
+
     const handleDeleteActor = (actorId, actorName) => {
-        closePopup()
+        closePopup();
         return toast.promise(
             async (resolve) => {
                 try {
@@ -80,11 +67,9 @@ const ActorManagement = () =>{
                 error: 'Error deleting actor. Please try again later.',
             }
         ).then(() => {
-            // Filter out the deleted actor from the state
             setActor((prevActors) => prevActors.filter((actor) => actor.id !== actorId));
         });
     };
-
 
 
     return(
@@ -96,17 +81,32 @@ const ActorManagement = () =>{
         <a className={AdminManagementCss.alinkbtn} href='/addactor'>Add Actor</a>
         </div>
         <div className={AdminManagementCss.warpper}>
-        {actor.map((e)=>(
-            <div key={e.id} className={AdminManagementCss.content}>
-                <img className={AdminManagementCss.img} width={162} height={232} src={e.ActorImage} />
-                <div className={AdminManagementCss.contentinfoActor}>
-                  <a className={AdminManagementCss.contentactorname}>{e.Name}</a>
-                  <a className={AdminManagementCss.contentactorDate}>{e.BirthDate}</a>
+                    {actorsToDisplay.map((e) => (
+                        <div key={e.id} className={AdminManagementCss.content}>
+                            <img className={AdminManagementCss.img} width={162} height={232} src={e.ActorImage} />
+                            <div className={AdminManagementCss.contentinfoActor}>
+                                <a className={AdminManagementCss.contentactorname}>{e.Name}</a>
+                                <a className={AdminManagementCss.contentactorDate}>{e.BirthDate}</a>
+                            </div>
+                            <button className={AdminManagementCss.contentbtndelete} onClick={() => openPopup(e)}>
+                                <FontAwesomeIcon icon={faTrash} />
+                            </button>
+                        </div>
+                    ))}
                 </div>
-                <button className={AdminManagementCss.contentbtndelete} onClick={() => openPopup(e)}><FontAwesomeIcon icon={faTrash} /></button>
-              </div>
-        ))}
-         </div>
+                <div className={AdminManagementCss.pagination}>
+                    {pageNumbers.map((page) => (
+                        <button
+                            key={page}
+                            onClick={() => handlePageChange(page)}
+                            className={`${currentPage === page ? AdminManagementCss.activePage : ''} ${
+                                AdminManagementCss.button_next
+                            }`}
+                        >
+                            {page}
+                        </button>
+                    ))}
+                </div>
          {isPopupVisible && (
       <div className={AdminManagementCss.allpage} id="popupcontainer">
       <div className={AdminManagementCss.containerpopup}>

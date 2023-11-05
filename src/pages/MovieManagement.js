@@ -17,7 +17,7 @@ const MovieManagement = () => {
   const [movieGenres, setMovieGenres] = useState([]); // State for movie genres
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [isPopupVisible, setPopupVisible] = useState(false);
-  const itemsPerPage = 7; // จำนวนรายการต่อหน้า
+  const itemsPerPage = 10; // จำนวนรายการต่อหน้า
   const [currentPage, setCurrentPage] = useState(1); // หน้าเริ่มต้น
 
   const startIndex = (currentPage - 1) * itemsPerPage;

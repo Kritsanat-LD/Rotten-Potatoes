@@ -53,6 +53,11 @@
 .MovieInfo {
   font-size: 16px;
 margin-bottom: 20px;
+overflow: hidden;
+display: -webkit-box;
+-webkit-line-clamp: 5; 
+-webkit-box-orient: vertical;
+text-overflow: ellipsis;
 }
 
 .whatmorebtn{
@@ -122,11 +127,9 @@ margin-bottom: 20px;
 
 .MovieInfo {
   font-size: 0.8em; 
-  overflow: hidden;
-display: -webkit-box;
--webkit-line-clamp: 3; /* Limit the number of lines to 3 */
--webkit-box-orient: vertical;
-text-overflow: ellipsis;
+
+-webkit-line-clamp: 3;
+
 
 }
 }
