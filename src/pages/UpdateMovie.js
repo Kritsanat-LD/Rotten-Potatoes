@@ -31,7 +31,6 @@ const UpdateDetails = () => {
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
-        // Fetch movie details based on the "id" parameter
         const movieDocRef = doc(db, 'Movies', id);
         const movieDocSnapshot = await getDoc(movieDocRef);
         const movieData = movieDocSnapshot.data();
@@ -133,26 +132,26 @@ const UpdateDetails = () => {
         <a href="/MovieManagement"class={AdminCss.gobackbtn}><FontAwesomeIcon icon={faArrowLeft} /></a>
           <header class={AdminCss.header}>Update Movie</header>
           <div class={AdminCss.form}>
-
+          <form onSubmit={handleUpdateMovie}>
           <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Movie Name</label>
-              <input class={AdminCss.input} type="text" placeholder="Loading..." value={movieName} onChange={(e) => setMovieName(e.target.value)} required />
+              <input class={AdminCss.input} pattern="[\w\s]{1,50}" type="text" placeholder="Loading..." value={movieName} onChange={(e) => setMovieName(e.target.value)} required />
             </div>
 
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Movie Info</label>
-              <input class={AdminCss.input} type="text" placeholder="Loading..." value={movieInfo} onChange={(e) => setMovieInfo(e.target.value)} required />
+              <input class={AdminCss.input} pattern="[\w\s]{2,600}" type="text" placeholder="Loading..." value={movieInfo} onChange={(e) => setMovieInfo(e.target.value)} required />
             </div>
 
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Trailer</label>
-              <input class={AdminCss.input} type="text" placeholder="Loading..." value={trailer} onChange={(e) => setTrailer(e.target.value)} required />
+              <input class={AdminCss.input} pattern="<iframe[\s\S]*<\/iframe>" type="text" placeholder="Loading..." value={trailer} onChange={(e) => setTrailer(e.target.value)} required />
             </div>
 
             <div class={AdminCss.column}>
               <div class={AdminCss.inputbox}>
                 <label class={AdminCss.label}>Movie Duration</label>
-                <input class={AdminCss.input} type="number" placeholder="Loading..." value={duration} onChange={(e) => setDuration(e.target.value)} required />
+                <input class={AdminCss.input} pattern="^(0*(?:[1-9][0-9]?|300))$" type="number" placeholder="Loading..." value={duration} onChange={(e) => setDuration(e.target.value)} required />
               </div>
               
               <div class={AdminCss.inputbox}>
@@ -202,8 +201,8 @@ const UpdateDetails = () => {
               <input onChange={handleImageSelection} type="file" class={AdminCss.inputfile}/>
             </div>
 
-            <button onClick={handleUpdateMovie} class={AdminCss.addmovie}>Update Movie</button>
-
+            <button type='submit' class={AdminCss.addmovie}>Update Movie</button>
+            </form>
             </div>
         </section>
       </section>

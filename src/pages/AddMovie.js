@@ -149,7 +149,7 @@ const handleUploadMovie = () => {
   return (
     <>
       <NavbarAdmin />
-    {/* <form> */}
+    <form onSubmit={handleUploadMovie}>
       <section class={AdminCss.warpper}>
         <section class={AdminCss.container}>
         <a href="/MovieManagement"class={AdminCss.gobackbtn}><FontAwesomeIcon icon={faArrowLeft} /></a>
@@ -173,7 +173,7 @@ const handleUploadMovie = () => {
             <div class={AdminCss.column}>
               <div class={AdminCss.inputbox}>
                 <label class={AdminCss.label}>Movie Duration</label>
-                <input class={AdminCss.input} /*1-300*/pattern="^(0*(?:[1-9][0-9]?|300))$" type="number" placeholder="Enter Movie Duration" value={duration} onChange={(e) => setDuration(e.target.value)} required />
+                <input class={AdminCss.input} pattern="^(0*(?:[1-9][0-9]?|300))$" type="number" placeholder="Enter Movie Duration" value={duration} onChange={(e) => setDuration(e.target.value)} required />
               </div>
               
               <div class={AdminCss.inputbox}>
@@ -226,11 +226,11 @@ const handleUploadMovie = () => {
               <input onChange={handleImageSelection} type="file" class={AdminCss.inputfile} id="fileinput" />
             </div>
 
-            <button onClick={handleUploadMovie} class={AdminCss.addmovie}>Add Movie</button>
+            <button type="submit" class={AdminCss.addmovie}>Add Movie</button>
           </div>
         </section>
       </section>
-      {/* </form> */}
+      </form>
       <ToastContainer
                             position="top-center"
                             autoClose={1500}

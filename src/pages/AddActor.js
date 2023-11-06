@@ -83,6 +83,7 @@ const AddActor = () => {
                         <a href="actorManagement" className={AdminCss.gobackbtn}><FontAwesomeIcon icon={faArrowLeft} /></a>
                         <header className={AdminCss.header}>Add Actor</header>
                         <div className={AdminCss.form}>
+                            <form onSubmit={handleAddActor}>
                             <div className={AdminCss.inputbox}>
                                 <label className={AdminCss.label}>Actor Name</label>
                                 <input className={AdminCss.input} pattern="[A-Za-z]{2,50}" type="text" placeholder="Enter Actor Name" value={name} onChange={(e) => setName(e.target.value)} required />
@@ -96,7 +97,8 @@ const AddActor = () => {
                                 <label className={AdminCss.label}>Movie Image</label>
                                 <input onChange={handleImageSelection} type="file" className={AdminCss.inputfile} id="fileinput" />
                             </div>
-                            <button onClick={handleAddActor} className={AdminCss.addmovie}>Add Movie</button>
+                            <button type='submit' className={AdminCss.addmovie}>Add Movie</button>
+                            </form>
                             <ToastContainer
                             position="top-center"
                             autoClose={2500}
