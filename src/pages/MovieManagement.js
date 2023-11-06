@@ -42,6 +42,12 @@ const MovieManagement = () => {
   const totalPages = Math.ceil(data.length / itemsPerPage);
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
+  const calculateMovieScore = (movie) => {
+    return movie.n_comment > 0
+      ? Math.round(((movie.Score / movie.n_comment) / 10) * 100)
+      : 0;
+  };
+  
 
   useEffect(() => {
     // Fetch movie genres from Firebase
@@ -65,23 +71,28 @@ const MovieManagement = () => {
     const fetchData = async () => {
       try {
         let querySnapshot;
-        if(selectedGenre.MovieGenre){
-            const q = query(
-                collection(db,"Movies"),
-                where("MovieGenres",'array-contains',{ label: selectedGenre.MovieGenre , value: selectedGenre.id})
-            );
-            querySnapshot = await getDocs(q)
-        }else{
-          const q = query(collection(db, "Movies"), orderBy("Score", "desc"));
+        if (selectedGenre.MovieGenre) {
+          const q = query(
+            collection(db, "Movies"),
+            where("MovieGenres", "array-contains", {
+              label: selectedGenre.MovieGenre,
+              value: selectedGenre.id,
+            })
+          );
+          querySnapshot = await getDocs(q);
+        } else {
+          const q = query(collection(db, "Movies"));
           querySnapshot = await getDocs(q);
         }
-
+  
         const fetchedData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
           Score: parseFloat(doc.data().Score, 10),
         }));
-        fetchedData.sort((a, b) => b.Score - a.Score);
+        fetchedData.sort((a, b) => {
+          return calculateMovieScore(b) - calculateMovieScore(a);
+        });
         setData(fetchedData);
         setIsLoading(false);
       } catch (error) {
@@ -89,9 +100,10 @@ const MovieManagement = () => {
         setIsLoading(false);
       }
     };
-
+  
     fetchData();
   }, [selectedGenre]);
+  
 
   const handleGenreChange = (event) => {
     const selectedGenreValue = event.target.value;

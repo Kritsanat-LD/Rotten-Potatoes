@@ -52,8 +52,15 @@ const HomePage = () => {
             return showDate > currentDate;
           });
 
-          const sortedByScore = [...fetchedData].sort((a, b) => b.Score - a.Score);
+          const sortedByScore = [...fetchedData].sort((a, b) => {
+            const scoreA = a.n_comment > 0 ? ((a.Score / a.n_comment) / 10) * 100 : 0;
+            const scoreB = b.n_comment > 0 ? ((b.Score / b.n_comment) / 10) * 100 : 0;
+          
+            return scoreB - scoreA;
+          });
+          
           const top10Movies = sortedByScore.slice(0, 10);
+          
 
           if(random==0){
             MovieGenre = 'Horror'

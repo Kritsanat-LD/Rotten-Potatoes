@@ -77,7 +77,7 @@ const Navbar = () => {
       <input type="checkbox" className={Navcss.menu} id="menuToggle" />
       <nav className={Navcss.nav}>
         <a href="/" className={Navcss.logoLink}>
-          <img src="https://scontent.fbkk29-1.fna.fbcdn.net/v/t1.15752-9/394623166_209038852206267_3010154515633876943_n.png?stp=dst-png_s2048x2048&_nc_cat=100&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=ZtU6z_6HC20AX8yhKgQ&_nc_ht=scontent.fbkk29-1.fna&_nc_e2o=s&oh=03_AdTwQExNSs9VIAljsL-6xHqYPfR6UghHhjG8fk4iZ3nd2A&oe=655A05CB" className={Navcss.logo} />
+          <img src="https://firebasestorage.googleapis.com/v0/b/auth-37d15.appspot.com/o/logo%2Fpotatologo.png?alt=media&token=e097befa-4975-4386-ba58-7b0751c52845" className={Navcss.logo} />
         </a>
         <Search input={{ icon: 'search', iconPosition: 'left', size: 'large', className: 'searchInput' }}
           placeholder='Search Movie'
