@@ -93,7 +93,8 @@ const UpdateDetails = () => {
     setSelectedImage(event.target.files[0]);
   };
 
-  const handleUpdateMovie = async () => {
+  const handleUpdateMovie = async (event) => {
+    event.preventDefault();
     return toast.promise(
       async (resolve) => {
         let imageURL = null;
@@ -127,12 +128,12 @@ const UpdateDetails = () => {
   return (
     <>
     <NavbarAdmin />
+    <form onSubmit={handleUpdateMovie}>
     <section class={AdminCss.warpper}>
         <section class={AdminCss.container}>
         <a href="/MovieManagement"class={AdminCss.gobackbtn}><FontAwesomeIcon icon={faArrowLeft} /></a>
           <header class={AdminCss.header}>Update Movie</header>
           <div class={AdminCss.form}>
-          <form onSubmit={handleUpdateMovie}>
           <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Movie Name</label>
               <input class={AdminCss.input} pattern="[\w\s]{1,50}" type="text" placeholder="Loading..." value={movieName} onChange={(e) => setMovieName(e.target.value)} required />
@@ -140,7 +141,7 @@ const UpdateDetails = () => {
 
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Movie Info</label>
-              <input class={AdminCss.input} pattern="[\w\s]{2,600}" type="text" placeholder="Loading..." value={movieInfo} onChange={(e) => setMovieInfo(e.target.value)} required />
+              <input class={AdminCss.input} pattern='[./.]{2,600}' type="text" placeholder="Loading..." value={movieInfo} onChange={(e) => setMovieInfo(e.target.value)} required />
             </div>
 
             <div class={AdminCss.inputbox}>
@@ -151,7 +152,7 @@ const UpdateDetails = () => {
             <div class={AdminCss.column}>
               <div class={AdminCss.inputbox}>
                 <label class={AdminCss.label}>Movie Duration</label>
-                <input class={AdminCss.input} pattern="^(0*(?:[1-9][0-9]?|300))$" type="number" placeholder="Loading..." value={duration} onChange={(e) => setDuration(e.target.value)} required />
+                <input class={AdminCss.input} pattern="^(?:[1-9]|[1-2][0-9]|300)$" type="number" min="1" max="300" placeholder="Loading..." value={duration} onChange={(e) => setDuration(e.target.value)} required />
               </div>
               
               <div class={AdminCss.inputbox}>
@@ -200,12 +201,11 @@ const UpdateDetails = () => {
               <label class={AdminCss.label}>Movie Image</label>
               <input onChange={handleImageSelection} type="file" class={AdminCss.inputfile}/>
             </div>
-
-            <button type='submit' class={AdminCss.addmovie}>Update Movie</button>
-            </form>
+            <button type="submit" class={AdminCss.addmovie}>Update Movie</button>
             </div>
         </section>
       </section>
+      </form>
       <ToastContainer
                             position="top-center"
                             autoClose={2500}

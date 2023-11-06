@@ -29,7 +29,8 @@ const AddMovieGenre = () => {
     
   };
 
-  const handleAddGenre = async () => {
+  const handleAddGenre = async (event) => {
+    event.preventDefault();
     return toast.promise(
       async (resolve) => {
         try {
@@ -100,18 +101,17 @@ const AddMovieGenre = () => {
   return (
     <>
       <NavbarAdmin />
+      <form onSubmit={handleAddGenre}>
       <div className={admingenrecss.containeraddandbtn}>
         <a href="/MovieManagement" className={admingenrecss.gobackbtn}><FontAwesomeIcon icon={faArrowLeft} className={admingenrecss.backicon} /></a>
         <div className={admingenrecss.form}>
-        <form onSubmit={handleAddGenre}>
           <div className={admingenrecss.inputbox}>
             <input className={admingenrecss.input} pattern="[\w\s]{2,50}" type="text" placeholder="Enter Movie Genre" value={movieGenre} onChange={(e) => setMovieGenre(e.target.value)} required />
           </div>
           <button type="submit" className={admingenrecss.alinkbtn}>Add Genre</button>
-          </form>
         </div>
       </div>
-
+      </form>
       <div className={admingenrecss.showgenres}>
         <label className={admingenrecss.title}>Genre List</label>
         {isLoading ? (

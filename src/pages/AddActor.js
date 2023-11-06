@@ -19,7 +19,8 @@ const AddActor = () => {
         setActorImage(event.target.files[0]);
     }
     
-    const handleAddActor = async () => {
+    const handleAddActor = async (event) => {
+        event.preventDefault();
         if (
             name === '' ||
             birthDate === null ||

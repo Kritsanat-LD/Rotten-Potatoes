@@ -53,7 +53,8 @@ const AddMovie = () => {
     fetchData();
   }, []);
 
-const handleUploadMovie = () => {
+const handleUploadMovie = (event) => {
+  event.preventDefault();
     const validateFields = () => {
         if (
             movieName === '' ||
