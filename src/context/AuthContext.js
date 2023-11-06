@@ -21,11 +21,7 @@ import {
     const updateUserRole  = (role) => {
       setUserRole(role);
     };
-  
-    // const handleBeforeUnload = () => {
-    //   // Sign out the user before unloading the page/tab
-    //   logout();
-    // };
+
 
     useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -42,20 +38,13 @@ import {
         }
       });
 
-      // window.addEventListener('beforeunload', handleBeforeUnload); 
-
 
       return () => {
         unsubscribe();
-
-        // window.removeEventListener('beforeunload', handleBeforeUnload);
       };
     }, []);
     
     return (
-      // <UserContext.Provider value={{ user , logout}}>
-      //   {children}
-      // </UserContext.Provider>
       
     <UserContext.Provider value={{ user , logout, userRole, updateUserRole, Username }}>
       {children}
