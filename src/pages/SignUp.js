@@ -75,7 +75,7 @@ const SignUp = () => {
                         <input className={RegisterCss.input}  type="text" placeholder="Enter your Fullname" name="name" value={name} onChange={(e) => setName(e.target.value)} required />
 
                         <label className={RegisterCss.label}><b>Phone Number</b></label>
-                        <input className={RegisterCss.input}  type="tel" pattern="[0-9]{9,10}" placeholder="Enter Phone Number" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
+                        <input className={RegisterCss.input}  type="tel" pattern="^0{1}[6-9]{1}[0-9]{8}" placeholder="Enter Phone Number" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
 
                         <label className={RegisterCss.errorlabel} id="errorlabel"></label>
                         <button className={RegisterCss.btn} type="submit">Sign up</button>
