@@ -141,7 +141,7 @@ const UpdateDetails = () => {
 
             <div class={AdminCss.inputbox}>
               <label class={AdminCss.label}>Movie Info</label>
-              <input class={AdminCss.input} pattern='[./.]{2,600}' type="text" placeholder="Loading..." value={movieInfo} onChange={(e) => setMovieInfo(e.target.value)} required />
+              <input class={AdminCss.input} pattern='[\w\W]{2,600}' type="text" placeholder="Loading..." value={movieInfo} onChange={(e) => setMovieInfo(e.target.value)} required />
             </div>
 
             <div class={AdminCss.inputbox}>
