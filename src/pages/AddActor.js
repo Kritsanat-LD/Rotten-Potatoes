@@ -87,7 +87,7 @@ const AddActor = () => {
                             <form onSubmit={handleAddActor}>
                             <div className={AdminCss.inputbox}>
                                 <label className={AdminCss.label}>Actor Name</label>
-                                <input className={AdminCss.input} pattern="[A-Za-z]{2,50}" type="text" placeholder="Enter Actor Name" value={name} onChange={(e) => setName(e.target.value)} required />
+                                <input className={AdminCss.input} pattern="[A-Za-z/s]{2,50}" type="text" placeholder="Enter Actor Name" value={name} onChange={(e) => setName(e.target.value)} required />
                             </div>
                             <div className={AdminCss.inputbox}>
                                 <label className={AdminCss.label}>Enter BirthDate</label>

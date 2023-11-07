@@ -174,7 +174,7 @@ const handleUploadMovie = (event) => {
             <div class={AdminCss.column}>
               <div class={AdminCss.inputbox}>
                 <label class={AdminCss.label}>Movie Duration</label>
-                <input class={AdminCss.input} pattern="^(0*(?:[1-9][0-9]?|300))$" type="number" placeholder="Enter Movie Duration" value={duration} onChange={(e) => setDuration(e.target.value)} required />
+                <input class={AdminCss.input} pattern="^(?:[1-9]|[1-2][0-9]|300)$" type="number" min="1" max="300" placeholder="Enter Movie Duration" value={duration} onChange={(e) => setDuration(e.target.value)} required />
               </div>
               
               <div class={AdminCss.inputbox}>

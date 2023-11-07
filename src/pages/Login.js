@@ -17,20 +17,8 @@ const Login = () => {
     const { updateUserRole } = UserAuth();
     const [isLoading, setIsLoading] = useState(false); 
 
-    // const [userRole,setUserRole] = useState('')
     const navigate = useNavigate('')
 
-    // const handleLogin = (e) => {
-    //     let errorlabelid = document.getElementById("errorlabel")
-    //     e.preventDefault();
-    //     signInWithEmailAndPassword(auth, email, password)
-    //         .then((userCredential) => {
-    //             navigate("/home")
-    //         })
-    //         .catch((error) => {
-    //             errorlabelid.innerHTML = "You have no Account yet";
-    //         });
-    // }
 
     const handleLogin = async (e) => {
         let errorlabelid = document.getElementById("errorlabel")

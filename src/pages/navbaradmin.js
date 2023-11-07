@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 import Sidebarcss from "../css/sidebar.module.css"
@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilm, faMessage, faUserTie, faHouse, faBars, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
 const NavbarAdmin = () => {
-    const { user, logout } = UserAuth();
+    const { logout } = UserAuth();
     const navigate = useNavigate();
 
     const handleLogout = async () => {
