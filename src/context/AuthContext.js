@@ -5,7 +5,8 @@ import {
   } from 'firebase/auth';
   import { auth , db} from '../firebase';
   import { doc, getDoc, } from 'firebase/firestore';
-
+  import Cookies from 'js-cookie';
+  import CryptoJS from 'crypto-js';
   const UserContext = createContext();
 
 
@@ -33,7 +34,10 @@ import {
           const userData = userDocSnapshot.data();
           if (userData && userData.role) {
             setUsername(userData.name);
-            setUserRole(userData.role); // Update the user role in your AuthContext
+            setUserRole(userData.role); 
+            const md5Hash = CryptoJS.MD5(userData.role).toString();
+            Cookies.set('userRole', md5Hash, { secure: true, sameSite: 'strict' });
+            sessionStorage.setItem('username', userData.name);
           }
         }
       });
